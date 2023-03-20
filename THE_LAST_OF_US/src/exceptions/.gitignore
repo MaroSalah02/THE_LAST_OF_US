@@ -1,0 +1,5 @@
+/GameActionException.class
+/InvalidTargetException.class
+/MovementException.class
+/NoAvailableResourcesException.class
+/NotEnoughActionsException.class
