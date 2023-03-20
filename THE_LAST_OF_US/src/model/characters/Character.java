@@ -13,6 +13,7 @@ abstract public class Character {
 	public Character(String name, int maxHp, int attackDmg) {
 		this.name = name;
 		this.maxHp = maxHp;
+		this.currentHp = maxHp;
 		this.attackDmg = attackDmg;
 	}
 
