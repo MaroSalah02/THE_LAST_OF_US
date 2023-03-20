@@ -1,6 +1,6 @@
 package model.characters;
 import java.util.*;
-import model.collectibles.Vaccine;
+import model.collectibles.*;
 
 public class Hero extends Character{
 
