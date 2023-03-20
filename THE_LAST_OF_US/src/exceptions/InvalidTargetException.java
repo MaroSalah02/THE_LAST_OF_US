@@ -1,6 +1,6 @@
 package exceptions;
 
-public class InvalidTargetException extends GameActionException{
+public class InvalidTargetException extends GameActionException {
 	public InvalidTargetException() {
 		super();
 	}
