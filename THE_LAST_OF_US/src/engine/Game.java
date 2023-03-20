@@ -9,6 +9,7 @@ import model.characters.Fighter;
 import model.characters.Hero;
 import model.characters.Medic;
 import model.characters.Zombie;
+import model.collectibles.Supply;
 import model.world.Cell;
 
 public class Game {
@@ -18,10 +19,10 @@ public class Game {
 	public static Cell [][] map;
 	
 	public static void loadHeroes(String filePath) throws IOException{
-
-
+		
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 
+		
         while(br.readLine() != null)
         {
             String[] hero = (br.readLine()).split(",");
@@ -32,7 +33,6 @@ public class Game {
             case "MED":availableHeroes.add(new Medic(hero[0],Integer.parseInt(hero[2]),Integer.parseInt(hero[4]),Integer.parseInt(hero[3])));break;
 
             }
-
         }
 
     }
