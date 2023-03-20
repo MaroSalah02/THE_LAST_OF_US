@@ -1,5 +1,5 @@
 package model.world;
-import java.util.*;
+
 
 public class TrapCell extends Cell {
 	private int trapDamage;
@@ -12,11 +12,7 @@ public class TrapCell extends Cell {
 		return trapDamage;
 	}
 	public int getrandom() {
-		Random r = new Random();
-		int x=r.nextInt();
-		while(x!=10||x!=20||x!=30) {
-			x=r.nextInt();
+		return ((int)(Math.random()*3+1))*10;
 		}
-		return x;
 	}
-}
+

@@ -11,7 +11,7 @@ public class CharacterCell extends Cell {
 	}
 
 	public Character getCharacter() {
-		return character;
+		return this.character;
 	}
 	public void setCharacter(Character character) {
 		this.character = character;
