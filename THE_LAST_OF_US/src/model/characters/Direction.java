@@ -2,5 +2,5 @@ package model.characters;
 
 public enum Direction {
 
-	UP,Down,Left,Right;
+	UP,DOWN,LEFT,RIGHT;
 }
