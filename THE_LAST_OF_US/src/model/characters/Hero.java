@@ -2,7 +2,7 @@ package model.characters;
 import java.util.*;
 import model.collectibles.*;
 
-public class Hero extends Character{
+abstract public class Hero extends Character{
 
 	private int actionsAvailable;
 	private int maxActions;
