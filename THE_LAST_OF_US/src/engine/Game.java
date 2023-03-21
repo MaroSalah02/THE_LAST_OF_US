@@ -1,15 +1,10 @@
 package engine;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+
+
+import java.io.*;
 import java.util.ArrayList;
 
-import model.characters.Explorer;
-import model.characters.Fighter;
-import model.characters.Hero;
-import model.characters.Medic;
-import model.characters.Zombie;
-import model.collectibles.Supply;
+import model.characters.*;
 import model.world.Cell;
 
 public class Game {
