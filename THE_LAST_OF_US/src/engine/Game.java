@@ -9,6 +9,7 @@ import model.characters.Fighter;
 import model.characters.Hero;
 import model.characters.Medic;
 import model.characters.Zombie;
+import model.collectibles.Supply;
 import model.world.Cell;
 
 public class Game {
@@ -17,12 +18,13 @@ public class Game {
 	public static ArrayList<Zombie> zombies;
 	public static Cell [][] map;
 	
+
 	public static void loadHeroes(String filePath) throws IOException {
 
 		availableHeroes = new ArrayList<Hero>();
 		
         BufferedReader br = new BufferedReader(new FileReader(filePath));
-
+		
         String currentLine;
         
         while((currentLine=br.readLine()) != null)
