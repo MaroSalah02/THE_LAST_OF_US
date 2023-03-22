@@ -8,15 +8,15 @@ import model.characters.*;
 import model.world.Cell;
 
 public class Game {
-	public static ArrayList<Hero>availableHeroes;
-	public static ArrayList<Hero> heroes;
-	public static ArrayList<Zombie> zombies;
+	public static ArrayList<Hero>availableHeroes = new ArrayList<Hero>();
+	public static ArrayList<Hero> heroes = new ArrayList<Hero>();
+	public static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
 	public static Cell [][] map = new Cell[15][15];
 	
 
 	public static void loadHeroes(String filePath) throws IOException {
 
-		availableHeroes = new ArrayList<Hero>();
+		
 		
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 		
