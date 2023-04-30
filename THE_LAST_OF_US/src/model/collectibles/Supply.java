@@ -20,11 +20,14 @@ public class Supply implements Collectible {
 	@Override
 	public void use(Hero h) throws NoAvailableResourcesException{
 		try {
-		ArrayList<Supply> supArray = h.getSupplyInventory();
-		supArray.remove(supArray.size() - 1);
+			ArrayList<Supply> supArray = h.getSupplyInventory();
+			if(supArray.size() == 0) {
+				throw new NoAvailableResourcesException();
+			}
+			supArray.remove(supArray.size() - 1);
 		}
-		catch(NullPointerException err){
-			throw new NoAvailableResourcesException("Sir, You don't have any Supply left");
+		catch(NoAvailableResourcesException err){
+			System.out.println("Sir, You don't have any Supply left");
 		}
 		
 	}

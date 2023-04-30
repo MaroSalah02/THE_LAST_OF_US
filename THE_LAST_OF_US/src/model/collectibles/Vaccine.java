@@ -21,9 +21,13 @@ public class Vaccine implements Collectible {
 	public void use(Hero h) throws NoAvailableResourcesException{
 		try {
 		ArrayList<Vaccine> vaccinoArray = h.getVaccineInventory();
-		vaccinoArray.remove(vaccinoArray.size() - 1);
-	}catch(NullPointerException err){
-		throw new NoAvailableResourcesException("Sir, You don't have any Vaccine left left");
+		if(vaccinoArray.size() == 0) {
+			throw new NoAvailableResourcesException();
 		}
+		vaccinoArray.remove(vaccinoArray.size() - 1);
+	}
+	catch(NoAvailableResourcesException err){
+		System.out.println("Sir, You don't have any Vaccine left");
+	}
 	}
 }
