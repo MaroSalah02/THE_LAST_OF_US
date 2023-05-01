@@ -35,7 +35,6 @@ public class Game {
 
     }
 	
-	
 	public static void setAdjacentVisible(Point pos) {
 		int X = (int) pos.getX();
 		int Y = (int) pos.getY();
