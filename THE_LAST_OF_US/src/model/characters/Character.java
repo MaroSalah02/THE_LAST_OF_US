@@ -1,6 +1,7 @@
 package model.characters;
 import java.awt.Point;
-
+import java.util.ArrayList;
+import engine.Game;
 abstract public class Character {
 
 	private String name;
@@ -16,7 +17,23 @@ abstract public class Character {
 		this.currentHp = maxHp;
 		this.attackDmg = attackDmg;
 	}
-
+	
+	
+	public void onCharacterDeath() {
+		if (this.getCurrentHp()==0) {
+			for(int i=0;i<15;i++) {
+				for(int j=0;j<15;j++) {
+					if(this instanceof Hero) {
+						
+					}
+				}
+			}
+		}
+	}
+	
+		
+		
+		
 	public Point getLocation() {
 		return location;
 	}

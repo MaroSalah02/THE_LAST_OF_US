@@ -17,7 +17,6 @@ public class Game {
 	public static void loadHeroes(String filePath) throws IOException {
 
 		
-		
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 		
         String currentLine;
