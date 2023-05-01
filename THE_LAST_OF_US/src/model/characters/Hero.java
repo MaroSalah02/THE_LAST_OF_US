@@ -69,14 +69,14 @@ abstract public class Hero extends Character{
 				throw new MovementException("you are trying to move out of bounds.");
 			
 			if(Game.map[(int)pos.getX()][(int)pos.getY()] instanceof CharacterCell)
-				throw new MovementException("you are trying to move into an already occupied cell)");
+				throw new MovementException("you are trying to move into an already occupied cell.");
 			
 			this.setLocation(pos);
 		}
 		catch(MovementException e){
 			System.out.println("Invalid movement option," + e.getMessage());
 		} catch (NotEnoughActionsException e) {
-			System.out.println("You don't have more actoins this turn");
+			System.out.println("You don't have more actoins this turn.");
 		}
 		
 		Game.setAdjacentVisible(this.getLocation());
