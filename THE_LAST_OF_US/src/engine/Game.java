@@ -1,6 +1,7 @@
 package engine;
 
 
+import java.awt.Point;
 import java.io.*;
 import java.util.ArrayList;
 
@@ -33,6 +34,33 @@ public class Game {
         }
 
     }
+	
+	public static void setAdjacentVisible(Point pos) {
+		int X = (int) pos.getX();
+		int Y = (int) pos.getY();
+		
+		if(X!=0) {
+			(map[X-1][Y]).setVisible(true);
+			if(Y!=0)
+				(map[X-1][Y-1]).setVisible(true);
+			if(Y!=14)
+				(map[X-1][Y+1]).setVisible(true);
+		}
+			
+		if(X!=14) {
+			(map[X+1][Y]).setVisible(true);
+			if(Y!=0)
+				(map[X+1][Y-1]).setVisible(true);
+			if(Y!=14)
+				(map[X+1][Y+1]).setVisible(true);
+		}
+		
+		if(Y!=0)
+			(map[X][Y-1]).setVisible(true);
+		if(Y!=14)
+			(map[X][Y+1]).setVisible(true);
+		
+	}
 	
 }
 
