@@ -79,6 +79,7 @@ abstract public class Hero extends Character{
 			System.out.println("You don't have more actoins this turn");
 		}
 		
+		
 		Game.setAdjacentVisible(this.getLocation());
 	}
 	
