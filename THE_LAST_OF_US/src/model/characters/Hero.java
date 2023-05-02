@@ -71,7 +71,11 @@ abstract public class Hero extends Character{
 			if(Game.map[(int)pos.getX()][(int)pos.getY()] instanceof CharacterCell)
 				throw new MovementException("you are trying to move into an already occupied cell.");
 			
+			Game.map[(int) (this.getLocation()).getX()][(int) (this.getLocation()).getY()] = null;
+			
 			this.setLocation(pos);
+			
+			Game.map[(int) pos.getX()][(int) pos.getY()] = new CharacterCell(this);
 		}
 		catch(MovementException e){
 			System.out.println("Invalid movement option," + e.getMessage());
