@@ -82,4 +82,5 @@ abstract public class Hero extends Character{
 		Game.setAdjacentVisible(this.getLocation());
 	}
 	
+	
 }

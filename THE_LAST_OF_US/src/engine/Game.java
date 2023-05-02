@@ -32,7 +32,6 @@ public class Game {
             case "MED":availableHeroes.add(new Medic(hero[0],Integer.parseInt(hero[2]),Integer.parseInt(hero[4]),Integer.parseInt(hero[3])));break;
             }
         }
-
     }
 	
 	public static void setAdjacentVisible(Point pos) {
