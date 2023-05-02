@@ -21,15 +21,26 @@ abstract public class Character {
 	
 	public void onCharacterDeath() {
 		if (this.getCurrentHp()==0) {
-			for(int i=0;i<15;i++) {
-				for(int j=0;j<15;j++) {
-					if(this instanceof Hero) {
-						
+			if(this instanceof Hero) {
+				for(int i=0;i<Game.heroes.size();i++) {
+					if((Game.heroes.get(i)).getName()==getName()) {
+						Game.heroes.set(i,null);
 					}
 				}
 			}
+			else if(this instanceof Zombie) {
+				for(int j=0;j<Game.zombies.size();j++) {
+						if((Game.zombies.get(j)).getName()==getName()) {
+							Game.zombies.set(j,null);
+						}
+					}
+				}
+			}
+		Point L =this.getLocation();
+		Game.map[L.y][L.x]=null;
+		
 		}
-	}
+	
 	
 		
 		
