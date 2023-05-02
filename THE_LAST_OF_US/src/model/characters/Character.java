@@ -37,7 +37,7 @@ abstract public class Character {
 				}
 			}
 		Point L =this.getLocation();
-		Game.map[L.y][L.x]=null;
+		Game.map[15-L.y][L.x]=null;
 		
 		}
 	
