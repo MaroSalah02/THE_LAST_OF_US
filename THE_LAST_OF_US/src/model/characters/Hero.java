@@ -68,14 +68,26 @@ abstract public class Hero extends Character{
 			if(pos.getX()<0||pos.getY()<0||pos.getX()>14||pos.getY()>14)
 				throw new MovementException("you are trying to move out of bounds.");
 			
-			if(Game.map[(int)pos.getX()][(int)pos.getY()] instanceof CharacterCell)
-				throw new MovementException("you are trying to move into an already occupied cell.");
+			Cell newCell = Game.map[(int)pos.getX()][(int)pos.getY()];
+			Collectible collectible;
 			
-			Game.map[(int) (this.getLocation()).getX()][(int) (this.getLocation()).getY()] = null;
+			if(newCell instanceof CharacterCell)
+				if (((CharacterCell)newCell).getCharacter()!=null)
+					throw new MovementException("you are trying to move into an already occupied cell.");
+			
+			if(newCell instanceof CollectibleCell) {
+				collectible = ((CollectibleCell)newCell).getCollectible();
+				collectible.pickUp(this);
+			}
+			
+			if(newCell instanceof TrapCell)
+				this.setCurrentHp(this.getCurrentHp()-((TrapCell)newCell).getTrapDamage());
+			
+			Game.map[(int) (this.getLocation()).getX()][(int) (this.getLocation()).getY()] = new CharacterCell(null);
 			
 			this.setLocation(pos);
 			
-			Game.map[(int) pos.getX()][(int) pos.getY()] = new CharacterCell(this);
+			newCell = new CharacterCell(this);
 		}
 		catch(MovementException e){
 			System.out.println("Invalid movement option," + e.getMessage());
