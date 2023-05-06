@@ -16,34 +16,7 @@ abstract public class Character {
 		this.maxHp = maxHp;
 		this.currentHp = maxHp;
 		this.attackDmg = attackDmg;
-	}
-	
-	
-	public void onCharacterDeath() {
-		if (this.getCurrentHp()==0) {
-			if(this instanceof Hero) {
-				for(int i=0;i<Game.heroes.size();i++) {
-					if((Game.heroes.get(i)).getName()==getName()) {
-						Game.heroes.set(i,null);
-					}
-				}
-			}
-			else if(this instanceof Zombie) {
-				for(int j=0;j<Game.zombies.size();j++) {
-						if((Game.zombies.get(j)).getName()==getName()) {
-							Game.zombies.set(j,null);
-						}
-					}
-				}
-			}
-		Point L =this.getLocation();
-		Game.map[15-L.y][L.x]=null;
-		
-		}
-	
-	
-		
-		
+	}	
 		
 	public Point getLocation() {
 		return location;
@@ -89,6 +62,42 @@ abstract public class Character {
 		return attackDmg;
 	}
 	
+	public void onCharacterDeath() {
+		if (this.getCurrentHp()==0) {
+			if(this instanceof Hero) {
+				for(int i=0;i<Game.heroes.size();i++) {
+					if((Game.heroes.get(i)).getName()==getName()) {
+						Game.heroes.set(i,null);
+					}
+				}
+			}
+			else if(this instanceof Zombie) {
+				for(int j=0;j<Game.zombies.size();j++) {
+						if((Game.zombies.get(j)).getName()==getName()) {
+							Game.zombies.set(j,null);
+						}
+					}
+				}
+			}
+		Point L =this.getLocation();
+		Game.map[15-L.y][L.x]=null;
+		
+		}
 	
+	public boolean adjacentTarget() {
+		Point pos1 = this.getLocation();
+		int X1 = (int) pos1.getX();
+		int Y1 = (int) pos1.getY();
+		
+		Point pos2 = (this.getTarget()).getLocation();
+		int X2 = (int) pos2.getX();
+		int Y2 = (int) pos2.getY();
+		
+		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1))
+			return true;
+		else
+			return false;
+		
+	}
 	
 }
