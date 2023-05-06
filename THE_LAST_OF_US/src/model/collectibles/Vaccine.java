@@ -18,7 +18,7 @@ public class Vaccine implements Collectible {
 	}
 
 	@Override
-	public void use(Hero h) throws NoAvailableResourcesException{
+	public void use(Hero h){
 		try {
 		ArrayList<Vaccine> vaccinoArray = h.getVaccineInventory();
 		if(vaccinoArray.size() == 0) {

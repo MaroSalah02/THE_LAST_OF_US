@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import model.characters.*;
 import model.world.Cell;
+import model.collectibles.*;
+
 
 public class Game {
 	public static ArrayList<Hero>availableHeroes = new ArrayList<Hero>();
