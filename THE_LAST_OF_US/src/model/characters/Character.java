@@ -93,7 +93,7 @@ abstract public class Character {
 		int X2 = (int) pos2.getX();
 		int Y2 = (int) pos2.getY();
 		
-		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1))
+		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1)&&(this!=this.getTarget()))
 			return true;
 		else
 			return false;
