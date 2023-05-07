@@ -74,14 +74,10 @@ abstract public class Character {
 				int j=Game.zombies.indexOf(z);
 				Game.zombies.remove(j);
 			}
-		}
-		
+		}		
 		Point L =this.getLocation();
 		Game.map[14-L.y][L.x]=null;
 		}
-		
-		
-	
 	public boolean adjacentTarget() {
 		Point pos1 = this.getLocation();
 		int X1 = (int) pos1.getX();
