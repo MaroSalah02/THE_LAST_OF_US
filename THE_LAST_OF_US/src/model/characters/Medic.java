@@ -2,6 +2,7 @@ package model.characters;
 
 import engine.Game;
 import exceptions.InvalidTargetException;
+import model.collectibles.Supply;
 
 public class Medic extends Hero{
 
@@ -18,7 +19,8 @@ public class Medic extends Hero{
 			if(!m.getTarget().adjacentTarget()) {
 				throw new InvalidTargetException();
 			}
-			m.getSupplyInventory().remove(m.getSupplyInventory().size()-1);
+			Supply s=new Supply();
+			s.use(m);
 			m.setSpecialAction(true);
 		}
 		catch(InvalidTargetException i) {

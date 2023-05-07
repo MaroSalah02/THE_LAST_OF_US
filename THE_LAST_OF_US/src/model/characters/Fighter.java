@@ -11,7 +11,8 @@ public class Fighter extends Hero{
 	public void useSpecial() {
 		super.useSpecial();
 		Fighter f=(Fighter)this;
-		f.getSupplyInventory().remove(f.getSupplyInventory().size()-1);
+		Supply s=new Supply();
+		s.use(f);
 		f.setSpecialAction(true);
 	}
 }

@@ -1,6 +1,7 @@
 package model.characters;
 
 import engine.Game;
+import model.collectibles.Supply;
 
 public class Explorer extends Hero{
 
@@ -10,7 +11,8 @@ public class Explorer extends Hero{
 	public void useSpecial() {
 		super.useSpecial();
 		Explorer e=(Explorer)this;
-		e.getSupplyInventory().remove(e.getSupplyInventory().size()-1);
+		Supply s=new Supply();
+		s.use(e);
 		for(int i=0;i<15;i++) {
 			for(int j=0;j<15;j++) {
 				Game.map[i][j].setVisible(true);
