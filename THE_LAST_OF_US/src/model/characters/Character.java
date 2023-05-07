@@ -65,24 +65,22 @@ abstract public class Character {
 	public void onCharacterDeath() {
 		if (this.getCurrentHp()==0) {
 			if(this instanceof Hero) {
-				for(int i=0;i<Game.heroes.size();i++) {
-					if((Game.heroes.get(i)).getName()==getName()) {
-						Game.heroes.set(i,null);
-					}
-				}
+				Hero h=(Hero)this;
+				int i=Game.heroes.indexOf(h);
+				Game.heroes.remove(i);
 			}
-			else if(this instanceof Zombie) {
-				for(int j=0;j<Game.zombies.size();j++) {
-						if((Game.zombies.get(j)).getName()==getName()) {
-							Game.zombies.set(j,null);
-						}
-					}
-				}
+			if(this instanceof Zombie) {
+				Zombie z=(Zombie)this;
+				int j=Game.zombies.indexOf(z);
+				Game.zombies.remove(j);
 			}
-		Point L =this.getLocation();
-		Game.map[15-L.y][L.x]=null;
-		
 		}
+		
+		Point L =this.getLocation();
+		Game.map[14-L.y][L.x]=null;
+		}
+		
+		
 	
 	public boolean adjacentTarget() {
 		Point pos1 = this.getLocation();
