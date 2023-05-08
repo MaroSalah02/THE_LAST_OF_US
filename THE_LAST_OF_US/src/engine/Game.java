@@ -271,9 +271,8 @@ public class Game {
 	public static void main(String[]args) throws GameActionException{
 
 		Character z  = new Zombie();
-		
+
 		System.out.println(z instanceof Zombie);
-		
 	}
 }
 
