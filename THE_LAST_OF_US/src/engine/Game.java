@@ -256,7 +256,7 @@ public class Game {
 			}
 		}
 		
-	}
+	
 	
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{
