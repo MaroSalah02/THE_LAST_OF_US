@@ -40,6 +40,8 @@ public class Game {
 		int X = (int) pos.getX();
 		int Y = (int) pos.getY();
 		
+		map[X][Y].setVisible(true);
+		
 		if(X>0) {
 			(map[X-1][Y]).setVisible(true);
 			if(Y>0)
