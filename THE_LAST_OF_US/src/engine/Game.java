@@ -178,7 +178,22 @@ public class Game {
 	}
 	
 	public static void endTurn() {
-		
+		for(int x =0;x<=14; x++) {
+			for(int y =0; y<=14; y++) {
+				if(map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie) {
+					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
+					Point zombLoc = zomb.getLocation();
+					double zx = zombLoc.getX();
+					double zy = zombLoc.getY();
+					ArrayList<Hero> HerosArroundMe;
+					if(map[zx][zy+1] instanceof) {
+						
+					}
+					
+					
+				}
+			}
+		}
 		
 	}
 	
