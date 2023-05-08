@@ -21,6 +21,7 @@ abstract public class Hero extends Character{
 		vaccineInventory = new ArrayList<Vaccine>();
 		supplyInventory = new ArrayList<Supply>();
 	}
+	
 	public void useSpecial() {
 		try {
 			if(this.supplyInventory.isEmpty()) {
