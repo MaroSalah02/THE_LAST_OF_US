@@ -69,8 +69,6 @@ public class Game {
 			}
 		}
 		// spawn the necessary Collectibles
-		ArrayList<Supply> SupArray = h.getSupplyInventory();
-		ArrayList<Vaccine> vaccinoArray =  h.getVaccineInventory();
 		int x;
 		int y;
 		int cc = 0;
@@ -81,7 +79,6 @@ public class Game {
 				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
 					cc+=1;
 					map[x][y] = new CollectibleCell(new Supply());
-					SupArray.add(new Supply());
 
 				}
 			}
@@ -95,7 +92,6 @@ public class Game {
 				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
 					cc+=1;
 					map[x][y] = new CollectibleCell(new Vaccine());
-					vaccinoArray.add(new Vaccine());
 
 				}
 			}
@@ -129,9 +125,8 @@ public class Game {
 			}
 		}while(cc !=9);
 		//add the hero to the controllable heroes pool and removing from the availableHeroes
-		int mcindex = (int)(Math.random()*(availableHeroes.size()));
-		heroes.add(availableHeroes.get(mcindex));
-		availableHeroes.remove(mcindex);
+		heroes.add(h);
+		availableHeroes.remove(h);
 		
 		//finally allocating the hero to the bottom left corner of the map.
 		map[0][0] = new CharacterCell(heroes.get(0));
@@ -164,6 +159,7 @@ public class Game {
 	}
 	
 	public static void endTurn() {
+		
 		
 	}
 }
