@@ -138,15 +138,10 @@ abstract public class Hero extends Character{
 	public void attack() throws GameActionException {
 		if(this.actionsAvailable == 0)
 			throw new NotEnoughActionsException();
-		if(this instanceof Fighter) {
-			if(this.isSpecialAction()) {
-				super.attack();
-			}
-		}
-		else {
-			super.attack();
-			this.actionsAvailable = this.actionsAvailable -1;
-		}
+		super.attack();
+		if(!(this instanceof Fighter)&&!this.isSpecialAction()) 
+				this.actionsAvailable = this.actionsAvailable -1;
+		
 		
 	}
 	
