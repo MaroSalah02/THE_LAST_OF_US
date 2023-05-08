@@ -102,15 +102,15 @@ abstract public class Character {
 		if(this.getTarget() == null)
 			throw new InvalidTargetException();
 		
-		if(!this.adjacentTarget()) {
-			throw new InvalidTargetException();
-		}
-		
 		if((this instanceof Hero)&&(this.getTarget() instanceof Hero)) {
 			throw new InvalidTargetException();
 		}
 		
 		if((this instanceof Zombie)&&(this.getTarget() instanceof Zombie)) {
+			throw new InvalidTargetException();
+		}
+		
+		if(!this.adjacentTarget()) {
 			throw new InvalidTargetException();
 		}
 		
