@@ -9,7 +9,6 @@ import model.characters.*;
 import model.collectibles.*;
 import model.world.*;
 
-
 public class Game {
 	public static ArrayList<Hero>availableHeroes = new ArrayList<Hero>();
 	public static ArrayList<Hero> heroes = new ArrayList<Hero>();
@@ -72,23 +71,43 @@ public class Game {
 		}
 		for(int x =0;x<14; x++) {
 			for(int y =0; y<14; y++) {
-				map[x][y] = null;
+				map[x][y] = new CharacterCell(null);
 			}
 		}
 		// spawn 5 traps randomly around the map
 		int x;
 		int y;
-		for(int i = 0; i<5; i++) {
+		int cc = 0;
 			do {
 				x = ((int)(Math.random()*15));
 				y = ((int)(Math.random()*15));
-			}while(map[x][y] != null);
-			map[x][y] = new TrapCell();
-		}
-		// To do : spawn 10 zombies randomly around the map
-		// To do : add the hero to the controllable heroes pool and removing from the availableHeroes
-		// To do : finally allocating the hero to the bottom left corner of the map.
+				if (map[x][y] instanceof CharacterCell && x!=0 && y!=0) {
+					if(((CharacterCell) (map[x][y])).getCharacter() != null) {
+						cc+=1;
+						map[x][y] = new TrapCell();
+					}
+				}
+			}while(cc !=5);
+		//spawn 10 zombies randomly around the map
+		cc = 0;
+		do {
+			x = ((int)(Math.random()*15));
+			y = ((int)(Math.random()*15));
+			if (map[x][y] instanceof CharacterCell) {
+				if(((CharacterCell) (map[x][y])).getCharacter() != null && x!=0 && y!=0) {
+					cc+=1;
+					map[x][y] = new CharacterCell(new Zombie());
+					zombies.add(new Zombie());
+				}
+			}
+		}while(cc !=10);
+		//add the hero to the controllable heroes pool and removing from the availableHeroes
+		int mcindex = (int)(Math.random()*(availableHeroes.size()));
+		heroes.add(availableHeroes.get(mcindex));
+		availableHeroes.remove(mcindex);
 		
+		//finally allocating the hero to the bottom left corner of the map.
+		map[0][0] = new CharacterCell(heroes.get(0));
 		
 	}
 
