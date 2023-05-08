@@ -79,6 +79,8 @@ abstract public class Character {
 		Point L =this.getLocation();
 		Game.map[14-L.y][L.x]=null;
 		}
+	
+	
 	public boolean adjacentTarget() {
 		Point pos1 = this.getLocation();
 		int X1 = (int) pos1.getX();
@@ -98,6 +100,8 @@ abstract public class Character {
 	
 	public void attack() throws GameActionException {
 		
+		if(this.getTarget() == null)
+			throw new InvalidTargetException();
 		
 		if(!this.adjacentTarget()) {
 			throw new InvalidTargetException();
@@ -110,9 +114,6 @@ abstract public class Character {
 		if((this instanceof Zombie)&&(this.getTarget() instanceof Zombie)) {
 			throw new InvalidTargetException();
 		}
-		
-		if(this.getTarget() ==  null)
-			throw new InvalidTargetException();
 		
 		this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());
 		
@@ -127,5 +128,3 @@ abstract public class Character {
 	}
 	
 }
-
-

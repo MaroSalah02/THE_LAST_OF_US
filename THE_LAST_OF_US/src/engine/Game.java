@@ -185,25 +185,10 @@ public class Game {
 	}
 	
 // Main Method added for debugging, remove later
-/*	public static void main(String[]args) throws GameActionException{
-		availableHeroes.add(new Fighter("Hamza",100,10,3));
+	public static void main(String[]args) throws GameActionException{
+
 		
-		startGame(new Fighter("Hamza",100,10,3));		
-		for (int y = 0; y <= 14; y++) {
-			System.out.print("[");
-			for (int x = 0; x<=14; x++) {
-				System.out.print(map[x][y] + ", ");
-			}
-			System.out.println("]");
-		}
 		
-		//System.out.print((((CharacterCell)map[0][0]).getCharacter()).getLocation());
-		System.out.println(heroes.get(0).getLocation());
-		heroes.get(0).move(Direction.UP);
-		System.out.println(heroes.get(0).getLocation());
-		heroes.get(0).move(Direction.DOWN);
-		heroes.get(0).move(Direction.RIGHT);
-		System.out.print((((CharacterCell)map[1][0]).getCharacter()));
-	}*/
+	}
 }
 
