@@ -136,7 +136,7 @@ public class Game {
 		
 		//finally allocating the hero to the bottom left corner of the map.
 		map[0][0] = new CharacterCell(heroes.get(heroes.size()-1));
-		heroes.get(0).setLocation(new Point(0,0));
+		heroes.get(heroes.size()-1).setLocation(new Point(0,0));
 		setAdjacentVisible(new Point(0,0));
 		
 	}
@@ -194,7 +194,7 @@ public class Game {
 					
 					int zx = (int)zombLoc.getX();
 					int zy = (int)zombLoc.getY();
-					ArrayList<Hero> HerosArroundMe = null;
+					ArrayList<Hero> HerosArroundMe = new ArrayList<>();
 					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {		
 						
 						addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
