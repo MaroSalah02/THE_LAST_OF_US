@@ -82,25 +82,25 @@ public class Game {
 				x = ((int)(Math.random()*15));
 				y = ((int)(Math.random()*15));
 				if (map[x][y] instanceof CharacterCell && x!=0 && y!=0) {
-					if(((CharacterCell) (map[x][y])).getCharacter() != null) {
+					if(((CharacterCell) (map[x][y])).getCharacter() == null) {
 						cc+=1;
 						map[x][y] = new TrapCell();
 					}
 				}
-			}while(cc !=5);
+			}while(cc !=4);
 		//spawn 10 zombies randomly around the map
 		cc = 0;
 		do {
 			x = ((int)(Math.random()*15));
 			y = ((int)(Math.random()*15));
 			if (map[x][y] instanceof CharacterCell) {
-				if(((CharacterCell) (map[x][y])).getCharacter() != null && x!=0 && y!=0) {
+				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
 					cc+=1;
 					map[x][y] = new CharacterCell(new Zombie());
 					zombies.add(new Zombie());
 				}
 			}
-		}while(cc !=10);
+		}while(cc !=9);
 		//add the hero to the controllable heroes pool and removing from the availableHeroes
 		int mcindex = (int)(Math.random()*(availableHeroes.size()));
 		heroes.add(availableHeroes.get(mcindex));
