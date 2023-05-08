@@ -44,7 +44,7 @@ abstract public class Hero extends Character{
 			Point p=this.getTarget().getLocation();
 			Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
 			Game.heroes.add(h);
-			Game.zombies.remove(this.getTarget());
+			Game.zombies.remove(Game.zombies.indexOf(this.getTarget()));
 			CharacterCell c=new CharacterCell(h);
 			Game.map[p.x][p.y]=c;
 			h.setLocation(p);
