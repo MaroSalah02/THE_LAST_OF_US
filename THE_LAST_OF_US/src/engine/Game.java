@@ -62,32 +62,59 @@ public class Game {
 		
 	}
 	public static void startGame(Hero h) {
-		// spawn the necessary Collectibles
-		ArrayList<Supply> SupArray = h.getSupplyInventory();
-		ArrayList<Vaccine> vaccinoArray =  h.getVaccineInventory();
-		for(int i =0; i<5; i++) {
-			SupArray.add(new Supply());
-			vaccinoArray.add(new Vaccine());
-		}
+		// set the map
 		for(int x =0;x<14; x++) {
 			for(int y =0; y<14; y++) {
 				map[x][y] = new CharacterCell(null);
 			}
 		}
-		// spawn 5 traps randomly around the map
+		// spawn the necessary Collectibles
+		ArrayList<Supply> SupArray = h.getSupplyInventory();
+		ArrayList<Vaccine> vaccinoArray =  h.getVaccineInventory();
 		int x;
 		int y;
 		int cc = 0;
-			do {
-				x = ((int)(Math.random()*15));
-				y = ((int)(Math.random()*15));
-				if (map[x][y] instanceof CharacterCell && x!=0 && y!=0) {
-					if(((CharacterCell) (map[x][y])).getCharacter() == null) {
-						cc+=1;
-						map[x][y] = new TrapCell();
-					}
+		do {
+			x = ((int)(Math.random()*15));
+			y = ((int)(Math.random()*15));
+			if (map[x][y] instanceof CharacterCell) {
+				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
+					cc+=1;
+					map[x][y] = new CollectibleCell(new Supply());
+					SupArray.add(new Supply());
+
 				}
-			}while(cc !=4);
+			}
+		}while(cc !=4);
+		
+		cc = 0;
+		do {
+			x = ((int)(Math.random()*15));
+			y = ((int)(Math.random()*15));
+			if (map[x][y] instanceof CharacterCell) {
+				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
+					cc+=1;
+					map[x][y] = new CollectibleCell(new Vaccine());
+					vaccinoArray.add(new Vaccine());
+
+				}
+			}
+		}while(cc !=4);
+		
+		
+		// spawn 5 traps randomly around the map
+		
+		cc = 0;
+		do {
+			x = ((int)(Math.random()*15));
+			y = ((int)(Math.random()*15));
+			if (map[x][y] instanceof CharacterCell && x!=0 && y!=0) {
+				if(((CharacterCell) (map[x][y])).getCharacter() == null) {
+					cc+=1;
+					map[x][y] = new TrapCell();
+				}
+			}
+		}while(cc !=4);
 		//spawn 10 zombies randomly around the map
 		cc = 0;
 		do {
