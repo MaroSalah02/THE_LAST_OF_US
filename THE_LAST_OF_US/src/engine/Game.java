@@ -135,7 +135,7 @@ public class Game {
 		heroes.add(theHero);
 		
 		//finally allocating the hero to the bottom left corner of the map.
-		map[0][0] = new CharacterCell(heroes.get(0));
+		map[0][0] = new CharacterCell(heroes.get(heroes.size()-1));
 		heroes.get(0).setLocation(new Point(0,0));
 		setAdjacentVisible(new Point(0,0));
 		
