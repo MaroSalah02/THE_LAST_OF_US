@@ -91,10 +91,10 @@ public class Game {
 		
 		
 	}
-	
-//	public static boolean checkWin() {
-//		// To do : This method checks the win conditions for the game.
-//	}
+
+	public static boolean checkWin() {
+		return (heroes.size()>=5);
+	}
 	public static boolean checkGameOver() {
 		// To do : This method checks the conditions for the game to end 
 		if(heroes.isEmpty())
