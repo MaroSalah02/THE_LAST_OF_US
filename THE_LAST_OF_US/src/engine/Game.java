@@ -191,7 +191,60 @@ public class Game {
 				if(map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie) {
 					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
 					Point zombLoc = zomb.getLocation();
+					
 
+					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {		
+						int zx = (int)zombLoc.getX();
+						int zy = (int)zombLoc.getY();
+						ArrayList<Hero> HerosArroundMe = null;
+						addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
+						addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
+						addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
+						addHeroToHerosArroundMe(zx,zy+1,HerosArroundMe);
+						addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
+						addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
+						addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
+						addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
+						for(int i = HerosArroundMe.size()-1; i>=0;i--) {
+							Hero H = HerosArroundMe.remove(i);
+							zomb.setTarget(H);
+							try {
+								zomb.attack();
+							} catch (GameActionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					
+				}
+				for(x =0;x<=14; x++) {
+					for(y =0; y<=14; y++) {
+						if(!isHero(x,y)) {
+							map[x][y].setVisible(false);
+						}
+						
+					}
+				}
+				for(x =0;x<=14; x++) {
+					for(y =0; y<=14; y++) {
+						if(isHero(x,y)) {
+							map[x][y].setVisible(false);
+							if(x+1 <15) {
+								if(y+1 <15) {
+									map[x+1][y+1].setVisible(true);
+								}
+								map[x+1][y].setVisible(true);
+								if(y-1 >=0) {
+									map[x+1][y-1].setVisible(true);
+								}
+							}
+								map[x][y+1].setVisible(true);
+								map[x][y-1].setVisible(true);
+								map[x-1][y+1].setVisible(true);
+								map[x-1][y].setVisible(true);
+								map[x-1][y-1].setVisible(true);
+							}
+						}
 					int zx = (int)zombLoc.getX();
 					int zy = (int)zombLoc.getY();
 					ArrayList<Hero> HerosArroundMe = null;
@@ -256,7 +309,7 @@ public class Game {
 			}
 		}
 		
-	
+	}
 	
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{
