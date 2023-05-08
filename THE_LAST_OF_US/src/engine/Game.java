@@ -177,21 +177,81 @@ public class Game {
 		//if all the tests fail, the game has ended
 		return true;
 	}
-	
+	public static boolean isHero(int x, int y) {
+		return map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie;
+	}
+	public static void addHeroToHerosArroundMe(int x, int y,ArrayList<Hero> ham) {
+		if(x <15 && x >= 0 && y <15 && y >= 0 && isHero(x,y)) {
+			ham.add((Hero)((CharacterCell)(map[x][y])).getCharacter());
+		}
+	}
 	public static void endTurn() {
 		for(int x =0;x<=14; x++) {
 			for(int y =0; y<=14; y++) {
 				if(map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie) {
 					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
 					Point zombLoc = zomb.getLocation();
-					double zx = zombLoc.getX();
-					double zy = zombLoc.getY();
-					ArrayList<Hero> HerosArroundMe;
-					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {
-						
+
+					int zx = (int)zombLoc.getX();
+					int zy = (int)zombLoc.getY();
+					ArrayList<Hero> HerosArroundMe = null;
+					addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
+					addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
+					for(int i = HerosArroundMe.size()-1; i>=0;i--) {
+						Hero H = HerosArroundMe.remove(i);
+						zomb.setTarget(H);
+						try {
+							zomb.attack();
+						} catch (GameActionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 					
-					
+				}
+				for(x =0;x<=14; x++) {
+					for(y =0; y<=14; y++) {
+						if(!isHero(x,y)) {
+							map[x][y].setVisible(false);
+						}
+						
+					}
+				}
+				for(x =0;x<=14; x++) {
+					for(y =0; y<=14; y++) {
+						if(isHero(x,y)) {
+							map[x][y].setVisible(false);
+							if(x+1 <15) {
+								if(y+1 <15) {
+									map[x+1][y+1].setVisible(true);
+								}
+								map[x+1][y].setVisible(true);
+								if(y-1 >=0) {
+									map[x+1][y-1].setVisible(true);
+								}
+							}
+								map[x][y+1].setVisible(true);
+								map[x][y-1].setVisible(true);
+								map[x-1][y+1].setVisible(true);
+								map[x-1][y].setVisible(true);
+								map[x-1][y-1].setVisible(true);
+							}
+						}
+						
+					}
+				}
+				
+				for(int i = heroes.size()-1; i >=0; i--) {
+					Hero H2 = heroes.get(i);
+					H2.setSpecialAction(false);
+					H2.setTarget(null);
+					H2.setActionsAvailable(H2.getMaxActions());
 				}
 			}
 		}
