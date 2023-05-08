@@ -23,7 +23,7 @@ abstract public class Hero extends Character{
 	}
 
 	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
-			if(this.getTarget().equals(null)) {
+			if(this.getTarget() == null) {
 				throw new InvalidTargetException();
 			}
 			if(this.vaccineInventory.isEmpty()) {
