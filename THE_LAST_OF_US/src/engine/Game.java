@@ -187,7 +187,7 @@ public class Game {
 					double zx = zombLoc.getX();
 					double zy = zombLoc.getY();
 					ArrayList<Hero> HerosArroundMe;
-					if(map[zx][zy+1] instanceof) {
+					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {
 						
 					}
 					

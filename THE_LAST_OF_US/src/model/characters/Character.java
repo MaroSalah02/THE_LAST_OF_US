@@ -3,6 +3,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import engine.Game;
 import exceptions.*;
+import model.world.*;
 abstract public class Character {
 
 	private String name;
@@ -77,9 +78,11 @@ abstract public class Character {
 			}
 		}		
 		Point L =this.getLocation();
-		Game.map[14-L.y][L.x]=null;
+		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
+		}
+			
 
-		}		
+				
 
 	
 	
