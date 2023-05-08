@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.*;
 import model.characters.*;
+import model.characters.Character;
 import model.collectibles.*;
 import model.world.*;
 import exceptions.*;
@@ -200,7 +201,9 @@ public class Game {
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{
 
+		Character z  = new Zombie();
 		
+		System.out.println(z instanceof Zombie);
 		
 	}
 }
