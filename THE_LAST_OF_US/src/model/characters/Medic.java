@@ -13,18 +13,17 @@ public class Medic extends Hero{
 	}
 
 	public void useSpecial() throws InvalidTargetException,NoAvailableResourcesException, NotEnoughActionsException {
+			if(!this.adjacentTarget()) {
+				throw new InvalidTargetException();
+			}
+			if(this.getTarget() instanceof Zombie) {
+				throw new InvalidTargetException();
+			}
 			super.useSpecial();
-			Medic m=(Medic)this;
-			if(!m.adjacentTarget()) {
-				throw new InvalidTargetException();
-			}
-			if(m.getTarget() instanceof Zombie) {
-				throw new InvalidTargetException();
-			}
 			Supply s=new Supply();
-			s.use(m);
-			m.getTarget().setCurrentHp(m.getTarget().getMaxHp());
-			m.setSpecialAction(true);
+			s.use(this);
+			this.getTarget().setCurrentHp(this.getTarget().getMaxHp());
+			this.setSpecialAction(true);
 
 		}
 
