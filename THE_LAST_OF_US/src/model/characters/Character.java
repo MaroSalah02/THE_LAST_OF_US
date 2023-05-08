@@ -75,11 +75,11 @@ abstract public class Character {
 				Zombie z=(Zombie)this;
 				int j=Game.zombies.indexOf(z);
 				Game.zombies.remove(j);
-			}
-		}		
+			}	
 		Point L =this.getLocation();
 		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
 		}
+	}
 	public boolean adjacentTarget() {
 		Point pos1 = this.getLocation();
 		int X1 = (int) pos1.getX();

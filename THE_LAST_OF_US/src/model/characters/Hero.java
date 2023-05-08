@@ -128,7 +128,14 @@ abstract public class Hero extends Character{
 			
 			this.setLocation(posNew);
 			
-			Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(this);
+			if (this.getCurrentHp()!=0) {
+				Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(this);
+				Game.setAdjacentVisible(this.getLocation());
+			}
+			else{
+				Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(null);
+				Game.map[(int)posNew.getX()][(int)posNew.getY()].setVisible(true);
+				}
 	
 		Game.setAdjacentVisible(this.getLocation());
 		
@@ -145,9 +152,6 @@ abstract public class Hero extends Character{
 		}
 		else
 			this.actionsAvailable = this.actionsAvailable -1;
-		
-		
-		
 	}
 	
 }
