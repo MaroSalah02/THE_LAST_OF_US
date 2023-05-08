@@ -220,6 +220,13 @@ public class Game {
 				}
 				}
 			}
+		
+		for(int i = heroes.size()-1; i >=0; i--) {
+			Hero H2 = heroes.get(i);
+			H2.setActionsAvailable(H2.getMaxActions());
+			H2.setSpecialAction(false);
+			H2.setTarget(null);
+		}
 				for(int x =0;x<=14; x++) {
 					for(int y =0; y<=14; y++) {
 						if(!isHero(x,y)) {
@@ -237,12 +244,7 @@ public class Game {
 					setAdjacentVisible(heroes.get(i).getLocation());
 				
 				
-				for(int i = heroes.size()-1; i >=0; i--) {
-					Hero H2 = heroes.get(i);
-					H2.setSpecialAction(false);
-					H2.setTarget(null);
-					H2.setActionsAvailable(H2.getMaxActions());
-				}
+				
 				
 				int cc = 0;
 				int x;
