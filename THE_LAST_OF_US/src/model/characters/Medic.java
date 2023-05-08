@@ -18,6 +18,9 @@ public class Medic extends Hero{
 			if(m.getTarget() instanceof Zombie) {
 				throw new InvalidTargetException();
 			}
+			if(!m.adjacentTarget()) {
+				throw new InvalidTargetException();
+			}
 			Supply s=new Supply();
 			s.use(m);
 			m.setSpecialAction(true);
