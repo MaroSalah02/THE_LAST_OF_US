@@ -66,8 +66,7 @@ abstract public class Hero extends Character{
 		return supplyInventory;
 	}
 	
-	public void move(Direction d) {
-		try {
+	public void move(Direction d) throws GameActionException{
 			if (this.actionsAvailable == 0)
 				throw new NotEnoughActionsException();
 			
@@ -104,13 +103,7 @@ abstract public class Hero extends Character{
 			this.setLocation(pos);
 			
 			newCell = new CharacterCell(this);
-		}
-		catch(MovementException e){
-			System.out.println("Invalid movement option," + e.getMessage());
-		} catch (NotEnoughActionsException e) {
-			System.out.println("You don't have more actoins this turn.");
-		}
-		
+	
 		Game.setAdjacentVisible(this.getLocation());
 		
 		this.actionsAvailable = this.actionsAvailable - 1;
