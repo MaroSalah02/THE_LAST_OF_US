@@ -178,7 +178,7 @@ public class Game {
 		return true;
 	}
 	public static boolean isHero(int x, int y) {
-		return map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie;
+		return map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Hero;
 	}
 	public static void addHeroToHerosArroundMe(int x, int y,ArrayList<Hero> ham) {
 		if(x <15 && x >= 0 && y <15 && y >= 0 && isHero(x,y)) {
