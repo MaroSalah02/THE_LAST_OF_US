@@ -131,8 +131,8 @@ public class Game {
 			}
 		}while(cc !=9);
 		//add the hero to the controllable heroes pool and removing from the availableHeroes
-		heroes.add(h);
-		availableHeroes.remove(h);
+		Hero theHero = availableHeroes.remove(availableHeroes.size()-1);
+		heroes.add(theHero);
 		
 		//finally allocating the hero to the bottom left corner of the map.
 		map[0][0] = new CharacterCell(heroes.get(0));
