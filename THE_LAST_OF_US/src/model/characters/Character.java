@@ -96,7 +96,7 @@ abstract public class Character {
 	}
 	
 	
-	public void attack() throws InvalidTargetException {
+	public void attack() throws GameActionException {
 		
 		
 		if(!this.adjacentTarget()) {
