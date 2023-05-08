@@ -21,9 +21,35 @@ abstract public class Hero extends Character{
 		vaccineInventory = new ArrayList<Vaccine>();
 		supplyInventory = new ArrayList<Supply>();
 	}
-	
-	public void useSpecial() {
-		try {
+
+	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
+			if(this.vaccineInventory.isEmpty()) {
+				throw new NoAvailableResourcesException();
+			}
+			if(this.getTarget() instanceof Hero ) {
+				throw new InvalidTargetException(); 
+			}
+			if(this.getActionsAvailable()==0) {
+				throw new NotEnoughActionsException();
+			}
+			if(!this.adjacentTarget()) {
+				throw new InvalidTargetException();
+			}
+			if(this.getTarget().equals(null)) {
+				throw new InvalidTargetException();
+			}
+			Vaccine v=new Vaccine();
+			v.use(this);
+			this.setActionsAvailable(this.getActionsAvailable()-1);
+			Point p=this.getTarget().getLocation();
+			Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
+			CharacterCell c=new CharacterCell(h);
+			Game.map[p.x][p.y]=c;
+			h.setLocation(p);
+		
+	}
+	public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
+
 			if(this.supplyInventory.isEmpty()) {
 				throw new NoAvailableResourcesException();
 			}
@@ -31,13 +57,7 @@ abstract public class Hero extends Character{
 				throw new NotEnoughActionsException();
 			}
 		}
-		catch(NoAvailableResourcesException e){
-			System.out.println("No Enough Resources.");
-		}
-		catch(NotEnoughActionsException a) {
-			System.out.println("No Enough Actions.");
-		}
-	}
+	
 
 	public int getActionsAvailable() {
 		return actionsAvailable;
