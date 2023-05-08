@@ -77,9 +77,13 @@ abstract public class Character {
 				int j=Game.zombies.indexOf(z);
 				Game.zombies.remove(j);
 			}
+			Point L =this.getLocation();
+			Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
+		}		
+		
 		}
-		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
-	}
+		
+	
 	
 	
 	public boolean adjacentTarget() {
