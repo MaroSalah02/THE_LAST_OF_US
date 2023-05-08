@@ -126,19 +126,6 @@ abstract public class Character {
 		attacker.setCurrentHp(attacker.getCurrentHp()-(this.getAttackDmg())/2);
 	}
 	
-	public static void main(String[]args) throws Exception
-	{
-		Zombie X =  new Zombie();
-		Zombie Y =  new Zombie();
-		Fighter H =  new Fighter("Maro", 50, 20, 4);
-		Fighter I =  new Fighter("Maro", 50, 20, 4);
-		
-		System.out.println(Y.getCurrentHp());
-		
-		X.attack();
-		
-		System.out.println(Y.getCurrentHp());
-	}
 }
 
 
