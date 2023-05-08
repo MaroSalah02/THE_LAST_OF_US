@@ -70,46 +70,51 @@ abstract public class Hero extends Character{
 			if (this.actionsAvailable == 0)
 				throw new NotEnoughActionsException();
 			
-			Point pos  = new Point(this.getLocation());
+			Point posOld  = new Point(this.getLocation());
+			Point posNew  = new Point(this.getLocation());
 			
 			switch(d) {
-			case UP: pos.translate(0, 1);break;
-			case DOWN: pos.translate(0, -1);break;
-			case RIGHT: pos.translate(1, 0);break;
-			case LEFT: pos.translate(-1, 0);break;
+			case UP: posNew.translate(1, 0);break;
+			case DOWN: posNew.translate(-1, 0);break;
+			case RIGHT: posNew.translate(0, 1);break;
+			case LEFT: posNew.translate(0, -1);break;
 			default: throw new MovementException("invalid input.");
 			}
 			
-			if(pos.getX()<0||pos.getY()<0||pos.getX()>14||pos.getY()>14)
-				throw new MovementException("you are trying to move out of bounds.");
+			if(posNew.getX()<0||posNew.getY()<0||posNew.getX()>14||posNew.getY()>14)
+				throw new MovementException();
 			
-			Cell newCell = Game.map[(int)pos.getX()][(int)pos.getY()];
-			Collectible collectible;
+			Cell newCell = Game.map[(int)posNew.getX()][(int)posNew.getY()];
+				Collectible collectible;
 			
 			if(newCell instanceof CharacterCell)
 				if (((CharacterCell)newCell).getCharacter()!=null)
-					throw new MovementException("you are trying to move into an already occupied cell.");
+					throw new MovementException();
 			
 			if(newCell instanceof CollectibleCell) {
 				collectible = ((CollectibleCell)newCell).getCollectible();
 				collectible.pickUp(this);
 			}
 			
-			if(newCell instanceof TrapCell)
+			if(newCell instanceof TrapCell) {
 				this.setCurrentHp(this.getCurrentHp()-((TrapCell)newCell).getTrapDamage());
+				this.onCharacterDeath();
+			}
 			
-			Game.map[(int) (this.getLocation()).getX()][(int) (this.getLocation()).getY()] = new CharacterCell(null);
+			Game.map[(int)posOld.getX()][(int)posOld.getY()] = new CharacterCell(null);
 			
-			this.setLocation(pos);
+			this.setLocation(posNew);
 			
-			newCell = new CharacterCell(this);
+			Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(this);
 	
 		Game.setAdjacentVisible(this.getLocation());
 		
 		this.actionsAvailable = this.actionsAvailable - 1;
 	}
 
-	public void attack() throws InvalidTargetException {
+	public void attack() throws GameActionException {
+		if(this.actionsAvailable == 0)
+			throw new NotEnoughActionsException();
 		super.attack();
 		this.actionsAvailable = this.actionsAvailable -1;
 	}
