@@ -228,10 +228,10 @@ public class Game {
 						
 					}
 				}
+				// changing adjecent cell of hero to true
 				for(int x =0;x<=14; x++) {
 					for(int y =0; y<=14; y++) {
 						if(isHero(x,y)) {
-							map[x][y].setVisible(false);
 							if(x+1 <15) {
 								if(y+1 <15) {
 									map[x+1][y+1].setVisible(true);
@@ -241,11 +241,22 @@ public class Game {
 									map[x+1][y-1].setVisible(true);
 								}
 							}
+							if(y+1 <15) {
 								map[x][y+1].setVisible(true);
+							}
+							if(y-1 >=0) {
 								map[x][y-1].setVisible(true);
-								map[x-1][y+1].setVisible(true);
+							}
+							if(x-1 >= 0) {
+								if(y+1 <15) {
+									map[x-1][y+1].setVisible(true);
+								}
 								map[x-1][y].setVisible(true);
-								map[x-1][y-1].setVisible(true);
+								if(y-1 >=0) {
+									map[x-1][y-1].setVisible(true);
+								}
+							}
+								
 							}
 						}
 						
@@ -258,6 +269,25 @@ public class Game {
 					H2.setTarget(null);
 					H2.setActionsAvailable(H2.getMaxActions());
 				}
+				
+				int cc = 0;
+				int x;
+				int y;
+				do {
+					x = ((int)(Math.random()*15));
+					y = ((int)(Math.random()*15));
+					if (map[x][y] instanceof CharacterCell) {
+						if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
+							cc+=1;
+							map[x][y] = new CharacterCell(new Zombie());
+							Zombie z =new Zombie();
+							z.setLocation(new Point(x,y));
+							zombies.add(z);
+						}
+					}
+				}while(cc !=1);
+				
+				
 			
 		}
 		
