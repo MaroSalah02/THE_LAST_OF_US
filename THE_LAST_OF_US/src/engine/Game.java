@@ -86,7 +86,7 @@ public class Game {
 
 				}
 			}
-		}while(cc !=4);
+		}while(cc !=5);
 		
 		cc = 0;
 		do {
@@ -99,7 +99,7 @@ public class Game {
 
 				}
 			}
-		}while(cc !=4);
+		}while(cc !=5);
 		
 		
 		// spawn 5 traps randomly around the map
@@ -114,7 +114,7 @@ public class Game {
 					map[x][y] = new TrapCell();
 				}
 			}
-		}while(cc !=4);
+		}while(cc !=5);
 		//spawn 10 zombies randomly around the map
 		cc = 0;
 		do {
@@ -129,7 +129,7 @@ public class Game {
 					zombies.add(z);
 				}
 			}
-		}while(cc !=9);
+		}while(cc !=10);
 		//add the hero to the controllable heroes pool and removing from the availableHeroes
 		Hero theHero = availableHeroes.remove(availableHeroes.size()-1);
 		heroes.add(theHero);
