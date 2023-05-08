@@ -95,9 +95,28 @@ public class Game {
 //	public static boolean checkWin() {
 //		// To do : This method checks the win conditions for the game.
 //	}
-//	public static boolean checkGameOver() {
-//		// To do : This method checks the conditions for the game to end 
-//	}
+	public static boolean checkGameOver() {
+		// To do : This method checks the conditions for the game to end 
+		if(heroes.isEmpty())
+			return true;
+		//Checks if there are any uncollected vaccines
+		for(int x = 0; x<15; x++) {
+			for (int y = 0; y<15; y++)
+			{
+				if ((map[x][y] instanceof CollectibleCell)&&((CollectibleCell)map[x][y]).getCollectible() instanceof Vaccine)
+					return false;
+			}
+		}
+		//Check if the Heroes have any vaccines
+		int cnt = 0;
+		for(int i = 0; i < heroes.size(); i++)
+			cnt += (heroes.get(i).getVaccineInventory()).size();
+		if (cnt>0)
+			return false;
+		//if all the tests fail, the game has ended
+		return true;
+	}
+	
 	public static void endTurn() {
 		
 	}
