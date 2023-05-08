@@ -192,11 +192,11 @@ public class Game {
 					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
 					Point zombLoc = zomb.getLocation();
 					
-
+					int zx = (int)zombLoc.getX();
+					int zy = (int)zombLoc.getY();
+					ArrayList<Hero> HerosArroundMe = null;
 					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {		
-						int zx = (int)zombLoc.getX();
-						int zy = (int)zombLoc.getY();
-						ArrayList<Hero> HerosArroundMe = null;
+						
 						addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
 						addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
 						addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
