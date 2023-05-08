@@ -96,7 +96,13 @@ abstract public class Hero extends Character{
 		}
 		
 		Game.setAdjacentVisible(this.getLocation());
+		
+		this.actionsAvailable = this.actionsAvailable - 1;
 	}
-	
+
+	public void attack() throws InvalidTargetException {
+		super.attack();
+		this.actionsAvailable = this.actionsAvailable -1;
+	}
 	
 }

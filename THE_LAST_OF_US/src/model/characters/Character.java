@@ -2,6 +2,7 @@ package model.characters;
 import java.awt.Point;
 import java.util.ArrayList;
 import engine.Game;
+import exceptions.*;
 abstract public class Character {
 
 	private String name;
@@ -100,4 +101,50 @@ abstract public class Character {
 		
 	}
 	
+	
+	public void attack() throws InvalidTargetException {
+		
+		
+		if(!this.adjacentTarget()) {
+			throw new InvalidTargetException();
+		}
+		
+		if((this instanceof Hero)&&(this.getTarget() instanceof Hero)) {
+			throw new InvalidTargetException();
+		}
+		
+		if((this instanceof Zombie)&&(this.getTarget() instanceof Zombie)) {
+			throw new InvalidTargetException();
+		}
+		
+		if(this.getTarget() ==  null)
+			throw new InvalidTargetException();
+		
+		this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());
+		
+		target.defend(this);
+
+		target.onCharacterDeath();
+		this.onCharacterDeath();
+	}
+	
+	public void defend(Character attacker) {
+		attacker.setCurrentHp(attacker.getCurrentHp()-(this.getAttackDmg())/2);
+	}
+	
+	public static void main(String[]args) throws Exception
+	{
+		Zombie X =  new Zombie();
+		Zombie Y =  new Zombie();
+		Fighter H =  new Fighter("Maro", 50, 20, 4);
+		Fighter I =  new Fighter("Maro", 50, 20, 4);
+		
+		System.out.println(Y.getCurrentHp());
+		
+		X.attack();
+		
+		System.out.println(Y.getCurrentHp());
+	}
 }
+
+
