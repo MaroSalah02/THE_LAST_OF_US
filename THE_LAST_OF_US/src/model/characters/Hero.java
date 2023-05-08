@@ -23,6 +23,9 @@ abstract public class Hero extends Character{
 	}
 
 	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
+			if(this.getTarget().equals(null)) {
+				throw new InvalidTargetException();
+			}
 			if(this.vaccineInventory.isEmpty()) {
 				throw new NoAvailableResourcesException();
 			}
@@ -33,9 +36,6 @@ abstract public class Hero extends Character{
 				throw new NotEnoughActionsException();
 			}
 			if(!this.adjacentTarget()) {
-				throw new InvalidTargetException();
-			}
-			if(this.getTarget().equals(null)) {
 				throw new InvalidTargetException();
 			}
 			Vaccine v=new Vaccine();
@@ -49,7 +49,7 @@ abstract public class Hero extends Character{
 		
 	}
 	public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
-
+			
 			if(this.supplyInventory.isEmpty()) {
 				throw new NoAvailableResourcesException();
 			}
