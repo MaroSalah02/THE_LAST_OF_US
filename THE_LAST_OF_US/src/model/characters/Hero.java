@@ -21,6 +21,22 @@ abstract public class Hero extends Character{
 		vaccineInventory = new ArrayList<Vaccine>();
 		supplyInventory = new ArrayList<Supply>();
 	}
+	public void useSpecial() {
+		try {
+			if(this.supplyInventory.isEmpty()) {
+				throw new NoAvailableResourcesException();
+			}
+			if(this.actionsAvailable==0) {
+				throw new NotEnoughActionsException();
+			}
+		}
+		catch(NoAvailableResourcesException e){
+			System.out.println("No Enough Resources.");
+		}
+		catch(NotEnoughActionsException a) {
+			System.out.println("No Enough Actions.");
+		}
+	}
 
 	public int getActionsAvailable() {
 		return actionsAvailable;
