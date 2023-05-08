@@ -3,7 +3,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import engine.Game;
 import exceptions.*;
-import model.world.*;
 abstract public class Character {
 
 	private String name;
@@ -65,21 +64,21 @@ abstract public class Character {
 	}
 	
 	public void onCharacterDeath() {
-		Point L =this.getLocation();
 		if (this.getCurrentHp()==0) {
 			if(this instanceof Hero) {
-				Hero h = (Hero) this;
-				int i = Game.heroes.indexOf(h);
+				Hero h=(Hero)this;
+				int i=Game.heroes.indexOf(h);
 				Game.heroes.remove(i);
 			}
 			if(this instanceof Zombie) {
-				Zombie z = (Zombie) this;
+				Zombie z=(Zombie)this;
 				int j=Game.zombies.indexOf(z);
 				Game.zombies.remove(j);
 			}
+		}		
+		Point L =this.getLocation();
+		Game.map[14-L.y][L.x]=null;
 		}
-		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
-	}
 	
 	
 	public boolean adjacentTarget() {
@@ -91,7 +90,7 @@ abstract public class Character {
 		int X2 = (int) pos2.getX();
 		int Y2 = (int) pos2.getY();
 		
-		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1)&&(this!=this.getTarget()))
+		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1))
 			return true;
 		else
 			return false;
@@ -100,7 +99,7 @@ abstract public class Character {
 	
 	
 	public void attack() throws GameActionException {
-		
+			
 		if(this.getTarget() == null)
 			throw new InvalidTargetException();
 		
