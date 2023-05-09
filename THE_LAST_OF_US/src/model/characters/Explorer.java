@@ -16,7 +16,7 @@ public class Explorer extends Hero{
 	public void useSpecial() throws NoAvailableResourcesException, NotEnoughActionsException, InvalidTargetException {
 		super.useSpecial();
 		Explorer e=(Explorer)this;
-		Supply s=new Supply();
+		Supply s=this.getSupplyInventory().get(0);
 		s.use(e);
 		for(int i=0;i<15;i++) {
 			for(int j=0;j<15;j++) {

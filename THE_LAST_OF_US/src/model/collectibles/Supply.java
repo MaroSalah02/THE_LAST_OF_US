@@ -18,12 +18,8 @@ public class Supply implements Collectible {
 
 	@Override
 	public void use(Hero h) throws NoAvailableResourcesException {
-		
 			ArrayList<Supply> supArray = h.getSupplyInventory();
-			if(supArray.size() == 0) {
-				throw new NoAvailableResourcesException();
-			}
-			supArray.remove(supArray.size() - 1);
+			supArray.remove(this);
 		
 	}
 }

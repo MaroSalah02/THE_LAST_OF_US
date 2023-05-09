@@ -22,7 +22,7 @@ public class Medic extends Hero{
 				throw new InvalidTargetException();
 			}
 			super.useSpecial();
-			Supply s=new Supply();
+			Supply s=this.getSupplyInventory().get(0);
 			s.use(this);
 			this.getTarget().setCurrentHp(this.getTarget().getMaxHp());
 			this.setSpecialAction(true);

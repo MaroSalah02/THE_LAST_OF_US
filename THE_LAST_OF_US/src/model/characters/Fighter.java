@@ -17,7 +17,7 @@ public class Fighter extends Hero{
 	public void useSpecial() throws NoAvailableResourcesException, NotEnoughActionsException, InvalidTargetException {
 		super.useSpecial();
 		Fighter f=(Fighter)this;
-		Supply s=new Supply();
+		Supply s=this.getSupplyInventory().get(0);
 		s.use(f);
 		f.setSpecialAction(true);
 	}

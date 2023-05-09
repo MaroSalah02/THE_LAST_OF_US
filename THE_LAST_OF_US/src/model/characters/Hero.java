@@ -135,16 +135,23 @@ abstract public class Hero extends Character{
 		if(!this.adjacentTarget()) {
 			throw new InvalidTargetException();
 		}
-		Vaccine v=new Vaccine();
+		if(this.getVaccineInventory().size() == 0) {
+			throw new NoAvailableResourcesException();
+		}
+		
+		Vaccine v = this.getVaccineInventory().get(0);
 		v.use(this);
 		this.setActionsAvailable(this.getActionsAvailable()-1);
-		Point p=this.getTarget().getLocation();
-		Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
+		
+		Point p = this.getTarget().getLocation();
+		
+		Hero h = Game.availableHeroes.remove(Game.availableHeroes.size()-1);
 		Game.heroes.add(h);
-		Game.zombies.remove(Game.zombies.size()-1);
+		
+		Game.zombies.remove(this.getTarget());
+		
 		this.setTarget(h);
-		CharacterCell c=new CharacterCell(h);
-		Game.map[p.x][p.y]=c;
+		Game.map[p.x][p.y] = new CharacterCell(h);
 		h.setLocation(p);
 	
 }
