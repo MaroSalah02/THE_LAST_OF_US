@@ -194,8 +194,7 @@ public class Game {
 					
 					int zx = (int)zombLoc.getX();
 					int zy = (int)zombLoc.getY();
-					ArrayList<Hero> HerosArroundMe = new ArrayList<>();
-					if(map[(int)zx][(int)zy+1]  instanceof CharacterCell) {		
+					ArrayList<Hero> HerosArroundMe = new ArrayList<>();		
 						
 						addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
 						addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
@@ -220,7 +219,7 @@ public class Game {
 							}
 						
 					
-					}
+					
 				}
 			}
 		}
