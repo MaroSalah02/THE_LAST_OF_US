@@ -243,6 +243,9 @@ public class Game {
 						
 					}
 				}
+	
+				spawnZombie();
+			
 				// changing adjecent cell of hero to true
 				for (int x = 0; x<=14; x++)
 					for(int y = 0; y<=14; y++)
@@ -250,13 +253,6 @@ public class Game {
 				
 				for (int i = 0; i<heroes.size();i++)
 					setAdjacentVisible(heroes.get(i).getLocation());
-				
-				
-				
-				
-				spawnZombie();
-				
-			
 			
 		}
 		
