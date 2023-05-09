@@ -13,10 +13,12 @@ public class Medic extends Hero{
 	}
 
 	public void useSpecial() throws InvalidTargetException,NoAvailableResourcesException, NotEnoughActionsException {
-			if(!this.adjacentTarget()) {
+			if(this.getTarget()==null)
+				throw new InvalidTargetException();
+			if(this.getTarget() instanceof Zombie) {
 				throw new InvalidTargetException();
 			}
-			if(this.getTarget() instanceof Zombie) {
+			if(!this.adjacentTarget()) {
 				throw new InvalidTargetException();
 			}
 			super.useSpecial();
