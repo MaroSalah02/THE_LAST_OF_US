@@ -97,6 +97,7 @@ public class Game {
 	
 	public static void startGame(Hero h) throws IOException {
 		// set the map
+		
 		for(int x =0;x<=14; x++) {
 			for(int y =0; y<=14; y++) {
 				map[x][y] = new CharacterCell(null);
