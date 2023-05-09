@@ -248,28 +248,28 @@ public class Game {
 				
 				
 				
-				int cc = 0;
-				int x;
-				int y;
-				do {
-					x = ((int)(Math.random()*15));
-					y = ((int)(Math.random()*15));
-					if (map[x][y] instanceof CharacterCell) {
-						if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
-							cc+=1;
-							Zombie z =new Zombie();
-							map[x][y] = new CharacterCell(z);
-							z.setLocation(new Point(x,y));
-							zombies.add(z);
-						}
-					}
-				}while(cc !=1);
+				spawnZombie();
 				
 			
 			
 		}
 		
-	
+	public static void spawnZombie()
+	{
+		Zombie z =new Zombie();
+		while(true) {
+			int x = ((int)(Math.random()*15));
+			int y = ((int)(Math.random()*15));
+			if (map[x][y] instanceof CharacterCell) {
+				if(((CharacterCell) (map[x][y])).getCharacter() == null){
+					map[x][y] = new CharacterCell(z);
+					z.setLocation(new Point(x,y));
+					zombies.add(z);
+					return;
+				}
+			}
+		}
+	}
 	
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{

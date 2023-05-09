@@ -75,6 +75,7 @@ abstract public class Character {
 				Zombie z=(Zombie)this;
 				int j=Game.zombies.indexOf(z);
 				Game.zombies.remove(j);
+				Game.spawnZombie();
 			}	
 		Point L =this.getLocation();
 		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
