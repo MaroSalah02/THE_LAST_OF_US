@@ -205,16 +205,20 @@ public class Game {
 						addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
 						addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
 						addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
+						zomb.setTarget(null);
 						for(int i = HerosArroundMe.size()-1; i>=0;i--) {
 							Hero H = HerosArroundMe.remove(i);
 							zomb.setTarget(H);
+							if(zomb.adjacentTarget()) {
+								break;
+							}
+						}
 							try {
 								zomb.attack();
 							} catch (GameActionException e) {
-								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-						}
+						
 					
 					}
 				}

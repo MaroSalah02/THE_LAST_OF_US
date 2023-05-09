@@ -1,5 +1,8 @@
 package model.characters;
 
+import exceptions.GameActionException;
+import exceptions.NotEnoughActionsException;
+
 public class Zombie extends Character {
 	private static int ZOMBIES_COUNT = 0;
 	

@@ -44,7 +44,8 @@ abstract public class Hero extends Character{
 			Point p=this.getTarget().getLocation();
 			Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
 			Game.heroes.add(h);
-			Game.zombies.remove(Game.zombies.indexOf(this.getTarget()));
+			Game.zombies.remove(Game.zombies.size()-1);
+			this.setTarget(h);
 			CharacterCell c=new CharacterCell(h);
 			Game.map[p.x][p.y]=c;
 			h.setLocation(p);
@@ -147,8 +148,9 @@ abstract public class Hero extends Character{
 			throw new NotEnoughActionsException();
 		super.attack();
 		if(this instanceof Fighter) {
-			if(!this.isSpecialAction())
+			if(!this.isSpecialAction()) {
 				this.actionsAvailable = this.actionsAvailable -1;
+			}
 		}
 		else
 			this.actionsAvailable = this.actionsAvailable -1;
