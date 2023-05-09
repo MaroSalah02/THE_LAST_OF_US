@@ -106,16 +106,17 @@ abstract public class Hero extends Character{
 	}
 
 	public void attack() throws GameActionException {
-		if(this.actionsAvailable == 0)
-			throw new NotEnoughActionsException();
-		super.attack();
 		if(this instanceof Fighter) {
 			if(!this.isSpecialAction()) {
 				this.actionsAvailable = this.actionsAvailable -1;
 			}
 		}
-		else
+		else {
+			if(this.actionsAvailable == 0)
+				throw new NotEnoughActionsException();
 			this.actionsAvailable = this.actionsAvailable -1;
+		}
+			super.attack();
 	}
 	
 	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
@@ -152,9 +153,9 @@ public void useSpecial() throws NoAvailableResourcesException , NotEnoughActions
 		if(this.supplyInventory.isEmpty()) {
 			throw new NoAvailableResourcesException();
 		}
-		if(this.actionsAvailable==0) {
+		/*if(this.actionsAvailable==0) {
 			throw new NotEnoughActionsException();
-		}
+		}*/
 	}
 
 	

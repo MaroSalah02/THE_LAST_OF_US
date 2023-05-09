@@ -123,8 +123,8 @@ public class Game {
 			if (map[x][y] instanceof CharacterCell) {
 				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
 					cc+=1;
-					map[x][y] = new CharacterCell(new Zombie());
 					Zombie z =new Zombie();
+					map[x][y] = new CharacterCell(z);
 					z.setLocation(new Point(x,y));
 					zombies.add(z);
 				}
@@ -180,9 +180,9 @@ public class Game {
 	public static boolean isHero(int x, int y) {
 		return map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Hero;
 	}
-	public static void addHeroToHerosArroundMe(int x, int y,ArrayList<Hero> ham) {
+	public static void addHeroToHerosArroundMe(int x, int y,ArrayList<Hero> HeroesAroundMe) {
 		if(x <15 && x >= 0 && y <15 && y >= 0 && isHero(x,y)) {
-			ham.add((Hero)((CharacterCell)(map[x][y])).getCharacter());
+			HeroesAroundMe.add((Hero)((CharacterCell)(map[x][y])).getCharacter());
 		}
 	}
 	public static void endTurn() {
@@ -222,8 +222,8 @@ public class Game {
 					
 					}
 				}
-				}
 			}
+		}
 		
 		for(int i = heroes.size()-1; i >=0; i--) {
 			Hero H2 = heroes.get(i);
@@ -259,8 +259,8 @@ public class Game {
 					if (map[x][y] instanceof CharacterCell) {
 						if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
 							cc+=1;
-							map[x][y] = new CharacterCell(new Zombie());
 							Zombie z =new Zombie();
+							map[x][y] = new CharacterCell(z);
 							z.setLocation(new Point(x,y));
 							zombies.add(z);
 						}
@@ -276,9 +276,22 @@ public class Game {
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{
 
-		Character z  = new Zombie();
-
-		System.out.println(z instanceof Zombie);
+		Fighter x = new Fighter("Hamzawy",100,1,3);
+		availableHeroes.add(x);
+		startGame(x);
+		int cnt = 0;
+		System.out.println(zombies.size());
+		for(int i  = 0; i<10;i++)
+			System.out.println(zombies.get(i).getLocation());
+		for(int x1 = 0; x1<=14; x1++)
+			for(int y = 0; y<15;y++)
+				if((map[x1][y] instanceof CharacterCell)&&(((CharacterCell)map[x1][y]).getCharacter() instanceof Zombie))
+				{
+					System.out.println("" + x1 + " " + y + " " + ((CharacterCell)map[x1][y]).getCharacter().getName());
+				}
+		System.out.println(cnt);
+				
+		
 	}
 }
 
