@@ -65,6 +65,35 @@ public class Game {
 			(map[X][Y+1]).setVisible(true);
 		
 	}
+	
+	public static void setAdjacentNotVisible(Point pos) {
+		int X = (int) pos.getX();
+		int Y = (int) pos.getY();
+		
+		map[X][Y].setVisible(false);
+		
+		if(X>0) {
+			(map[X-1][Y]).setVisible(false);
+			if(Y>0)
+				(map[X-1][Y-1]).setVisible(false);
+			if(Y<14)
+			(map[X-1][Y+1]).setVisible(false);
+		}
+			
+		if(X<14) {
+			(map[X+1][Y]).setVisible(false);
+			if(Y>0)
+				(map[X+1][Y-1]).setVisible(false);
+			if(Y<14)
+				(map[X+1][Y+1]).setVisible(false);
+		}
+		
+		if(Y>0)
+			(map[X][Y-1]).setVisible(false);
+		if(Y<14)
+			(map[X][Y+1]).setVisible(false);
+		
+	}
 	public static void startGame(Hero h) throws IOException {
 		// set the map
 		loadHeroes("C:\\Users\\HP\\git\\THE_LAST_OF_US\\THE_LAST_OF_US\\Heros.csv");
