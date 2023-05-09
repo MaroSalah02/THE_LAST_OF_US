@@ -219,15 +219,13 @@ public class Game {
 	}
 	public static void endTurn() throws InvalidTargetException, NotEnoughActionsException {
 
-		for(int x =0;x<=14; x++) {
-			for(int y =0; y<=14; y++) {
-				if(map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie) {
-					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
-					zomb.attack();
+		for(int i =0;i<zombies.size(); i++) {
+				Zombie zomb = zombies.get(i);
+				zomb.attack();
 					
 
-				}
-			}
+			
+			
 		}
 		for(int i = heroes.size()-1; i >=0; i--) {
 			Hero H2 = heroes.get(i);
