@@ -69,12 +69,12 @@ abstract public class Character {
 			if(this instanceof Hero) {
 				Hero h=(Hero)this;
 				int i=Game.heroes.indexOf(h);
-				Game.heroes.remove(i);
+				Game.heroes.remove(h);
 			}
 			if(this instanceof Zombie) {
 				Zombie z=(Zombie)this;
 				int j=Game.zombies.indexOf(z);
-				Game.zombies.remove(j);
+				Game.zombies.remove(z);
 				Game.spawnZombie();
 			}	
 		Point L =this.getLocation();

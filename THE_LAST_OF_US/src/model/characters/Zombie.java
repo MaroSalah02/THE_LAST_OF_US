@@ -25,7 +25,6 @@ public class Zombie extends Character {
 		ZOMBIES_COUNT = zOMBIES_COUNT;
 	}
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
-	
 		Point zombLoc = this.getLocation();
 				
 		int zx = (int)zombLoc.getX();
@@ -39,8 +38,7 @@ public class Zombie extends Character {
 		Game.addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
-		Game.addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
-									
+		Game.addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);							
 		if((int) (HerosArroundMe.size()) !=0) {
 				int i = (int)(Math.random()*(HerosArroundMe.size()));
 				this.setTarget(HerosArroundMe.remove(i));
@@ -53,9 +51,7 @@ public class Zombie extends Character {
 				this.onCharacterDeath();
 				
 		}
-		this.setTarget(null);
-			
-		
+		this.setTarget(null);		
 	}
 	
 }

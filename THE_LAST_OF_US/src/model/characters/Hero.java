@@ -100,7 +100,6 @@ abstract public class Hero extends Character{
 				Game.map[(int)posNew.getX()][(int)posNew.getY()].setVisible(true);
 				}
 	
-		Game.setAdjacentVisible(this.getLocation());
 		
 		this.actionsAvailable = this.actionsAvailable - 1;
 	}
@@ -138,8 +137,10 @@ abstract public class Hero extends Character{
 		if(this.getVaccineInventory().size() == 0) {
 			throw new NoAvailableResourcesException();
 		}
+		
 		Vaccine v = this.getVaccineInventory().get(0);
 		v.use(this);
+	
 	
 }
 public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
