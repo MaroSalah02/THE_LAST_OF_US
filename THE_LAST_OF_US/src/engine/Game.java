@@ -305,21 +305,6 @@ public class Game {
 // Main Method added for debugging, remove later
 	public static void main(String[]args) throws GameActionException{
 
-		Fighter x = new Fighter("Hamzawy",100,1,3);
-		availableHeroes.add(x);
-		startGame(x);
-		int cnt = 0;
-		System.out.println(zombies.size());
-		for(int i  = 0; i<10;i++)
-			System.out.println(zombies.get(i).getLocation());
-		for(int x1 = 0; x1<=14; x1++)
-			for(int y = 0; y<15;y++)
-				if((map[x1][y] instanceof CharacterCell)&&(((CharacterCell)map[x1][y]).getCharacter() instanceof Zombie))
-				{
-					System.out.println("" + x1 + " " + y + " " + ((CharacterCell)map[x1][y]).getCharacter().getName());
-				}
-		System.out.println(cnt);
-				
 		
 	}
 }
