@@ -94,6 +94,7 @@ public class Game {
 			(map[X][Y+1]).setVisible(false);
 		
 	}
+	
 	public static void startGame(Hero h) throws IOException {
 		// set the map
 		loadHeroes("C:\\Users\\HP\\git\\THE_LAST_OF_US\\THE_LAST_OF_US\\Heros.csv");
