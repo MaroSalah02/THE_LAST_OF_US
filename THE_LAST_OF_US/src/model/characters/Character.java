@@ -98,9 +98,10 @@ abstract public class Character {
 	}
 	
 	
-	public void attack() throws GameActionException {
+	public void attack() throws InvalidTargetException, NotEnoughActionsException {
 			
-		if(this.getTarget() == null)
+		
+			if(this.getTarget() == null)
 			throw new InvalidTargetException();
 		
 		if((this instanceof Hero)&&(this.getTarget() instanceof Hero)) {
@@ -124,6 +125,8 @@ abstract public class Character {
 		
 		if(this.getTarget().getCurrentHp()==0)
 			this.setTarget(null);
+		
+		
 	}
 	
 	public void defend(Character attacker) {

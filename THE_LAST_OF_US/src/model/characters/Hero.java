@@ -105,7 +105,7 @@ abstract public class Hero extends Character{
 		this.actionsAvailable = this.actionsAvailable - 1;
 	}
 
-	public void attack() throws GameActionException {
+	public void attack() throws InvalidTargetException, NotEnoughActionsException {
 		if(this instanceof Fighter) {
 			if(!this.isSpecialAction()) {
 				this.actionsAvailable = this.actionsAvailable -1;

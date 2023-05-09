@@ -65,8 +65,9 @@ public class Game {
 			(map[X][Y+1]).setVisible(true);
 		
 	}
-	public static void startGame(Hero h) {
+	public static void startGame(Hero h) throws IOException {
 		// set the map
+		loadHeroes("C:\\Users\\HP\\git\\THE_LAST_OF_US\\THE_LAST_OF_US\\Heros.csv");
 		for(int x =0;x<=14; x++) {
 			for(int y =0; y<=14; y++) {
 				map[x][y] = new CharacterCell(null);
@@ -136,8 +137,8 @@ public class Game {
 		heroes.add(h);
 		
 		//finally allocating the hero to the bottom left corner of the map.
-		map[0][0] = new CharacterCell(heroes.get(heroes.size()-1));
-		heroes.get(heroes.size()-1).setLocation(new Point(0,0));
+		map[0][0] = new CharacterCell(h);
+		h.setLocation(new Point(0,0));
 		setAdjacentVisible(new Point(0,0));
 		
 	}
