@@ -117,9 +117,12 @@ abstract public class Character {
 		this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());
 		
 		target.defend(this);
-
+		
 		target.onCharacterDeath();
 		this.onCharacterDeath();
+		
+		if(this.getTarget().getCurrentHp()==0)
+			this.setTarget(null);
 	}
 	
 	public void defend(Character attacker) {
