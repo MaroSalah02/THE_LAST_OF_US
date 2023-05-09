@@ -29,7 +29,7 @@ public class Zombie extends Character {
 				
 		int zx = (int)zombLoc.getX();
 		int zy = (int)zombLoc.getY();
-		ArrayList<Hero> HerosArroundMe = new ArrayList<>();		
+		ArrayList<Hero> HerosArroundMe = new ArrayList<Hero>();		
 						
 		Game.addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
