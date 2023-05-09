@@ -22,44 +22,6 @@ abstract public class Hero extends Character{
 		supplyInventory = new ArrayList<Supply>();
 	}
 
-	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
-			if(this.getTarget() == null) {
-				throw new InvalidTargetException();
-			}
-			if(this.vaccineInventory.isEmpty()) {
-				throw new NoAvailableResourcesException();
-			}
-			if(this.getTarget() instanceof Hero ) {
-				throw new InvalidTargetException(); 
-			}
-			if(this.getActionsAvailable()==0) {
-				throw new NotEnoughActionsException();
-			}
-			if(!this.adjacentTarget()) {
-				throw new InvalidTargetException();
-			}
-			Vaccine v=new Vaccine();
-			v.use(this);
-			this.setActionsAvailable(this.getActionsAvailable()-1);
-			Point p=this.getTarget().getLocation();
-			Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
-			Game.heroes.add(h);
-			Game.zombies.remove(Game.zombies.size()-1);
-			this.setTarget(h);
-			CharacterCell c=new CharacterCell(h);
-			Game.map[p.x][p.y]=c;
-			h.setLocation(p);
-		
-	}
-	public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
-			
-			if(this.supplyInventory.isEmpty()) {
-				throw new NoAvailableResourcesException();
-			}
-			if(this.actionsAvailable==0) {
-				throw new NotEnoughActionsException();
-			}
-		}
 	
 
 	public int getActionsAvailable() {
@@ -155,5 +117,45 @@ abstract public class Hero extends Character{
 		else
 			this.actionsAvailable = this.actionsAvailable -1;
 	}
+	
+	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
+		if(this.getTarget() == null) {
+			throw new InvalidTargetException();
+		}
+		if(this.vaccineInventory.isEmpty()) {
+			throw new NoAvailableResourcesException();
+		}
+		if(this.getTarget() instanceof Hero ) {
+			throw new InvalidTargetException(); 
+		}
+		if(this.getActionsAvailable()==0) {
+			throw new NotEnoughActionsException();
+		}
+		if(!this.adjacentTarget()) {
+			throw new InvalidTargetException();
+		}
+		Vaccine v=new Vaccine();
+		v.use(this);
+		this.setActionsAvailable(this.getActionsAvailable()-1);
+		Point p=this.getTarget().getLocation();
+		Hero h=Game.availableHeroes.remove(Game.availableHeroes.size()-1);
+		Game.heroes.add(h);
+		Game.zombies.remove(Game.zombies.size()-1);
+		this.setTarget(h);
+		CharacterCell c=new CharacterCell(h);
+		Game.map[p.x][p.y]=c;
+		h.setLocation(p);
+	
+}
+public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
+		
+		if(this.supplyInventory.isEmpty()) {
+			throw new NoAvailableResourcesException();
+		}
+		if(this.actionsAvailable==0) {
+			throw new NotEnoughActionsException();
+		}
+	}
+
 	
 }
