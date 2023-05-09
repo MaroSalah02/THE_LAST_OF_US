@@ -141,18 +141,6 @@ abstract public class Hero extends Character{
 		
 		Vaccine v = this.getVaccineInventory().get(0);
 		v.use(this);
-		this.setActionsAvailable(this.getActionsAvailable()-1);
-		
-		Point p = this.getTarget().getLocation();
-		
-		Hero h = Game.availableHeroes.remove(Game.availableHeroes.size()-1);
-		Game.heroes.add(h);
-		
-		Game.zombies.remove(this.getTarget());
-		
-		this.setTarget(h);
-		Game.map[p.x][p.y] = new CharacterCell(h);
-		h.setLocation(p);
 	
 }
 public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
