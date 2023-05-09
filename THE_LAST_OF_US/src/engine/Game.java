@@ -196,30 +196,28 @@ public class Game {
 					int zy = (int)zombLoc.getY();
 					ArrayList<Hero> HerosArroundMe = new ArrayList<>();		
 						
-						addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
-						addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
-						addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
-						addHeroToHerosArroundMe(zx,zy+1,HerosArroundMe);
-						addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
-						addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
-						addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
-						addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
-						zomb.setTarget(null);
-						for(int i = HerosArroundMe.size()-1; i>=0;i--) {
-							Hero H = HerosArroundMe.remove(i);
-							zomb.setTarget(H);
-							if(zomb.adjacentTarget()) {
-								break;
-							}
+					addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
+					addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
+					addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
+					if((int) (HerosArroundMe.size()) !=0) {
+						int i = (int)(Math.random()*(HerosArroundMe.size()));
+						Hero H = HerosArroundMe.remove(i);
+						zomb.setTarget(H);
+					
+						try {
+							zomb.attack();
+						} catch (GameActionException e) {
+							e.printStackTrace();
 						}
-							try {
-								zomb.attack();
-							} catch (GameActionException e) {
-								e.printStackTrace();
-							}
 						
-					
-					
+					}
+					zomb.setTarget(null);
+
 				}
 			}
 		}
