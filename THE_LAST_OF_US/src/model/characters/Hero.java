@@ -138,7 +138,6 @@ abstract public class Hero extends Character{
 		if(this.getVaccineInventory().size() == 0) {
 			throw new NoAvailableResourcesException();
 		}
-		
 		Vaccine v = this.getVaccineInventory().get(0);
 		v.use(this);
 	

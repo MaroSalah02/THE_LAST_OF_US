@@ -52,9 +52,8 @@ public class Zombie extends Character {
 				target.onCharacterDeath();
 				this.onCharacterDeath();
 				
-				if(this.getTarget().getCurrentHp()==0)
-					this.setTarget(null);
 		}
+		this.setTarget(null);
 			
 		
 	}
