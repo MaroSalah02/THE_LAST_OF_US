@@ -11,9 +11,8 @@ public class Vaccine implements Collectible {
 
 	@Override
 	public void pickUp(Hero h) {
-		Vaccine vaccino = new Vaccine();
 		ArrayList<Vaccine> vaccinoArray = h.getVaccineInventory();
-		vaccinoArray.add(vaccino);
+		vaccinoArray.add(this);
 		
 	}
 
