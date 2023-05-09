@@ -217,43 +217,18 @@ public class Game {
 			HeroesAroundMe.add((Hero)((CharacterCell)(map[x][y])).getCharacter());
 		}
 	}
-	public static void endTurn() {
+	public static void endTurn() throws InvalidTargetException, NotEnoughActionsException {
+
 		for(int x =0;x<=14; x++) {
 			for(int y =0; y<=14; y++) {
 				if(map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Zombie) {
 					Zombie zomb = (Zombie)((CharacterCell)(map[x][y])).getCharacter();
-					Point zombLoc = zomb.getLocation();
+					zomb.attack();
 					
-					int zx = (int)zombLoc.getX();
-					int zy = (int)zombLoc.getY();
-					ArrayList<Hero> HerosArroundMe = new ArrayList<>();		
-						
-					addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
-					addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
-					addHeroToHerosArroundMe(zx+1,zy-1,HerosArroundMe);
-					addHeroToHerosArroundMe(zx,zy+1,HerosArroundMe);
-					addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
-					addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
-					addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
-					addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
-					if((int) (HerosArroundMe.size()) !=0) {
-						int i = (int)(Math.random()*(HerosArroundMe.size()));
-						Hero H = HerosArroundMe.remove(i);
-						zomb.setTarget(H);
-					
-						try {
-							zomb.attack();
-						} catch (GameActionException e) {
-							e.printStackTrace();
-						}
-						
-					}
-					zomb.setTarget(null);
 
 				}
 			}
 		}
-		
 		for(int i = heroes.size()-1; i >=0; i--) {
 			Hero H2 = heroes.get(i);
 			H2.setActionsAvailable(H2.getMaxActions());
