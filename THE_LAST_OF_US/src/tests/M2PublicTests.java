@@ -1879,17 +1879,19 @@ public class M2PublicTests {
 		}
 
 		for (int i = 0; i < 8; i++) {
-
+			
 			try {
 				Method endTurn = gameClass.getMethod("endTurn");
 				endTurn.invoke(gameClass);
+				
+				
 			} catch (Exception e) {
 				fail(e.getCause().getClass() + " ccuered while trying to end turn, check the Zombies attack!");
 			}
 		}
 
 		boolean isAllDead = heroList.size() <= 1;
-
+		
 		assertEquals("All 8 heros around Zombie should be dead after attacking all of them", isAllDead, true);
 	}
 

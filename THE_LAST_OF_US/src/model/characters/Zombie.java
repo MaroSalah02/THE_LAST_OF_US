@@ -39,15 +39,12 @@ public class Zombie extends Character {
 		Game.addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);							
-		if((int) (HerosArroundMe.size()) !=0) {
+		if(!HerosArroundMe.isEmpty()) {
 				int i = (int)(Math.random()*(HerosArroundMe.size()));
 				this.setTarget(HerosArroundMe.remove(i));
-				Character target = this.getTarget();
 				this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());
-				
-				target.defend(this);
-				
-				target.onCharacterDeath();
+				this.getTarget().defend(this);
+				this.getTarget().onCharacterDeath();
 				this.onCharacterDeath();
 				
 		}
