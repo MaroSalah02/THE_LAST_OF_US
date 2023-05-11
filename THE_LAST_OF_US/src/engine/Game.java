@@ -80,22 +80,6 @@ public class Game {
 		//finally allocating the hero to the bottom left corner of the map.
 		map[0][0] = new CharacterCell(h);
 		h.setLocation(new Point(0,0));
-		setAdjacentVisible(new Point(0,0));
-		/*spawn 10 zombies randomly around the map (old)
-		cc = 0;
-		do {
-			x = ((int)(Math.random()*15));
-			y = ((int)(Math.random()*15));
-			if (map[x][y] instanceof CharacterCell) {
-				if(((CharacterCell) (map[x][y])).getCharacter() == null && x!=0 && y!=0) {
-					cc+=1;
-					Zombie z =new Zombie();
-					map[x][y] = new CharacterCell(z);
-					z.setLocation(new Point(x,y));
-					zombies.add(z);
-				}
-			}
-		}while(cc !=10);*/
 		
 		//Spawning 10 Zombies (new)
 		for(int i = 0; i < 10; i++)
