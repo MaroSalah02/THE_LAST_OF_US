@@ -23,21 +23,19 @@ public class Vaccine implements Collectible {
 	public  void use(Hero h) throws NoAvailableResourcesException{
 		ArrayList<Vaccine> vaccinoArray = h.getVaccineInventory();
 		vaccinoArray.remove(this);
-		if(h.getActionsAvailable()==0) {
-			throw new NoAvailableResourcesException();
-		}
-		h.setActionsAvailable(h.getActionsAvailable()-1);
 		
-		Point p = h.getTarget().getLocation();
+		h.setActionsAvailable(h.getActionsAvailable() - 1);
 		
-		Hero hnew = Game.availableHeroes.remove(Game.availableHeroes.size()-1);
-		Game.heroes.add(hnew);
+		Point location = h.getTarget().getLocation();
+		
+		Hero randomHero = Game.availableHeroes.remove((int)(Game.availableHeroes.size() * Math.random()));
+		Game.heroes.add(randomHero);
+		Game.map[location.x][location.y] = new CharacterCell(randomHero);
+		randomHero.setLocation(location);
 		
 		Game.zombies.remove(h.getTarget());
 		
-		h.setTarget(h);
-		Game.map[p.x][p.y] = new CharacterCell(hnew);
-		hnew.setLocation(p);
+		h.setTarget(null);
 	}
 	
 }

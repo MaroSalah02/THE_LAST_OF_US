@@ -68,7 +68,7 @@ abstract public class Hero extends Character{
 			if(posNew.x < 0 || posNew.y<0 || posNew.x > 14 || posNew.y > 14)
 				throw new MovementException();
 			
-			Cell newCell = Game.map[posNew.x][posNew.x];
+			Cell newCell = Game.map[posNew.x][posNew.y];
 			Collectible collectible;
 			
 			if(newCell instanceof CharacterCell)
@@ -90,12 +90,12 @@ abstract public class Hero extends Character{
 			this.setLocation(posNew);
 			
 			if (this.getCurrentHp() != 0) {
-				Game.map[posNew.x][posNew.x] = new CharacterCell(this);
+				Game.map[posNew.x][posNew.y] = new CharacterCell(this);
 				Game.setAdjacentVisible(this.getLocation());
 			}
 			else{
-				Game.map[posNew.x][posNew.x] = new CharacterCell(null);
-				Game.map[posNew.x][posNew.x].setVisible(true);
+				Game.map[posNew.x][posNew.y] = new CharacterCell(null);
+				Game.map[posNew.x][posNew.y].setVisible(true);
 				}
 	
 		
