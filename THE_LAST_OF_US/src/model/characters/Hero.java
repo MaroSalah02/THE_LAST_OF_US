@@ -22,8 +22,6 @@ abstract public class Hero extends Character{
 		supplyInventory = new ArrayList<Supply>();
 	}
 
-	
-
 	public int getActionsAvailable() {
 		return actionsAvailable;
 	}
@@ -52,7 +50,8 @@ abstract public class Hero extends Character{
 		return supplyInventory;
 	}
 	
-	public void move(Direction d) throws GameActionException{
+	
+	public void move(Direction d) throws NotEnoughActionsException, MovementException {
 			if (this.actionsAvailable == 0)
 				throw new NotEnoughActionsException();
 			
@@ -64,14 +63,13 @@ abstract public class Hero extends Character{
 			case DOWN: posNew.translate(-1, 0);break;
 			case RIGHT: posNew.translate(0, 1);break;
 			case LEFT: posNew.translate(0, -1);break;
-			default: throw new MovementException("invalid input.");
 			}
 			
-			if(posNew.getX()<0||posNew.getY()<0||posNew.getX()>14||posNew.getY()>14)
+			if(posNew.x < 0 || posNew.y<0 || posNew.x > 14 || posNew.y > 14)
 				throw new MovementException();
 			
-			Cell newCell = Game.map[(int)posNew.getX()][(int)posNew.getY()];
-				Collectible collectible;
+			Cell newCell = Game.map[posNew.x][posNew.x];
+			Collectible collectible;
 			
 			if(newCell instanceof CharacterCell)
 				if (((CharacterCell)newCell).getCharacter()!=null)
@@ -83,21 +81,21 @@ abstract public class Hero extends Character{
 			}
 			
 			if(newCell instanceof TrapCell) {
-				this.setCurrentHp(this.getCurrentHp()-((TrapCell)newCell).getTrapDamage());
+				this.setCurrentHp(this.getCurrentHp() - ((TrapCell)newCell).getTrapDamage());
 				this.onCharacterDeath();
 			}
 			
-			Game.map[(int)posOld.getX()][(int)posOld.getY()] = new CharacterCell(null);
+			Game.map[posOld.x][posOld.x] = new CharacterCell(null);
 			
 			this.setLocation(posNew);
 			
-			if (this.getCurrentHp()!=0) {
-				Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(this);
+			if (this.getCurrentHp() != 0) {
+				Game.map[posNew.x][posNew.x] = new CharacterCell(this);
 				Game.setAdjacentVisible(this.getLocation());
 			}
 			else{
-				Game.map[(int)posNew.getX()][(int)posNew.getY()] = new CharacterCell(null);
-				Game.map[(int)posNew.getX()][(int)posNew.getY()].setVisible(true);
+				Game.map[posNew.x][posNew.x] = new CharacterCell(null);
+				Game.map[posNew.x][posNew.x].setVisible(true);
 				}
 	
 		
@@ -118,40 +116,40 @@ abstract public class Hero extends Character{
 			super.attack();
 	}
 	
-	public void cure() throws InvalidTargetException ,NotEnoughActionsException,NoAvailableResourcesException {
+	public void cure() throws InvalidTargetException ,NotEnoughActionsException, NoAvailableResourcesException {
 		if(this.getTarget() == null) {
 			throw new InvalidTargetException();
 		}
-		if(this.vaccineInventory.isEmpty()) {
-			throw new NoAvailableResourcesException();
-		}
+		
 		if(this.getTarget() instanceof Hero ) {
 			throw new InvalidTargetException(); 
 		}
-		if(this.getActionsAvailable()==0) {
-			throw new NotEnoughActionsException();
-		}
+		
 		if(!this.adjacentTarget()) {
 			throw new InvalidTargetException();
 		}
+		
+		if(this.vaccineInventory.isEmpty()) {
+			throw new NoAvailableResourcesException();
+		}
+		
 		if(this.getVaccineInventory().size() == 0) {
 			throw new NoAvailableResourcesException();
 		}
 		
-		Vaccine v = this.getVaccineInventory().get(0);
-		v.use(this);
-	
-	
+		if(this.getActionsAvailable() == 0) {
+			throw new NotEnoughActionsException();
+		}
+		
+		Vaccine vaccine = this.getVaccineInventory().get(0);
+		
+		vaccine.use(this);	
 }
-public void useSpecial() throws NoAvailableResourcesException , NotEnoughActionsException, InvalidTargetException{
+
+public void useSpecial() throws NoAvailableResourcesException, InvalidTargetException{
 		
 		if(this.supplyInventory.isEmpty()) {
 			throw new NoAvailableResourcesException();
 		}
-		/*if(this.actionsAvailable==0) {
-			throw new NotEnoughActionsException();
-		}*/
 	}
-
-	
 }
