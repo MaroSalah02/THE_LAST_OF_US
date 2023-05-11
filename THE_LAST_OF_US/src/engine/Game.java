@@ -235,7 +235,7 @@ public class Game {
 	//A method that spawns a zombie in a random empty cell
 	public static void spawnZombie()
 	{
-		Zombie z =new Zombie();
+		Zombie z = new Zombie();
 		while(true) {
 			int x = ((int)(Math.random()*15));
 			int y = ((int)(Math.random()*15));
