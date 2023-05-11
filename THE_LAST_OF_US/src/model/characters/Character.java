@@ -64,51 +64,50 @@ abstract public class Character {
 		return attackDmg;
 	}
 	
+	//checks if a character is dead, and executes the required tasks if it is
 	public void onCharacterDeath() {
-		if (this.getCurrentHp()==0) {
+		if (this.getCurrentHp() == 0) {
 			if(this instanceof Hero) {
-				Hero h=(Hero)this;
-				int i=Game.heroes.indexOf(h);
-				Game.heroes.remove(h);
+				Game.heroes.remove(this);
 			}
+			
 			if(this instanceof Zombie) {
-				Zombie z=(Zombie)this;
-				int j=Game.zombies.indexOf(z);
-				Game.zombies.remove(z);
+				Game.zombies.remove(this);
 				Game.spawnZombie();
 			}	
+			
 		Point L =this.getLocation();
-		Game.map[(int)L.getX()][(int)L.getY()]= new CharacterCell(null);
+		Game.map[L.x][L.y]= new CharacterCell(null);
 		}
 	}
+	
+	//Checks if the character and it's target are adjacent
 	public boolean adjacentTarget() {
 		Point pos1 = this.getLocation();
-		int X1 = (int) pos1.getX();
-		int Y1 = (int) pos1.getY();
+		int X1 = pos1.x;
+		int Y1 = pos1.y;
 		
 		Point pos2 = (this.getTarget()).getLocation();
-		int X2 = (int) pos2.getX();
-		int Y2 = (int) pos2.getY();
+		int X2 = pos2.x;
+		int Y2 = pos2.y;
 		
-		if ((X1-X2<=1&&X1-X2>=-1)&&(Y1-Y2<=1&&Y1-Y2>=-1))
+		if (((X1 - X2 <= 1) && (X1 - X2 >= -1)) && ((Y1-Y2 <= 1) && (Y1 - Y2 >= -1)))
 			return true;
 		else
 			return false;
 		
 	}
 	
-	
+	//General Attack method for characters
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
-			
-		
-			if(this.getTarget() == null)
+		if(this.getTarget() == null)
 			throw new InvalidTargetException();
 		
-		if((this instanceof Hero)&&(this.getTarget() instanceof Hero)) {
+		if((this instanceof Hero) && (this.getTarget() instanceof Hero)) {
 			throw new InvalidTargetException();
 		}
 		
-		if((this instanceof Zombie)&&(this.getTarget() instanceof Zombie)) {
+		if((this instanceof Zombie) && (this.getTarget() instanceof Zombie)) {
 			throw new InvalidTargetException();
 		}
 		
@@ -125,10 +124,9 @@ abstract public class Character {
 		
 		if(this.getTarget().getCurrentHp()==0)
 			this.setTarget(null);
-		
-		
 	}
 	
+	//General Defend method for character
 	public void defend(Character attacker) {
 		attacker.setCurrentHp(attacker.getCurrentHp()-(this.getAttackDmg())/2);
 	}
