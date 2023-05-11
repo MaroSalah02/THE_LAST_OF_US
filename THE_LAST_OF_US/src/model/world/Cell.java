@@ -3,6 +3,9 @@ package model.world;
 public abstract class Cell {
 	private boolean isVisible;
 
+	public Cell() {
+	}
+	
 	public boolean isVisible() {
 		return isVisible;
 	}
@@ -13,8 +16,5 @@ public abstract class Cell {
 	
 	public boolean getVisible() {
 		return this.isVisible;
-	}
-
-	public Cell() {
 	}
 }
