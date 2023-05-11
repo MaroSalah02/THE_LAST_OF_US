@@ -210,7 +210,7 @@ public class Game {
 		return true;
 	}
 	public static boolean isHero(int x, int y) {
-		return ((map[x][y] instanceof CharacterCell) && ((CharacterCell)(map[x][y])).getCharacter() instanceof Hero);
+		return map[x][y] instanceof CharacterCell && ((CharacterCell)(map[x][y])).getCharacter() instanceof Hero;
 	}
 	public static void addHeroToHerosArroundMe(int x, int y,ArrayList<Hero> HeroesAroundMe) {
 		if(x <15 && x >= 0 && y <15 && y >= 0 && isHero(x,y)) {
@@ -219,11 +219,14 @@ public class Game {
 	}
 	public static void endTurn() throws InvalidTargetException, NotEnoughActionsException {
 
-		for(int i = 0; i<zombies.size();i++) {
+		for(int i =0;i<zombies.size(); i++) {
+				Zombie zomb = zombies.get(i);
+				zomb.attack();
 					
-			zombies.get(i).attack();
-		}
+
 			
+			
+		}
 		for(int i = heroes.size()-1; i >=0; i--) {
 			Hero H2 = heroes.get(i);
 			H2.setActionsAvailable(H2.getMaxActions());
