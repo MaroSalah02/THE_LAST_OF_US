@@ -12,25 +12,26 @@ public class Medic extends Hero{
 		super(name, maxHp, attackDmg, maxActions);
 	}
 
-	public void useSpecial() throws InvalidTargetException,NoAvailableResourcesException, NotEnoughActionsException {
-			if(this.getTarget()==null)
-				throw new InvalidTargetException();
-			if(this.getTarget() instanceof Zombie) {
-				throw new InvalidTargetException();
-			}
-			if(!this.adjacentTarget()) {
-				throw new InvalidTargetException();
-			}
-			super.useSpecial();
-			Supply s=this.getSupplyInventory().get(0);
-			s.use(this);
-			this.getTarget().setCurrentHp(this.getTarget().getMaxHp());
-			this.setSpecialAction(true);
-
+	public void useSpecial() throws InvalidTargetException, NoAvailableResourcesException {
+		if(this.getTarget() == null)
+			throw new InvalidTargetException();
+			
+		if(this.getTarget() instanceof Zombie) {
+			throw new InvalidTargetException();
 		}
-
-	
-
+			
+		if(!this.adjacentTarget()) {
+			throw new InvalidTargetException();
+		}
+			
+		super.useSpecial();
+			
+		Supply supply =this.getSupplyInventory().get(0);
+		supply.use(this);
+			
+		this.getTarget().setCurrentHp(this.getTarget().getMaxHp());
+		this.setSpecialAction(true);
 	}
+}
 	
 
