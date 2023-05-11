@@ -29,6 +29,7 @@ public class Vaccine implements Collectible {
 		Point location = h.getTarget().getLocation();
 		
 		Hero randomHero = Game.availableHeroes.remove((int)(Game.availableHeroes.size() * Math.random()));
+		
 		Game.heroes.add(randomHero);
 		Game.map[location.x][location.y] = new CharacterCell(randomHero);
 		randomHero.setLocation(location);
