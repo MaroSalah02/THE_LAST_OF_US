@@ -27,9 +27,10 @@ public class Zombie extends Character {
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
 		Point zombLoc = this.getLocation();
 				
-		int zx = (int)zombLoc.getX();
-		int zy = (int)zombLoc.getY();
-		ArrayList<Hero> HerosArroundMe = new ArrayList<>();		
+		int zx = zombLoc.x;
+		int zy = zombLoc.y;
+		
+		ArrayList<Hero> HerosArroundMe = new ArrayList<Hero>();		
 						
 		Game.addHeroToHerosArroundMe(zx+1,zy+1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx+1,zy,HerosArroundMe);
@@ -38,17 +39,20 @@ public class Zombie extends Character {
 		Game.addHeroToHerosArroundMe(zx,zy-1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy+1,HerosArroundMe);
 		Game.addHeroToHerosArroundMe(zx-1,zy,HerosArroundMe);
-		Game.addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);							
+		Game.addHeroToHerosArroundMe(zx-1,zy-1,HerosArroundMe);
+		
 		if(!HerosArroundMe.isEmpty()) {
-				int i = (int)(Math.random()*(HerosArroundMe.size()));
+				//chose an unfortunate hero as the target
+				int i = (int)(Math.random() * (HerosArroundMe.size()));
 				this.setTarget(HerosArroundMe.remove(i));
+				//attack and defend cycle
 				this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());
 				this.getTarget().defend(this);
+				//check casualties
 				this.getTarget().onCharacterDeath();
 				this.onCharacterDeath();
-				
 		}
+		//reset target
 		this.setTarget(null);		
 	}
-	
 }
