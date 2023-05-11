@@ -66,6 +66,11 @@ abstract public class Character {
 	
 	//checks if a character is dead, and executes the required tasks if it is
 	public void onCharacterDeath() {
+		
+		//moved these here, look at comment on line 81
+		Point L =this.getLocation();
+		Game.map[L.x][L.y]= new CharacterCell(null);
+		
 		if (this.getCurrentHp() == 0) {
 			if(this instanceof Hero) {
 				Game.heroes.remove(this);
@@ -74,10 +79,9 @@ abstract public class Character {
 			if(this instanceof Zombie) {
 				Game.zombies.remove(this);
 				Game.spawnZombie();
+				//the only case a zombie dies is if they are adjacent to a hero, in which case, the cell stays visible
+				Game.map[L.x][L.y].setVisible(true);
 			}	
-			
-		Point L =this.getLocation();
-		Game.map[L.x][L.y]= new CharacterCell(null);
 		}
 	}
 	
