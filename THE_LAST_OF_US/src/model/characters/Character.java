@@ -74,6 +74,8 @@ abstract public class Character {
 		if (this.getCurrentHp() == 0) {
 			if(this instanceof Hero) {
 				Game.heroes.remove(this);
+				//whenever a hero dies, the cell he dies on should stay visible
+				Game.map[L.x][L.y].setVisible(true);
 			}
 			
 			if(this instanceof Zombie) {

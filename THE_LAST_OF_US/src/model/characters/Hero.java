@@ -95,7 +95,6 @@ abstract public class Hero extends Character{
 			}
 			else{
 				Game.map[posNew.x][posNew.y] = new CharacterCell(null);
-				Game.map[posNew.x][posNew.y].setVisible(true);
 				}
 	
 		
