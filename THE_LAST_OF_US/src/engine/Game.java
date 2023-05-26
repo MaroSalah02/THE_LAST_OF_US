@@ -11,8 +11,8 @@ import model.collectibles.*;
 import model.world.*;
 import exceptions.*;
 
-public class 
- {
+public class Game {
+	public static ArrayList<Hero>allHeroes = new ArrayList<Hero>();
 	public static ArrayList<Hero>availableHeroes = new ArrayList<Hero>();
 	public static ArrayList<Hero> heroes = new ArrayList<Hero>();
 	public static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
@@ -25,7 +25,6 @@ public class
         BufferedReader br = new BufferedReader(new FileReader(filePath));
 		
         String currentLine;
-        
         while((currentLine=br.readLine()) != null)
         {
             String[] hero = currentLine.split(",");
@@ -35,6 +34,8 @@ public class
             case "EXP":availableHeroes.add(new Explorer(hero[0],Integer.parseInt(hero[2]),Integer.parseInt(hero[4]),Integer.parseInt(hero[3])));break;
             case "MED":availableHeroes.add(new Medic(hero[0],Integer.parseInt(hero[2]),Integer.parseInt(hero[4]),Integer.parseInt(hero[3])));break;
             }
+            
+            allHeroes.add(availableHeroes.get(availableHeroes.size()-1));
         }
     }
 	
