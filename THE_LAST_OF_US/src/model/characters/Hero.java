@@ -5,7 +5,7 @@ import model.collectibles.*;
 import exceptions.*;
 import engine.Game;
 import model.world.*;
-
+//HERO IS ABSTRACT
 abstract public class Hero extends Character{
 
 	private int actionsAvailable;
@@ -53,7 +53,7 @@ abstract public class Hero extends Character{
 	
 	public void move(Direction d) throws NotEnoughActionsException, MovementException {
 			if (this.actionsAvailable == 0)
-				throw new NotEnoughActionsException();
+				throw new NotEnoughActionsException("Not enough Action point to move");
 			
 			Point posOld  = new Point(this.getLocation());
 			Point posNew  = new Point(this.getLocation());
@@ -66,14 +66,14 @@ abstract public class Hero extends Character{
 			}
 			
 			if(posNew.x < 0 || posNew.y<0 || posNew.x > 14 || posNew.y > 14)
-				throw new MovementException();
+				throw new MovementException("Cannot move out of the map");
 			
 			Cell newCell = Game.map[posNew.x][posNew.y];
 			Collectible collectible;
 			
 			if(newCell instanceof CharacterCell)
 				if (((CharacterCell)newCell).getCharacter()!=null)
-					throw new MovementException();
+					throw new MovementException("Cannot move to an occupied cell");
 			
 			if(newCell instanceof CollectibleCell) {
 				collectible = ((CollectibleCell)newCell).getCollectible();
@@ -85,7 +85,7 @@ abstract public class Hero extends Character{
 				this.onCharacterDeath();
 			}
 			
-			Game.map[posOld.x][posOld.x] = new CharacterCell(null);
+			Game.map[posOld.x][posOld.y] = new CharacterCell(null);
 			
 			this.setLocation(posNew);
 			
@@ -102,8 +102,12 @@ abstract public class Hero extends Character{
 	}
 
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
+		super.attack();
+		
 		if(this instanceof Fighter) {
 			if(!this.isSpecialAction()) {
+				if(this.actionsAvailable == 0)
+					throw new NotEnoughActionsException("Not have Enough Action points");
 				this.actionsAvailable = this.actionsAvailable -1;
 			}
 		}
@@ -112,32 +116,32 @@ abstract public class Hero extends Character{
 				throw new NotEnoughActionsException();
 			this.actionsAvailable = this.actionsAvailable -1;
 		}
-			super.attack();
+			
 	}
 	
 	public void cure() throws InvalidTargetException ,NotEnoughActionsException, NoAvailableResourcesException {
 		if(this.getTarget() == null) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Select a target");
 		}
 		
 		if(this.getTarget() instanceof Hero ) {
-			throw new InvalidTargetException(); 
+			throw new InvalidTargetException("Can only cure zombies"); 
 		}
 		
 		if(!this.adjacentTarget()) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Can only cure adjacent zombies");
 		}
 		
 		if(this.vaccineInventory.isEmpty()) {
-			throw new NoAvailableResourcesException();
+			throw new NoAvailableResourcesException("Not enough vaccines");
 		}
 		
 		if(this.getVaccineInventory().size() == 0) {
-			throw new NoAvailableResourcesException();
+			throw new NoAvailableResourcesException("Not enough vaccines");
 		}
 		
 		if(this.getActionsAvailable() == 0) {
-			throw new NotEnoughActionsException();
+			throw new NotEnoughActionsException("Not enough action Points");
 		}
 		
 		Vaccine vaccine = this.getVaccineInventory().get(0);
@@ -148,7 +152,7 @@ abstract public class Hero extends Character{
 public void useSpecial() throws NoAvailableResourcesException, InvalidTargetException{
 		
 		if(this.supplyInventory.isEmpty()) {
-			throw new NoAvailableResourcesException();
+			throw new NoAvailableResourcesException("Not enough supplies");
 		}
 	}
 }

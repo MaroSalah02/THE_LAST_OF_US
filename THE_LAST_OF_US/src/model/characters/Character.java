@@ -69,11 +69,11 @@ abstract public class Character {
 		
 		//moved these here, look at comment on line 81
 		Point L =this.getLocation();
-		Game.map[L.x][L.y]= new CharacterCell(null);
 		
 		if (this.getCurrentHp() == 0) {
 			if(this instanceof Hero) {
 				Game.heroes.remove(this);
+				Game.map[L.x][L.y]= new CharacterCell(null);
 				//whenever a hero dies, the cell he dies on should stay visible
 				Game.map[L.x][L.y].setVisible(true);
 			}
@@ -81,6 +81,8 @@ abstract public class Character {
 			if(this instanceof Zombie) {
 				Game.zombies.remove(this);
 				Game.spawnZombie();
+				Game.map[L.x][L.y]= new CharacterCell(null);
+
 				//the only case a zombie dies is if they are adjacent to a hero, in which case, the cell stays visible
 				Game.map[L.x][L.y].setVisible(true);
 			}	
@@ -107,18 +109,18 @@ abstract public class Character {
 	//General Attack method for characters
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
 		if(this.getTarget() == null)
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Please select a target");
 		
 		if((this instanceof Hero) && (this.getTarget() instanceof Hero)) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Cannot attack another hero");
 		}
 		
 		if((this instanceof Zombie) && (this.getTarget() instanceof Zombie)) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Cannot attack another zombie");
 		}
 		
 		if(!this.adjacentTarget()) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Target too far away");
 		}
 		
 		this.getTarget().setCurrentHp(this.getTarget().getCurrentHp()-this.getAttackDmg());

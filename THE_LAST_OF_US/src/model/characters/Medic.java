@@ -14,14 +14,14 @@ public class Medic extends Hero{
 
 	public void useSpecial() throws InvalidTargetException, NoAvailableResourcesException {
 		if(this.getTarget() == null)
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Please select a target");
 			
 		if(this.getTarget() instanceof Zombie) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Cannot heal a zombie");
 		}
 			
 		if(!this.adjacentTarget()) {
-			throw new InvalidTargetException();
+			throw new InvalidTargetException("Target too far away");
 		}
 			
 		super.useSpecial();

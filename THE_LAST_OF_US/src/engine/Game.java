@@ -11,7 +11,8 @@ import model.collectibles.*;
 import model.world.*;
 import exceptions.*;
 
-public class Game {
+public class 
+ {
 	public static ArrayList<Hero>availableHeroes = new ArrayList<Hero>();
 	public static ArrayList<Hero> heroes = new ArrayList<Hero>();
 	public static ArrayList<Zombie> zombies = new ArrayList<Zombie>();
