@@ -205,9 +205,11 @@ public class Main extends Application {
     public TrapsGUI createTrap(int x,int y){
     	TrapsGUI trap = new TrapsGUI(x,y);
     	toppings.getChildren().add(trap);
-        trap.setVisibilty(false,x,y);
+        //trap.setVisibilty(false);
 
     	mapCells[x][y].setAny(trap);
+    	mapCells[x][y].setVisibilty(false);
+
     	return trap; 
     }
 	public static void main(String[] args) {
@@ -242,13 +244,11 @@ public class Main extends Application {
 	public static void checkVisibility(){
 		for(int x =0;x<widthByBlocks; x++) {
             for(int y =0; y<heightByBlocks; y++) {
-            		try{
-            			mapCells[x][y].getAny().setVisibilty(false,x,y);
-            		}catch(Exception e){
-            			continue;
-            		}
-            		if(Game.map[14-y][x].isVisible() && mapCells[x][y].getAny() !=null)
-            			mapCells[x][y].getAny().setVisibilty(true,x,y);
+            		
+            			mapCells[x][y].setVisibilty(false);
+            		
+            		if(Game.map[14-y][x].isVisible())
+            			mapCells[x][y].setVisibilty(true);
             			
             		
             }

@@ -15,18 +15,21 @@ public class ZombieGUI extends CharacterGUI{
 	public double getCurrYBlocks(){
 		return currY/Main.blockSize;
 	}
-	public ZombieGUI(double x, double y,Zombie zomb) {
+	public ZombieGUI(int x, int y,Zombie zomb) {
 		super("Zombie.png");
 		this.zomb= zomb;
 		relocateZombie(x,y);
 		setOnMouseClicked(e->{
-			System.out.println(super.isVisibile());
-			if(super.isVisibile()){
+			
+			if(Main.mapCells[x][y].isVisible()){
 				Main.target = this;
 				Main.current.hero.setTarget(zomb);
 				SideBar.addTargetSideBar();
 			}
 		});
+		if(zomb.getCurrentHp() == 0 ){
+			removeZombie();
+		}
 	}
 	public void relocateZombie(double x,double y){
 		currX =	x*Main.blockSize;

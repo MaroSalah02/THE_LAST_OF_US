@@ -162,11 +162,12 @@ public class SideBar {
 		 attack.setOnAction(event -> {
 			 	try{
 			 		selectedCharacter.attack(); 
-			 		updateValues();
 			 	}
 			 	catch(GameActionException e) {
 			 		Exceptionspopup x = new Exceptionspopup(e.getMessage());
 			 	}
+		 		updateValues();
+
 		 });
 		 Button Cure = new Button("Cure");
 		 Cure.setOnAction(event -> {
@@ -183,8 +184,8 @@ public class SideBar {
 		 useSpecial.setOnAction(event -> {
 			try{
 		 		selectedCharacter.useSpecial();
-		 		updateValues();
 		 		Main.checkVisibility();
+		 		updateValues();
 		 	}
 		 	catch(GameActionException e) {
 		 		Exceptionspopup x = new Exceptionspopup(e.getMessage());
@@ -212,6 +213,7 @@ public class SideBar {
 						Main.target = null;
 						selectedCharacter = (Main.current).hero;
 						updateValues();
+						Main.checkVisibility();
 					}else{
 						Exceptionswitchpopup x = new Exceptionswitchpopup();
 					}
@@ -262,7 +264,7 @@ public class SideBar {
 	 
 			availableSupply.setText("");
 			
-			SelectedCharacterGUI.removeHero();
+			//SelectedCharacterGUI.removeHero();
 			/*
 			try {
 				Main.current = (HeroGUI) Main.GUIs.get(0);

@@ -47,17 +47,8 @@ public class HeroGUI extends CharacterGUI{
 			hero.move(d);
 			prevX = x*Main.blockSize;
 	    	prevY = y*Main.blockSize;
-	    	if (Main.mapCells[x][y].getAny() instanceof VaccineGUI || Main.mapCells[x][y].getAny() instanceof SupplyGUI){
-	    		Group parentOfCollectiblesGUI = (Group) Main.mapCells[x][y].getAny().getParent();
-	    		parentOfCollectiblesGUI.getChildren().remove(Main.mapCells[x][y].getAny());
-
-	    	}
-	    	if (Main.mapCells[x][y].getAny() instanceof TrapsGUI){
-	    		Group parentOfTraps = (Group) Main.mapCells[x][y].getAny().getParent();
-	    		parentOfTraps.getChildren().remove(Main.mapCells[x][y].getAny());
-	    		Exceptionspopup idk = new Exceptionspopup("You have fallen into a trap");
-	    	}
-	    	
+	    	Main.mapCells[x][y].checkForSupplyAndVaccineAndTrapThenRemove();
+			Main.checkVisibility();
 	    	SideBar.updateValues();
 	    	relocate(prevX,prevY);
 		}
@@ -66,17 +57,17 @@ public class HeroGUI extends CharacterGUI{
         }catch(NotEnoughActionsException e){
             Exceptionspopup a = new Exceptionspopup(e.getMessage());
         }
-		Main.checkVisibility();
     	
     	
-    }
+    }/*
 	public void removeHero(){
-		//Group parentOfHeroGUI = (Group) this.getParent();
+		System.out.println(this.getParent());
 		//parentOfHeroGUI.getChildren().remove(this);
 
 		Main.GUIs.remove(this);
 		Main.checkVisibility();
 	}
+	*/
 	
 
 }
