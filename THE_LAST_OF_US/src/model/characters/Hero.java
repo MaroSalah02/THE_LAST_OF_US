@@ -113,10 +113,10 @@ abstract public class Hero extends Character{
 		}
 		else {
 			if(this.actionsAvailable == 0)
-				throw new NotEnoughActionsException();
+				throw new NotEnoughActionsException("Not have Enough Action points");
 			this.actionsAvailable = this.actionsAvailable -1;
 		}
-			
+
 	}
 	
 	public void cure() throws InvalidTargetException ,NotEnoughActionsException, NoAvailableResourcesException {
