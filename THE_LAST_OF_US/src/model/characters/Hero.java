@@ -132,10 +132,6 @@ abstract public class Hero extends Character{
 			throw new InvalidTargetException("Can only cure adjacent zombies");
 		}
 		
-		if(this.vaccineInventory.isEmpty()) {
-			throw new NoAvailableResourcesException("Not enough vaccines");
-		}
-		
 		if(this.getVaccineInventory().size() == 0) {
 			throw new NoAvailableResourcesException("Not enough vaccines");
 		}
