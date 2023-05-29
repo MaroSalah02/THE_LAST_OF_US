@@ -168,10 +168,10 @@ public class mainmenu extends Application {
 	}
 	// method to set an icon to the game
 	public void seticon(Stage stage) {
-		/*
+		
 		Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
 		stage.getIcons().add(imge);
-		*/
+		
 	}
 	// Method to add image to background
 	public void set_background(BorderPane layout) {
