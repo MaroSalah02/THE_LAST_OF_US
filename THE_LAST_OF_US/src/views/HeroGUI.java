@@ -10,7 +10,7 @@ public class HeroGUI extends CharacterGUI{
 	public Hero hero;
 	private double prevX;
 	private double prevY;
-	
+	HerosIMGwithAni spriteGUI;
 	public double getPrevX(){
 		return prevX;
 	}
@@ -24,20 +24,6 @@ public class HeroGUI extends CharacterGUI{
     	prevY = y*Main.blockSize;
 		relocate(prevX,prevY);		
 		
-		setOnMouseClicked(e->{
-			if (Main.current != this){
-				Main.target = this;
-				Main.current.hero.setTarget(hero);
-				SideBar.addTargetSideBar();
-				
-			}
-			if (Main.current.hero instanceof Medic){
-				Main.target = this;
-				Main.current.hero.setTarget(hero);
-				SideBar.addTargetSideBar();
-				
-			}
-		});
 		
 	}
 	
@@ -47,6 +33,7 @@ public class HeroGUI extends CharacterGUI{
 			hero.move(d);
 			prevX = x*Main.blockSize;
 	    	prevY = y*Main.blockSize;
+	    	spriteGUI.moveSprite((int)prevX,(int)prevY,d);
 	    	Main.mapCells[x][y].checkForSupplyAndVaccineAndTrapThenRemove();
 			Main.checkVisibility();
 	    	SideBar.updateValues();

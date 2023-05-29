@@ -51,6 +51,7 @@ public class Main extends Application {
     BorderPane mainpane;
     static Group blocks = new Group();
     static Group toppings = new Group();
+
     static public CharacterGUI target;
     static public HeroGUI current;
     @Override
@@ -166,7 +167,10 @@ public class Main extends Application {
     }
     public static HeroGUI intializeHeroGUI(int x, int y,Hero h){
     	HeroGUI character = new HeroGUI(x,y,h);
+    	HerosIMGwithAni characterSprite = new HerosIMGwithAni(x,y,character);
+    	character.spriteGUI = characterSprite;
     	toppings.getChildren().add(character);
+    	toppings.getChildren().add(characterSprite);
     	GUIs.add(character);
 
     	/*
