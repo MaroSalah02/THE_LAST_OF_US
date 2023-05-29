@@ -1,5 +1,8 @@
 package views;
 import javafx.geometry.Pos;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,11 +17,16 @@ import javafx.stage.Stage;
 public class Exceptionspopup {
 	
 	public Exceptionspopup(String s) {
-		Stage cure_popup_stage=new Stage();
+		Stage Stage_for_exception=new Stage();
 		
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+			Stage_for_exception.close();
+        }));
+        timeline.play();
+        
 		Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
 		
-		cure_popup_stage.getIcons().add(imge);
+		Stage_for_exception.getIcons().add(imge);
 
 		BorderPane InvalidTargetExceptioncurepopup=new BorderPane();
 		
@@ -28,7 +36,7 @@ public class Exceptionspopup {
 		
 		Scene sce=new Scene(InvalidTargetExceptioncurepopup,500,300);	
 		
-		cure_popup_stage.setScene(sce);
+		Stage_for_exception.setScene(sce);
 		
 		Label label1=new Label(s);
 		
@@ -38,18 +46,18 @@ public class Exceptionspopup {
 		
 		hor.getChildren().addAll(label1);
 		
-		cure_popup_stage.initModality(Modality.APPLICATION_MODAL);	
+		Stage_for_exception.initModality(Modality.APPLICATION_MODAL);	
 		
-		cure_popup_stage.setOnCloseRequest(c->{
-			cure_popup_stage.close();
+		Stage_for_exception.setOnCloseRequest(c->{
+			Stage_for_exception.close();
 		});
 		
-		cure_popup_stage.setOnHiding(d->{
-			cure_popup_stage.close();
+		Stage_for_exception.setOnHiding(d->{
+			Stage_for_exception.close();
 		});
 		
-		cure_popup_stage.setResizable(false);
+		Stage_for_exception.setResizable(false);
 
-		cure_popup_stage.showAndWait();
+		Stage_for_exception.showAndWait();
 	}
 }
