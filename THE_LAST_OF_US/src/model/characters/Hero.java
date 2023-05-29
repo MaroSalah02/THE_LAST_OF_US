@@ -102,7 +102,6 @@ abstract public class Hero extends Character{
 	}
 
 	public void attack() throws InvalidTargetException, NotEnoughActionsException {
-		super.attack();
 		
 		if(this instanceof Fighter) {
 			if(!this.isSpecialAction()) {
@@ -116,6 +115,7 @@ abstract public class Hero extends Character{
 				throw new NotEnoughActionsException("Not have Enough Action points");
 			this.actionsAvailable = this.actionsAvailable -1;
 		}
+		super.attack();
 
 	}
 	
