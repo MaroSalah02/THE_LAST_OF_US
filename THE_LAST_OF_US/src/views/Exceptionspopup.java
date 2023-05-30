@@ -34,7 +34,7 @@ public class Exceptionspopup {
 		
 		InvalidTargetExceptioncurepopup.setCenter(hor);
 		
-		Scene sce=new Scene(InvalidTargetExceptioncurepopup,500,300);	
+		Scene sce=new Scene(InvalidTargetExceptioncurepopup,600,300);	
 		
 		Stage_for_exception.setScene(sce);
 		
