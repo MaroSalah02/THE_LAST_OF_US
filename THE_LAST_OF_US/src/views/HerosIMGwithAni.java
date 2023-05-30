@@ -66,13 +66,13 @@ public class HerosIMGwithAni extends ImageView{
 			if (Main.current != MyHeroGUI){
 				Main.target = MyHeroGUI;
 				Main.current.hero.setTarget(MyHeroGUI.hero);
-				SideBar.addTargetSideBar();
+				Main.sideBar.addTargetSideBar();
 				
 			}
 			if (Main.current.hero instanceof Medic){
 				Main.target = MyHeroGUI;
 				Main.current.hero.setTarget(MyHeroGUI.hero);
-				SideBar.addTargetSideBar();
+				Main.sideBar.addTargetSideBar();
 				
 			}
 		});

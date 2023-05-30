@@ -51,7 +51,7 @@ public class Main extends Application {
     BorderPane mainpane;
     static Group blocks = new Group();
     static Group toppings = new Group();
-
+    public static SideBar sideBar;
     static public CharacterGUI target;
     static public HeroGUI current;
     @Override
@@ -150,7 +150,7 @@ public class Main extends Application {
             }
         }
     	checkVisibility();
-    	SideBar sideBar = new SideBar(blockSize);
+    	sideBar = new SideBar(blockSize);
         mainpane.setRight(sideBar.SideBar);
         System.out.println("Done");
         mainpane.setCenter(map);
@@ -232,7 +232,7 @@ public class Main extends Application {
 		
 	}
 	public static void endTurnGUI(){
-		SideBar.updateValues();
+		sideBar.updateValues();
 		for(int x =0;x<widthByBlocks; x++) {
             for(int y =0; y<heightByBlocks; y++) {
             	if(Game.map[14-y][x] instanceof CharacterCell && ((CharacterCell)(Game.map[14-y][x])).getCharacter() instanceof Zombie && mapCells[x][y].getAny() == null){
@@ -240,7 +240,7 @@ public class Main extends Application {
                 	}
             }
         }
-		SideBar.updateValues();
+		sideBar.updateValues();
 		Main.checkVisibility();
 		
 

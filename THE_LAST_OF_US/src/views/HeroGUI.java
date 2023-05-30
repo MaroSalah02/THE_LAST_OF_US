@@ -36,7 +36,7 @@ public class HeroGUI extends CharacterGUI{
 	    	spriteGUI.moveSprite((int)prevX,(int)prevY,d);
 	    	Main.mapCells[x][y].checkForSupplyAndVaccineAndTrapThenRemove();
 			Main.checkVisibility();
-	    	SideBar.updateValues();
+	    	Main.sideBar.updateValues();
 	    	relocate(prevX,prevY);
 		}
 		catch(MovementException e){

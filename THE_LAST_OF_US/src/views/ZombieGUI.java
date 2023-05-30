@@ -24,7 +24,7 @@ public class ZombieGUI extends CharacterGUI{
 			if(Main.mapCells[x][y].isVisible()){
 				Main.target = this;
 				Main.current.hero.setTarget(zomb);
-				SideBar.addTargetSideBar();
+				Main.sideBar.addTargetSideBar();
 			}
 		});
 		if(zomb.getCurrentHp() == 0 ){

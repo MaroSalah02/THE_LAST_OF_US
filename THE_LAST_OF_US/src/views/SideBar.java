@@ -16,6 +16,7 @@ import exceptions.*;
 
 import java.awt.Point;
 import java.io.*;
+import java.util.ArrayList;
 
 import engine.Game;
 
@@ -27,7 +28,6 @@ public class SideBar {
 	public static Character selectedTarget;
 	public static CharacterGUI SelectedTargetGUI;
 	public static ImageView BackgroundImage;
-	
 	
 	public static ImageView CharImage;
 	public static Label CharName;
@@ -96,13 +96,30 @@ public class SideBar {
 	public SideBar(int cellSize) throws IOException{
 		
 		 ImageSize = ((cellSize*15*225)/845)*0.65;
+		 
+
 		 Image Background = new Image(getClass().getResourceAsStream("SideBar.png"));
 		 BackgroundImage = new ImageView(Background);
 		 BackgroundImage.setPreserveRatio(true);
 		 BackgroundImage.setFitHeight(cellSize*15);
 		 //getting background and setting background size
-		 
-		 Image Unknown = new Image(getClass().getResourceAsStream("Q.jpg"));
+		 Image Unknown = new Image(getClass().getResourceAsStream("icons/Q.png"));
+
+		 if(selectedCharacter !=null) {
+		 switch(selectedCharacter.getName()) {
+		 	case "Joel Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Joel.png")); break;
+		 	case "Ellie Williams":  Unknown = new Image(getClass().getResourceAsStream("icons/Ellie.png")); break;
+		 	case "Tess": 			Unknown = new Image(getClass().getResourceAsStream("icons/Tess.png")); break;
+		 	case "Riley Abel": 		Unknown = new Image(getClass().getResourceAsStream("icons/Riley.png")); break;
+		 	case "Tommy Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Tommy.png")); break;
+		 	case "Bill": 			Unknown = new Image(getClass().getResourceAsStream("icons/Bill.png")); break;
+		 	case "David": 			Unknown = new Image(getClass().getResourceAsStream("icons/David.png")); break;
+		 	case "Henry Burell": 	Unknown = new Image(getClass().getResourceAsStream("icons/Henry.png")); break;
+		 	default:
+		 		Unknown = new Image(getClass().getResourceAsStream("icons/Q.png")); break;
+
+		 }
+		 }
 		 CharImage = new ImageView(Unknown);
 		 CharImage.setPreserveRatio(true);
 		 CharImage.setFitWidth(ImageSize);
@@ -135,8 +152,24 @@ public class SideBar {
 		 VBox selected = new VBox(CharImage,underImage.spacer, CharName, CharClass, HP_DMG,actionsLabel, inventories);
 		 selected.setAlignment(Pos.TOP_CENTER);
 		//VBOX for selected character info
+		 Image UnknownTar = new Image(getClass().getResourceAsStream("icons/Q.png"));
 		 
-		 TargetImage = new ImageView(Unknown);
+	 	if(selectedTarget !=null) {
+			 switch(selectedCharacter.getName()) {
+			 	case "Joel Miller": 	UnknownTar = new Image(getClass().getResourceAsStream("icons/Joel.png")); break;
+			 	case "Ellie Williams":  UnknownTar = new Image(getClass().getResourceAsStream("icons/Ellie.png")); break;
+			 	case "Tess": 			UnknownTar = new Image(getClass().getResourceAsStream("icons/Tess.png")); break;
+			 	case "Riley Abel": 		UnknownTar = new Image(getClass().getResourceAsStream("icons/Riley.png")); break;
+			 	case "Tommy Miller": 	UnknownTar = new Image(getClass().getResourceAsStream("icons/Tommy.png")); break;
+			 	case "Bill": 			UnknownTar = new Image(getClass().getResourceAsStream("icons/Bill.png")); break;
+			 	case "David": 			UnknownTar = new Image(getClass().getResourceAsStream("icons/David.png")); break;
+			 	case "Henry Burell": 	UnknownTar = new Image(getClass().getResourceAsStream("icons/Henry.png")); break;
+			 	default:
+			 		UnknownTar = new Image(getClass().getResourceAsStream("icons/Zombie.png")); break;
+
+			 }
+		}
+		 TargetImage = new ImageView(UnknownTar);
 		 TargetImage.setPreserveRatio(true);
 		 TargetImage.setFitWidth(ImageSize);
 		 
@@ -236,20 +269,24 @@ public class SideBar {
 		 attack.setMinHeight(40);
 		 Cure.setMinHeight(40);
 }
-	public static void addTargetSideBar(){
+	public void addTargetSideBar(){
 		SelectedTargetGUI = Main.target;
 		if(SelectedTargetGUI instanceof HeroGUI)
 			selectedTarget = ((HeroGUI)(Main.target)).hero;
 		if(SelectedTargetGUI instanceof ZombieGUI)
 			selectedTarget = ((ZombieGUI)(Main.target)).zomb;
 		
-		updateValues();
+		this.updateValues();
 	}
 
-
-	public static void updateValues() {
+	
+	public void updateValues() {
 		
 		if (selectedCharacter != null && selectedCharacter.getCurrentHp()==0) {
+			Image Unknown = new Image(SideBar.getClass().getResourceAsStream("icons/Q.png"));
+			
+			CharImage.setImage(Unknown);
+			
 			CharName.setText("");
 			
 			CharClass.setText("");
@@ -278,6 +315,23 @@ public class SideBar {
 			}*/
 		}
 		else {
+			Image Unknown = new Image(getClass().getResourceAsStream("icons/Q.png"));
+				
+			 switch(selectedCharacter.getName()) {
+			 	case "Joel Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Joel.png")); break;
+			 	case "Ellie Williams":  Unknown = new Image(getClass().getResourceAsStream("icons/Ellie.png")); break;
+			 	case "Tess": 			Unknown = new Image(getClass().getResourceAsStream("icons/Tess.png")); break;
+			 	case "Riley Abel": 		Unknown = new Image(getClass().getResourceAsStream("icons/Riley.png")); break;
+			 	case "Tommy Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Tommy.png")); break;
+			 	case "Bill": 			Unknown = new Image(getClass().getResourceAsStream("icons/Bill.png")); break;
+			 	case "David": 			Unknown = new Image(getClass().getResourceAsStream("icons/David.png")); break;
+			 	case "Henry Burell": 	Unknown = new Image(getClass().getResourceAsStream("icons/Henry.png")); break;
+			 	default:
+			 		Unknown = new Image(SideBar.getClass().getResourceAsStream("icons/Q.png")); break;
+
+			}
+			CharImage.setImage(Unknown);
+			
 			CharName.setText(selectedCharacter.getName());
 
             CharClass.setText("Class: " + Type(selectedCharacter));
@@ -296,6 +350,10 @@ public class SideBar {
 		//System.out.println("Here 1" + selectedTarget);
 		
 		if (selectedTarget != null && selectedTarget.getCurrentHp()==0 && selectedTarget instanceof Zombie) {
+			Image Unknown = new Image(getClass().getResourceAsStream("icons/Q.png"));
+			
+			TargetImage.setImage(Unknown);
+			
 			TargetName.setText("");
 			
 			TargetClass.setText("");
@@ -309,6 +367,8 @@ public class SideBar {
 		else {
 			if(selectedTarget != null && selectedTarget instanceof Zombie){
 				//System.out.println("Here 2");
+				Image Unknown = new Image(getClass().getResourceAsStream("icons/Zombie.png"));
+				TargetImage.setImage(Unknown);
 				TargetName.setText(selectedTarget.getName());
 				TargetClass.setText("");
 				TargetHp.setText("HP: " + selectedTarget.getCurrentHp() + "/" + selectedTarget.getMaxHp());
@@ -319,6 +379,22 @@ public class SideBar {
 			}
 			if(selectedTarget != null && selectedTarget instanceof Hero){
 				//System.out.println("Here 3");
+				Image Unknown = new Image(getClass().getResourceAsStream("icons/Q.png"));
+				
+				 switch(selectedTarget.getName()) {
+				 	case "Joel Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Joel.png")); break;
+				 	case "Ellie Williams":  Unknown = new Image(getClass().getResourceAsStream("icons/Ellie.png")); break;
+				 	case "Tess": 			Unknown = new Image(getClass().getResourceAsStream("icons/Tess.png")); break;
+				 	case "Riley Abel": 		Unknown = new Image(getClass().getResourceAsStream("icons/Riley.png")); break;
+				 	case "Tommy Miller": 	Unknown = new Image(getClass().getResourceAsStream("icons/Tommy.png")); break;
+				 	case "Bill": 			Unknown = new Image(getClass().getResourceAsStream("icons/Bill.png")); break;
+				 	case "David": 			Unknown = new Image(getClass().getResourceAsStream("icons/David.png")); break;
+				 	case "Henry Burell": 	Unknown = new Image(getClass().getResourceAsStream("icons/Henry.png")); break;
+				 	default:
+				 		Unknown = new Image(getClass().getResourceAsStream("icons/Q.png")); break;
+
+				}
+				TargetImage.setImage(Unknown);
 				TargetName.setText(selectedTarget.getName());
 				TargetClass.setText("Class: " + Type((Hero)selectedTarget));
 				TargetHp.setText("HP: " + selectedTarget.getCurrentHp() + "/" + selectedTarget.getMaxHp());
