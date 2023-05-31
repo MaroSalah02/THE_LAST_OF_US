@@ -1,4 +1,6 @@
 package views;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,10 +13,16 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 public class Exceptionswitchpopup {
 	
 	public Exceptionswitchpopup() {
 		Stage cure_popup_stage=new Stage();
+		
+		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+			cure_popup_stage.close();
+        }));
+        timeline.play();
 		
 		Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
 		

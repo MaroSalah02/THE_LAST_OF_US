@@ -54,6 +54,7 @@ public class mainmenu extends Application {
 	public static double height;
 	public void start(Stage stage) throws Exception {
 		//play_music();
+	
 		Stage Mainstage = stage; 	// the first window to be opened
 		
 		seticon(Mainstage); // to set an icon for mainstage window
@@ -75,8 +76,11 @@ public class mainmenu extends Application {
 
 		Button start_game_button=new Button("Start Game"); 	//creating a button to start the game
 		
+		
+		
 		start_game_button.setOnAction(e->{
 			try {
+				play_music_for_main_buttons();
 				create_welcome_scene(Mainstage,scene1);
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -99,6 +103,7 @@ public class mainmenu extends Application {
 		
 		
 		Exit_game_button.setOnAction(e->{// when we press exit the player exits Main stage
+			play_music_for_main_buttons();
 			Stage tempstage = new Stage();
 			/*
 			Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
@@ -142,6 +147,7 @@ public class mainmenu extends Application {
 		});
 		
 		Tutorial_button.setOnAction(e->{
+			play_music_for_main_buttons();
 			create_new_scene_for_tutorial(Mainstage,scene1);
 		});
 		
@@ -162,10 +168,42 @@ public class mainmenu extends Application {
 	}
 	// Method to play music in background
 	public void play_music() {
-		Media media = new Media(new File("bgmusic.mp3").toURI().toString());
-		MediaPlayer mediaPlayer = new MediaPlayer(media); 
-		mediaPlayer.play();
+		try {
+			File musicpath=new File("Button.wav");
+			if(musicpath.exists()) {
+				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
+				Clip clip=AudioSystem.getClip();
+				clip.open(audioinput);
+				clip.loop(1000000000);
+				clip.start();
+			}
+			else {
+				System.out.println("cant find file");
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 	}
+	public void play_music_for_main_buttons() {
+		try {
+			File musicpath=new File("Button2.wav");
+			if(musicpath.exists()) {
+				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
+				Clip clip=AudioSystem.getClip();
+				clip.open(audioinput);
+				clip.loop(0);
+				clip.start();
+			}
+			else {
+				System.out.println("cant find file");
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	// method to set an icon to the game
 	public void seticon(Stage stage) {
 		
