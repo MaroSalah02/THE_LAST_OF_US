@@ -53,7 +53,7 @@ public class mainmenu extends Application {
 	public static Hero the_starting_hero;
 	public static double height;
 	public void start(Stage stage) throws Exception {
-		//play_music();
+		play_music();
 	
 		Stage Mainstage = stage; 	// the first window to be opened
 		
@@ -169,7 +169,7 @@ public class mainmenu extends Application {
 	// Method to play music in background
 	public void play_music() {
 		try {
-			File musicpath=new File("Button.wav");
+			File musicpath=new File("Mus.wav");
 			if(musicpath.exists()) {
 				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
 				Clip clip=AudioSystem.getClip();
