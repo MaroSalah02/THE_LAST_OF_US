@@ -1,5 +1,11 @@
 package views;
 
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,7 +21,23 @@ import javafx.stage.Stage;
 
 public class Checklose {
 	public Checklose() {
-Stage win_stage=new Stage();
+		try {
+			File musicpath=new File("Gameover.wav");
+			if(musicpath.exists()) {
+				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
+				Clip clip=AudioSystem.getClip();
+				clip.open(audioinput);
+				clip.loop(1000000000);
+				clip.start();
+			}
+			else {
+				System.out.println("cant find file");
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+		Stage win_stage=new Stage();
 		
 		Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
 		

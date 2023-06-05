@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.scene.control.Button;
@@ -56,6 +57,8 @@ public class mainmenu extends Application {
 		play_music();
 	
 		Stage Mainstage = stage; 	// the first window to be opened
+		
+		Mainstage.initStyle(StageStyle.UNDECORATED);
 		
 		seticon(Mainstage); // to set an icon for mainstage window
 		

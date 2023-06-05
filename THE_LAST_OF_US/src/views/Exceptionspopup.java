@@ -1,6 +1,13 @@
 package views;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
+
+import java.io.File;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.Scene;
@@ -17,6 +24,22 @@ import javafx.stage.Stage;
 public class Exceptionspopup {
 	
 	public Exceptionspopup(String s) {
+		try {
+			File musicpath=new File("Gameover.wav");
+			if(musicpath.exists()) {
+				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
+				Clip clip=AudioSystem.getClip();
+				clip.open(audioinput);
+				clip.loop(0);
+				clip.start();
+			}
+			else {
+				System.out.println("cant find file");
+			}
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 		Stage Stage_for_exception=new Stage();
 		
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {

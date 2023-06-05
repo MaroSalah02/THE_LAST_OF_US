@@ -3,6 +3,7 @@ package views;
 import javafx.application.Application;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -17,6 +18,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.Scene;
@@ -56,6 +58,7 @@ public class Main extends Application {
     static public HeroGUI current;
     @Override
     public void start(Stage stage) throws IOException {
+    	seticon(stage);
     	Scene scene = new Scene(createMap());
         stage.setResizable(false);
         scene.getStylesheets().add(Main.class.getResource("App.css").toExternalForm());
@@ -257,6 +260,12 @@ public class Main extends Application {
             		
             }
         }
+		
+	}
+public void seticon(Stage stage) {
+		
+		Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
+		stage.getIcons().add(imge);
 		
 	}
 	
