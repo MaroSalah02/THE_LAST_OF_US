@@ -1,5 +1,10 @@
 package views;
 	
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.BackgroundPosition;
 import javafx.application.Application;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -45,7 +50,7 @@ public class Main extends Application {
 	static ArrayList<HeroGUI> GUIs = new ArrayList<HeroGUI>();
 	Screen screen = Screen.getPrimary();
     javafx.geometry.Rectangle2D bounds = screen.getVisualBounds();
-    
+    static String[] name;
     static Pixel[][] mapCells = new Pixel[widthByBlocks][heightByBlocks];
 	Stage stage1;
     Button button;
@@ -112,9 +117,19 @@ public class Main extends Application {
     	Game.startGame(mainmenu.the_starting_hero);
     	Pane map = new Pane();
         mainpane = new BorderPane();
-    	
+        
         map.setPrefSize(widthByBlocks*blockSize, heightByBlocks*blockSize);
         map.getChildren().addAll(blocks,toppings);
+        
+        BackgroundImage bgI = new BackgroundImage(
+        		
+                new javafx.scene.image.Image(getClass().getResourceAsStream("mapWallPaper.jpg")),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true));
+        
+        Background bg = new Background(bgI);
+        
+        map.setBackground(bg);
     	for(int x =0;x<widthByBlocks; x++) {
             for(int y =0; y<heightByBlocks; y++) {
             	Pixel block = new Pixel(true,x,y);
@@ -170,7 +185,8 @@ public class Main extends Application {
     }
     public static HeroGUI intializeHeroGUI(int x, int y,Hero h){
     	HeroGUI character = new HeroGUI(x,y,h);
-    	HerosIMGwithAni characterSprite = new HerosIMGwithAni(x,y,character);
+    	name = h.getName().split(" ");
+    	HerosIMGwithAni characterSprite = new HerosIMGwithAni(name[0],x,y,character);
     	character.spriteGUI = characterSprite;
     	toppings.getChildren().add(character);
     	toppings.getChildren().add(characterSprite);

@@ -1,5 +1,5 @@
 .pixel{
-    -fx-fill: #03fcba;
+    -fx-fill: rgba(0,0,0,1);
     -fx-stroke:black ;
     
 }
