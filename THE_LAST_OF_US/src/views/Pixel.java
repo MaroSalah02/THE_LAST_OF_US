@@ -15,9 +15,12 @@ public class Pixel extends Rectangle{
 			isVisiblePixel = false;
 		}
 		if(visibilty){
-			this.setFill(Color.RED);
+			this.setFill(Color.BLACK);
+			this.setOpacity(0.1);
 		}else{
-			this.setFill(Color.web("#03fcba"));
+			this.setFill(Color.BLACK);
+			this.setOpacity(0.8);
+
 
 		}
 

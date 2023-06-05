@@ -46,16 +46,17 @@ public class HerosIMGwithAni extends ImageView{
 	List<Image> spriteImages = new ArrayList<>();
 	int x;
 	int y;
-	public HerosIMGwithAni(int x2, int y2,HeroGUI MyHeroGUI) {
+	//update
+	public HerosIMGwithAni(String charachter,int x2, int y2,HeroGUI MyHeroGUI) {
 		this.MyHeroGUI = MyHeroGUI;
-        for (int i = 0; i <= 31; i++) {
-            String imagePath = "frame_" + i + ".png";
+        for (int i = 2; i <= 61; i++) {
+            String imagePath = charachter+"/frame_" + i + ".png";
             Image image = new Image(getClass().getResourceAsStream(imagePath));
             spriteImages.add(image);
         }
         setImage(spriteImages.get(0));
-        double desiredWidth = Main.blockSize-4+10;  // Set the desired width for the sprite
-		double desiredHeight = Main.blockSize-4+10; // Set the desired height for the sprite
+        double desiredWidth = Main.blockSize;  // Set the desired width for the sprite
+		double desiredHeight = Main.blockSize; // Set the desired height for the sprite
 		setFitWidth(desiredWidth);
 		setFitHeight(desiredHeight);
         this.setTranslateX(x2*Main.blockSize);
@@ -86,7 +87,7 @@ public class HerosIMGwithAni extends ImageView{
 		
 		}
 	}
-	public void moveLeft(int toX,int toY) {
+	public void moveRight(int toX,int toY) {
 		
         TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
         transition.setFromX(x); // Initial X position
@@ -100,14 +101,14 @@ public class HerosIMGwithAni extends ImageView{
         transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
             double duration = transition.getTotalDuration().toSeconds();
             double progress = newTime.toSeconds() / duration;
-            int frameIndex = (int) (progress * 6) + 24;
+            int frameIndex = (int) (progress * 8) + 27;
             this.setImage(spriteImages.get(frameIndex));
         });
         transition.play();
 
         
 	}
-public void moveRight(int toX,int toY) {
+public void moveDown(int toX,int toY) {
 	
     TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
     transition.setFromX(x); // Initial X position
@@ -121,13 +122,34 @@ public void moveRight(int toX,int toY) {
         transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
             double duration = transition.getTotalDuration().toSeconds();
             double progress = newTime.toSeconds() / duration;
-            int frameIndex = (int) (progress * 6) + 16;
+            int frameIndex = (int) (progress * 8) + 18;
             this.setImage(spriteImages.get(frameIndex));
         });
         transition.play();
 
         
 	}
+public void moveLeft(int toX,int toY) {
+	
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
+    transition.setFromX(x); // Initial X position
+    transition.setFromY(y); // Initial Y position
+    transition.setToX(toX); // Target X position
+    transition.setToY(toY); // Target Y position
+    transition.setCycleCount(1); // Animation occurs once
+
+    this.x = toX;
+    this.y = toY;
+    transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+        double duration = transition.getTotalDuration().toSeconds();
+        double progress = newTime.toSeconds() / duration;
+        int frameIndex = (int) (progress * 8) + 9;
+        this.setImage(spriteImages.get(frameIndex));
+    });
+    transition.play();
+
+    
+}
 public void moveUp(int toX,int toY) {
 	
     TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
@@ -142,32 +164,129 @@ public void moveUp(int toX,int toY) {
     transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
         double duration = transition.getTotalDuration().toSeconds();
         double progress = newTime.toSeconds() / duration;
-        int frameIndex = (int) (progress * 6) + 8;
+        int frameIndex = (int) (progress * 8);
         this.setImage(spriteImages.get(frameIndex));
     });
     transition.play();
 
     
 }
-public void moveDown(int toX,int toY) {
+
+public void attackSprite(int toX,int toY) {
+	System.out.println("difX = "+toX+" ,difY = "+toY);
+	if(toX ==-1 && toY == 0) {
+		System.out.println("Right");
+		attackRight();
+	}
+	if(toX == 0 && toY == 1) {
+		System.out.println("Up");
+		attackUp();
+	}
+	if(toX == 1 && toY == 0) {
+		System.out.println("Left");
+		attackLeft();
+		
+	}
+	if(toX == 0 && toY ==-1) {
+		System.out.println("Down");
+		attackDown();
+		
+	}
+	if(toX == 1 && toY ==-1) {
+		attackDown();
+		System.out.println("Down");
+
+	}
+	if(toX ==-1 && toY ==-1) {
+		attackDown();
+		System.out.println("Down");
+
+	}
+	if(toX ==-1 && toY == 1) {
+		System.out.println("Up");
+
+		attackUp();
+	}
+	if(toX == 1 && toY == 1) {
+		System.out.println("Up");
+		attackUp();
+	}
+}
+public void attackRight() {
 	
-    TranslateTransition transition = new TranslateTransition(Duration.seconds(1), this);
+    TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), this);
     transition.setFromX(x); // Initial X position
     transition.setFromY(y); // Initial Y position
-    transition.setToX(toX); // Target X position
-    transition.setToY(toY); // Target Y position
+    transition.setToX(x); // Target X position
+    transition.setToY(y); // Target Y position
     transition.setCycleCount(1); // Animation occurs once
 
-    this.x = toX;
-    this.y = toY;
     transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
         double duration = transition.getTotalDuration().toSeconds();
         double progress = newTime.toSeconds() / duration;
-        int frameIndex = (int) (progress * 6);
+        int frameIndex = (int) (progress * 5) + 54;
         this.setImage(spriteImages.get(frameIndex));
     });
     transition.play();
 
     
 }
+public void attackDown() {
+
+TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), this);
+transition.setFromX(x); // Initial X position
+transition.setFromY(y); // Initial Y position
+transition.setToX(x); // Target X position
+transition.setToY(y); // Target Y position
+
+transition.setCycleCount(1); // Animation occurs once
+    transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+        double duration = transition.getTotalDuration().toSeconds();
+        double progress = newTime.toSeconds() / duration;
+        int frameIndex = (int) (progress * 5) + 48;
+        this.setImage(spriteImages.get(frameIndex));
+    });
+    transition.play();
+
+    
+}
+public void attackLeft() {
+
+TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), this);
+transition.setFromX(x); // Initial X position
+transition.setFromY(y); // Initial Y position
+transition.setToX(x); // Target X position
+transition.setToY(y); // Target Y position
+
+transition.setCycleCount(1); // Animation occurs once
+
+transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+    double duration = transition.getTotalDuration().toSeconds();
+    double progress = newTime.toSeconds() / duration;
+    int frameIndex = (int) (progress * 5) + 42;
+    this.setImage(spriteImages.get(frameIndex));
+});
+transition.play();
+
+
+}
+public void attackUp() {
+
+TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), this);
+transition.setFromX(x); // Initial X position
+transition.setFromY(y); // Initial Y position
+transition.setToX(x); // Target X position
+transition.setToY(y); // Target Y position
+transition.setCycleCount(1); // Animation occurs once
+transition.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+    double duration = transition.getTotalDuration().toSeconds();
+    double progress = newTime.toSeconds() / duration;
+    int frameIndex = (int) (progress * 5) + 36;
+    this.setImage(spriteImages.get(frameIndex));
+});
+transition.play();
+
+
+}
+
 }

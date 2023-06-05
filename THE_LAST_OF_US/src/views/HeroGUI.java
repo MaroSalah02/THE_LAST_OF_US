@@ -10,6 +10,12 @@ public class HeroGUI extends CharacterGUI{
 	public Hero hero;
 	private double prevX;
 	private double prevY;
+	public double getCurrXBlocks(){
+		return prevX/Main.blockSize;
+	}
+	public double getCurrYBlocks(){
+		return prevY/Main.blockSize;
+	}
 	HerosIMGwithAni spriteGUI;
 	public double getPrevX(){
 		return prevX;

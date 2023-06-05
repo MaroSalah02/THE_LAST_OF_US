@@ -195,6 +195,9 @@ public class SideBar {
 		 attack.setOnAction(event -> {
 			 	try{
 			 		selectedCharacter.attack(); 
+			 		double difX = ((HeroGUI)SelectedCharacterGUI).getCurrXBlocks() - ((ZombieGUI)SelectedTargetGUI).getCurrXBlocks();
+			 		double difY = ((HeroGUI)SelectedCharacterGUI).getCurrYBlocks() - ((ZombieGUI)SelectedTargetGUI).getCurrYBlocks();
+			 		SelectedCharacterGUI.spriteGUI.attackSprite((int)difX,(int)difY);
 			 	}
 			 	catch(GameActionException e) {
 			 		Exceptionspopup x = new Exceptionspopup(e.getMessage());
@@ -245,6 +248,7 @@ public class SideBar {
 						Main.current = (HeroGUI) SelectedTargetGUI;
 						Main.target = null;
 						selectedCharacter = (Main.current).hero;
+						SelectedCharacterGUI = (Main.current);
 						updateValues();
 						Main.checkVisibility();
 					}else{
