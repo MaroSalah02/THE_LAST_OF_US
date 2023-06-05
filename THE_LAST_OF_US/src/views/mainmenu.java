@@ -54,7 +54,7 @@ public class mainmenu extends Application {
 	public static Hero the_starting_hero;
 	public static double height;
 	public void start(Stage stage) throws Exception {
-		//play_music();
+		play_music();
 	
 		Stage Mainstage = stage; 	// the first window to be opened
 		
