@@ -54,7 +54,7 @@ public class mainmenu extends Application {
 	public static Hero the_starting_hero;
 	public static double height;
 	public void start(Stage stage) throws Exception {
-		play_music();
+		//play_music();
 	
 		Stage Mainstage = stage; 	// the first window to be opened
 		
@@ -108,22 +108,25 @@ public class mainmenu extends Application {
 		Exit_game_button.setOnAction(e->{// when we press exit the player exits Main stage
 			play_music_for_main_buttons();
 			Stage tempstage = new Stage();
-			/*
+			
 			Image imge=new Image(getClass().getResourceAsStream("download.jpeg"));
 			tempstage.getIcons().add(imge);
-*/
+			
 			BorderPane layout_for_yes_no=new BorderPane();
 			HBox hor=new HBox();
 			layout_for_yes_no.setTop(hor);
 			Scene sce=new Scene(layout_for_yes_no,500,300);		
 			tempstage.setScene(sce);
 			Label label1=new Label("Are you sure you want to exit?");
-			label1.setFont(Font.font("Impact", FontWeight.SEMI_BOLD, FontPosture.ITALIC,40));
+			label1.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+			label1.setStyle("-fx-background-color: black;-fx-text-fill: white;");
 			hor.setAlignment(Pos.CENTER);
 			Button yes_button=new Button("Yes");
 			Button no_button=new Button("NO");
-			no_button.setStyle("-fx-background-color: black; -fx-background-size: cover; -fx-text-fill: white; -fx-font-size: 16pt; -fx-background-radius: 25;");
-			yes_button.setStyle("-fx-background-color: black; -fx-background-size: cover; -fx-text-fill: white; -fx-font-size: 16pt; -fx-background-radius: 25;");
+			no_button.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+			no_button.setStyle("-fx-background-color: black;-fx-text-fill: white;");
+			yes_button.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+			yes_button.setStyle("-fx-background-color: black;-fx-text-fill: white;");
 			hor.getChildren().addAll(label1);
 			HBox hor2=new HBox();
 			layout_for_yes_no.setCenter(hor2);
@@ -250,7 +253,8 @@ public class mainmenu extends Application {
 				+ "has collected and used all vaccines or when all heroes have been overwhelmed and defeated by\r\n"
 				+ "the zombies");
 		
-		understand.setFont(Font.font("Impact", FontWeight.SEMI_BOLD, FontPosture.ITALIC,30));
+		understand.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 20));
+
 		layout5.getChildren().add(understand);
 		understand.setTextFill(Color.WHITE);
 		Mainstage.setScene(scene2);
@@ -330,44 +334,44 @@ public class mainmenu extends Application {
 		
 		Button b0=new Button();
 		assign_heroes(b0,0,avaliableh);
-		set_charachter_icon(b0,"joel.jpeg");
+
 		set_button_action(b0,"Fighter",0,avaliableh,layout,Mainstage);
 		
 		
 		Button b1=new Button();
 		assign_heroes(b1,1,avaliableh);
-		set_charachter_icon(b1,"Ellie.jpeg");
+
 		set_button_action(b1,"Medic",1,avaliableh,layout,Mainstage);
 		
 		Button b2=new Button();
 		assign_heroes(b2,2,avaliableh);
-		set_charachter_icon(b2,"tess.jpeg");
+
 		set_button_action(b2,"Explorer",2,avaliableh,layout,Mainstage);
 		
 		Button b3=new Button();
 		assign_heroes(b3,3,avaliableh);
-		set_charachter_icon(b3,"riely.jpeg");
+
 		set_button_action(b3,"Explorer",3,avaliableh,layout,Mainstage);
 		
 		
 		Button b4=new Button();
 		assign_heroes(b4,4,avaliableh);
-		set_charachter_icon(b4,"tommy.jpeg");
+
 		set_button_action(b4,"Explorer",4,avaliableh,layout,Mainstage);
 		
 		Button b5=new Button();
 		assign_heroes(b5,5,avaliableh);
-		set_charachter_icon(b5,"bill.jpeg");
+
 		set_button_action(b5,"Medic",5,avaliableh,layout,Mainstage);
 		
 		Button b6=new Button();
 		assign_heroes(b6,6,avaliableh);
-		set_charachter_icon(b6,"david.jpeg");
+
 		set_button_action(b6,"Fighter",6,avaliableh,layout,Mainstage);
 		
 		Button b7=new Button();
 		assign_heroes(b7,7,avaliableh);
-		set_charachter_icon(b7,"henry.jpeg");
+
 		set_button_action(b7,"Medic",7,avaliableh,layout,Mainstage);
 		
 		
@@ -393,33 +397,25 @@ public class mainmenu extends Application {
 	    double buttonHeight = 70;
 	    b.setPrefWidth(buttonWidth);
 	    b.setPrefHeight(buttonHeight);
-	    Background blackBackground = new Background(new BackgroundFill(Color.BROWN, null, null));
-        b.setBackground(blackBackground);
-        b.setTextFill(Color.WHITESMOKE);
-        b.setStyle("-fx-background-color: black; -fx-background-size: cover; -fx-text-fill: white; -fx-font-size: 16pt; -fx-background-radius: 25;");
+        b.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 20));  // increase the font size
+		b.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+		
 	}
 	public void set_main_buttons(Button b) {
 		double buttonWidth = 200;
 	    double buttonHeight = 30; 
-		b.setTextFill(Color.WHITE);
-		b.setStyle("-fx-background-color: black; -fx-background-size: cover; -fx-text-fill: white; -fx-font-size: 16pt; -fx-background-radius: 20;");
-	    b.setPrefWidth(buttonWidth);
-		b.setPrefHeight(buttonHeight);
+		b.setTextFill(Color.WHITE);		
+		b.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 20));  // increase the font size
+		b.setStyle("-fx-background-color: black; -fx-text-fill: white;");
+		b.setPrefWidth(buttonWidth);  // set the preferred width of the button
+        b.setPrefHeight(buttonHeight);
 	}
-	public void set_charachter_icon(Button b,String s) {
-		
-		Image icon = new Image(getClass().getResourceAsStream(s));
-		ImageView imageView = new ImageView(icon);
-		imageView.setFitWidth(40);
-		imageView.setFitHeight(50);
-		b.setGraphic(imageView);
-		
-	}
+
 	public void set_button_action(Button b,String t,int i,ArrayList<Hero> a,BorderPane layout,Stage mainstage) {
 		b.setOnAction(e->{
 			VBox stats=new VBox();
 			
-			stats.setStyle("-fx-background-color: dark blue; -fx-padding: 20px;");
+			stats.setStyle("-fx-padding: 20px;");
 		
 			layout.setRight(stats);
 			stats.setAlignment(javafx.geometry.Pos.CENTER);	
@@ -428,15 +424,19 @@ public class mainmenu extends Application {
 		"HP: "+a.get(i).getMaxHp()+
 		"\n"+"\n"+"Starting Action Points: "+a.get(i).getActionsAvailable()+"\n"+"\n"+
 		"Attack Damage: "+a.get(i).getAttackDmg());
+			stats_label.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 32));
 			stats_label.setTextAlignment(TextAlignment.CENTER);
-			stats_label.setFont(new Font(height/17));
-			stats_label.setTextFill(Color.WHITE);
+			stats_label.setStyle("-fx-text-fill: white;");
 			Button Coutinue=new Button("Coutinue");
 			the_starting_hero=a.get(i);
-			Coutinue.setStyle("-fx-background-color: black; -fx-background-size: cover; -fx-text-fill: white; -fx-font-size: 16pt; -fx-background-radius: 20;");
+			
+			Coutinue.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 26));
+			Coutinue.setStyle("-fx-background-color: red;-fx-text-fill: white;");
+			
 			stats.getChildren().addAll(stats_label,Coutinue);
-			stats.setSpacing(height/50);
-			stats_label.setFont(Font.font("Impact", FontWeight.SEMI_BOLD, FontPosture.ITALIC,40));
+			
+			stats.setSpacing(50);
+			
 			double buttonWidth = 200;
 		    double buttonHeight = 50; 
 		    Coutinue.setPrefWidth(buttonWidth);
