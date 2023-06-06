@@ -207,7 +207,7 @@ public class SideBar {
 		 
 		 Button attack = new Button("Attack");
 		 attack.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
-		 attack.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
+		 attack.setStyle("-fx-background-color: white;-fx-text-fill: black;");
 		 attack.setOnAction(event -> {
 			 	try{
 			 		selectedCharacter.attack(); 
@@ -223,7 +223,7 @@ public class SideBar {
 		 });
 		 Button Cure = new Button("Cure");
 		 Cure.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
-		 Cure.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
+		 Cure.setStyle("-fx-background-color: white;-fx-text-fill: black;");
 		 Cure.setOnAction(event -> {
 			 try{
 		 		selectedCharacter.cure();
@@ -236,7 +236,7 @@ public class SideBar {
 			 });
 		 Button useSpecial = new Button("Use \n Supply");
 		 useSpecial.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
-		 useSpecial.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
+		 useSpecial.setStyle("-fx-background-color: white;-fx-text-fill: black;");
 		 useSpecial.setOnAction(event -> {
 			try{
 		 		selectedCharacter.useSpecial();
@@ -254,7 +254,7 @@ public class SideBar {
 		 
 		 Button endTurn = new Button("End Turn");
 		 endTurn.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
-		 endTurn.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
+		 endTurn.setStyle("-fx-background-color: white;-fx-text-fill: black;");
 		 endTurn.setOnAction(event -> {
 			try{
 				Game.endTurn();
@@ -266,7 +266,7 @@ public class SideBar {
 		});
 		 Button switchHero = new Button("Swich Hero");
 		 switchHero.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
-		 switchHero.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
+		 switchHero.setStyle("-fx-background-color: white;-fx-text-fill: black;");
 		 switchHero.setOnAction(event->{
 					if(selectedTarget !=null && SelectedTargetGUI instanceof HeroGUI){
 						Main.current = (HeroGUI) SelectedTargetGUI;
