@@ -459,8 +459,6 @@ public class SideBar {
 
 class spacer{
 
-	
-	
 	ImageView spacer;
 	public spacer(double x) {
 		Image SpacerImage = new Image(getClass().getResourceAsStream("Spacer (YES THIS IS NEEDED).png"));
@@ -469,9 +467,9 @@ class spacer{
 		spacer.setFitHeight(x);
 		}
 	}
-public void set_font(Label l) {
+private void set_font(Label l) {
 	l.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"),14));
-	l.setStyle("-fx-background-color: white;-fx-text-fill: black;");
+	l.setStyle("-fx-background-color: black;-fx-text-fill: white;");
 }
 
 }
