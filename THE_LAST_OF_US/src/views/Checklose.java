@@ -27,7 +27,7 @@ public class Checklose {
 				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
 				Clip clip=AudioSystem.getClip();
 				clip.open(audioinput);
-				clip.loop(1000000000);
+				clip.loop(0);
 				clip.start();
 			}
 			else {

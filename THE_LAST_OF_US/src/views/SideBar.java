@@ -206,6 +206,8 @@ public class SideBar {
 		 spacer top = new spacer(cellSize);
 		 
 		 Button attack = new Button("Attack");
+		 attack.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 attack.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 attack.setOnAction(event -> {
 			 	try{
 			 		selectedCharacter.attack(); 
@@ -220,6 +222,8 @@ public class SideBar {
 
 		 });
 		 Button Cure = new Button("Cure");
+		 Cure.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 Cure.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 Cure.setOnAction(event -> {
 			 try{
 		 		selectedCharacter.cure();
@@ -231,6 +235,8 @@ public class SideBar {
 		 	} 
 			 });
 		 Button useSpecial = new Button("Use \n Supply");
+		 useSpecial.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 useSpecial.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 useSpecial.setOnAction(event -> {
 			try{
 		 		selectedCharacter.useSpecial();
@@ -247,6 +253,8 @@ public class SideBar {
 		 actions.setAlignment(Pos.CENTER);
 		 
 		 Button endTurn = new Button("End Turn");
+		 endTurn.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 endTurn.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 endTurn.setOnAction(event -> {
 			try{
 				Game.endTurn();
@@ -257,6 +265,8 @@ public class SideBar {
 			}
 		});
 		 Button switchHero = new Button("Swich Hero");
+		 switchHero.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 14));
+		 switchHero.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 switchHero.setOnAction(event->{
 					if(selectedTarget !=null && SelectedTargetGUI instanceof HeroGUI){
 						Main.current = (HeroGUI) SelectedTargetGUI;

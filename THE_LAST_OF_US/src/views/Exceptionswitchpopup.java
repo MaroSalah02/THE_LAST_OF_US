@@ -17,6 +17,7 @@ import javafx.util.Duration;
 public class Exceptionswitchpopup {
 	
 	public Exceptionswitchpopup() {
+		
 		Stage cure_popup_stage=new Stage();
 		
 		Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {

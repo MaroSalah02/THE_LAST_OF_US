@@ -4,6 +4,7 @@ import model.characters.Explorer;
 import model.characters.Fighter;
 import model.characters.Hero;
 import javafx.scene.control.Label;
+import javax.sound.sampled.FloatControl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
