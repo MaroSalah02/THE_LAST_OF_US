@@ -55,8 +55,9 @@ public class mainmenu extends Application {
 	public static Hero the_starting_hero;
 	public static double height;
 	public void start(Stage stage) throws Exception {
-		play_music();
-	
+		Clip ff=play_music();
+		
+		
 		Stage Mainstage = stage; 	// the first window to be opened
 		
 		Mainstage.initStyle(StageStyle.UNDECORATED);
@@ -85,7 +86,7 @@ public class mainmenu extends Application {
 		start_game_button.setOnAction(e->{
 			try {
 				play_music_for_main_buttons();
-				create_welcome_scene(Mainstage,scene1);
+				create_welcome_scene(Mainstage,scene1,ff);
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -174,12 +175,13 @@ public class mainmenu extends Application {
 		
 	}
 	// Method to play music in background
-	public void play_music() {
+	public Clip play_music() {
+		Clip clip = null;
 		try {
 			File musicpath=new File("Mus.wav");
 			if(musicpath.exists()) {
 				AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
-				Clip clip=AudioSystem.getClip();
+				clip=AudioSystem.getClip();
 				clip.open(audioinput);
 				clip.loop(1000000000);
 				clip.start();
@@ -191,6 +193,7 @@ public class mainmenu extends Application {
 		catch(Exception e) {
 			System.out.println(e);
 		}
+		return clip;
 	}
 	public void play_music_for_main_buttons() {
 		try {
@@ -279,7 +282,7 @@ public class mainmenu extends Application {
 	    
 	}
 	
-	public void create_welcome_scene(Stage Mainstage,Scene Mainscene) throws IOException {
+	public void create_welcome_scene(Stage Mainstage,Scene Mainscene,Clip bb) throws IOException {
 		BorderPane layout = new BorderPane();
 	
 		Image image= new Image(getClass().getResourceAsStream("backg22.jpg"));
@@ -336,44 +339,44 @@ public class mainmenu extends Application {
 		Button b0=new Button();
 		assign_heroes(b0,0,avaliableh);
 
-		set_button_action(b0,"Fighter",0,avaliableh,layout,Mainstage);
+		set_button_action(b0,"Fighter",0,avaliableh,layout,Mainstage,bb);
 		
 		
 		Button b1=new Button();
 		assign_heroes(b1,1,avaliableh);
 
-		set_button_action(b1,"Medic",1,avaliableh,layout,Mainstage);
+		set_button_action(b1,"Medic",1,avaliableh,layout,Mainstage,bb);
 		
 		Button b2=new Button();
 		assign_heroes(b2,2,avaliableh);
 
-		set_button_action(b2,"Explorer",2,avaliableh,layout,Mainstage);
+		set_button_action(b2,"Explorer",2,avaliableh,layout,Mainstage,bb);
 		
 		Button b3=new Button();
 		assign_heroes(b3,3,avaliableh);
 
-		set_button_action(b3,"Explorer",3,avaliableh,layout,Mainstage);
+		set_button_action(b3,"Explorer",3,avaliableh,layout,Mainstage,bb);
 		
 		
 		Button b4=new Button();
 		assign_heroes(b4,4,avaliableh);
 
-		set_button_action(b4,"Explorer",4,avaliableh,layout,Mainstage);
+		set_button_action(b4,"Explorer",4,avaliableh,layout,Mainstage,bb);
 		
 		Button b5=new Button();
 		assign_heroes(b5,5,avaliableh);
 
-		set_button_action(b5,"Medic",5,avaliableh,layout,Mainstage);
+		set_button_action(b5,"Medic",5,avaliableh,layout,Mainstage,bb);
 		
 		Button b6=new Button();
 		assign_heroes(b6,6,avaliableh);
 
-		set_button_action(b6,"Fighter",6,avaliableh,layout,Mainstage);
+		set_button_action(b6,"Fighter",6,avaliableh,layout,Mainstage,bb);
 		
 		Button b7=new Button();
 		assign_heroes(b7,7,avaliableh);
 
-		set_button_action(b7,"Medic",7,avaliableh,layout,Mainstage);
+		set_button_action(b7,"Medic",7,avaliableh,layout,Mainstage,bb);
 		
 		
 		layout_for_heores.getChildren().addAll(b0,b1,b2,b3,b4,b5,b6,b7);
@@ -412,7 +415,7 @@ public class mainmenu extends Application {
         b.setPrefHeight(buttonHeight);
 	}
 
-	public void set_button_action(Button b,String t,int i,ArrayList<Hero> a,BorderPane layout,Stage mainstage) {
+	public void set_button_action(Button b,String t,int i,ArrayList<Hero> a,BorderPane layout,Stage mainstage,Clip bb) {
 		b.setOnAction(e->{
 			VBox stats=new VBox();
 			
@@ -450,6 +453,7 @@ public class mainmenu extends Application {
 		    	try {
 					v.start(s);
 					mainstage.close();
+					stop_music(bb);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -460,8 +464,8 @@ public class mainmenu extends Application {
 	public static void main(String[]args) {
 		launch(args);
 	}
-	private void  stop_music() {
-		
+	private void  stop_music(Clip bb) {
+		bb.stop();
 	}
 	
 
