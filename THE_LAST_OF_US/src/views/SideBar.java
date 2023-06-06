@@ -59,40 +59,6 @@ public class SideBar {
 	
 	public static double ImageSize;
 	
-/*
-	private void setLabelstoWhile(int cellSize) {
-		CharName.setTextFill(Color.WHITE);
-		CharClass.setTextFill(Color.WHITE);
-		HpLabel.setTextFill(Color.WHITE);
-		DMGLabel.setTextFill(Color.WHITE);
-		actionsLabel.setTextFill(Color.WHITE);
-		availableVaccines.setTextFill(Color.WHITE);
-		availableSupply.setTextFill(Color.WHITE);
-		TargetName.setTextFill(Color.WHITE);
-		TargetClass.setTextFill(Color.WHITE);
-		TargetHp.setTextFill(Color.WHITE);
-		TargetDMG.setTextFill(Color.WHITE);
-		TargetActions.setTextFill(Color.WHITE);
-		TargetVaccines.setTextFill(Color.WHITE);
-		TargetSupply.setTextFill(Color.WHITE);
-		
-		CharName.setFont(new Font("Arial",cellSize*0.3));
-		CharClass.setFont(new Font("Arial",cellSize*0.3));
-		HpLabel.setFont(new Font("Arial",cellSize*0.3));
-		DMGLabel.setFont(new Font("Arial",cellSize*0.3));
-		actionsLabel.setFont(new Font("Arial",cellSize*0.3));
-		availableVaccines.setFont(new Font("Arial",cellSize*0.3));
-		availableSupply.setFont(new Font("Arial",cellSize*0.3));
-		TargetName.setFont(new Font("Arial",cellSize*0.3));
-		TargetClass.setFont(new Font("Arial",cellSize*0.3));
-		TargetHp.setFont(new Font("Arial",cellSize*0.3));
-		TargetDMG.setFont(new Font("Arial",cellSize*0.3));
-		TargetActions.setFont(new Font("Arial",cellSize*0.3));
-		TargetVaccines.setFont(new Font("Arial",cellSize*0.3));
-		TargetSupply.setFont(new Font("Arial",cellSize*0.3));
-		
-	}
-	*/
 	public static String Type(Hero h) {
 		 if(h instanceof Fighter)
 			 return "Fighter";

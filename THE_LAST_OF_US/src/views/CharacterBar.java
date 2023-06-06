@@ -37,7 +37,7 @@ public class CharacterBar{
 	private Label actionsLabel = new Label("");
     
 	private Label status = new Label("");
-	
+
 	
 	
 	public VBox getCharacterBar() {
@@ -45,40 +45,55 @@ public class CharacterBar{
 	}
 
 	public CharacterBar(int cellSize) throws IOException {
+		set_font(CharName);
+		set_font(CharClass);
+		set_font(HpLabel);
+		set_font(DMGLabel);
+		set_font(actionsLabel);
+		set_font(status);
 		
 		ArrayList<Hero> avaliableh = Game.allHeroes;
 		
 		Button b0=new Button();
 		assign_heroes(b0,0,avaliableh);
-		set_charachter_icon(b0,"joel.jpeg");
+
 		
 		Button b1=new Button();
 		assign_heroes(b1,1,avaliableh);
-		set_charachter_icon(b1,"Ellie.jpeg");
+
 		
 		Button b2=new Button();
 		assign_heroes(b2,2,avaliableh);
-		set_charachter_icon(b2,"tess.jpeg");
+
 		
 		Button b3=new Button();
 		assign_heroes(b3,3,avaliableh);
-		set_charachter_icon(b3,"riely.jpeg");
+
 		
 		Button b4=new Button();
 		assign_heroes(b4,4,avaliableh);
-		set_charachter_icon(b4,"tommy.jpeg");
+
 		
 		Button b5=new Button();
 		assign_heroes(b5,5,avaliableh);
-		set_charachter_icon(b5,"bill.jpeg");
+
 		
 		Button b6=new Button();
 		assign_heroes(b6,6,avaliableh);
-		set_charachter_icon(b6,"david.jpeg");
+
 		
 		Button b7=new Button();
 		assign_heroes(b7,7,avaliableh);
-		set_charachter_icon(b7,"henry.jpeg");
+		
+		set_button_font(b0);
+		set_button_font(b1);
+		set_button_font(b2);
+		set_button_font(b3);
+		set_button_font(b4);
+		set_button_font(b5);
+		set_button_font(b6);
+		set_button_font(b7);
+		
 		
 		VBox buttons = new VBox(b0,b1,b2,b3,b4,b5,b6,b7);
 		buttons.setSpacing(Main.blockSize*0.1);
@@ -99,19 +114,7 @@ public class CharacterBar{
 		CharacterBar.setBackground(new Background(new BackgroundFill(Color.GRAY,null , null)));
 		CharacterBar.setSpacing(Main.blockSize);
 		
-		CharName.setTextFill(Color.WHITE);
-		CharClass.setTextFill(Color.WHITE);
-		HpLabel.setTextFill(Color.WHITE);
-		DMGLabel.setTextFill(Color.WHITE);
-		actionsLabel.setTextFill(Color.WHITE);
-		status.setTextFill(Color.WHITE);
-		
-		CharName.setFont(new Font("Arial",cellSize*0.4));
-		CharClass.setFont(new Font("Arial",cellSize*0.4));
-		HpLabel.setFont(new Font("Arial",cellSize*0.4));
-		DMGLabel.setFont(new Font("Arial",cellSize*0.4));
-		actionsLabel.setFont(new Font("Arial",cellSize*0.4));
-		status.setFont(new Font("Arial",cellSize*0.4));
+
 	}
 
 	public void assign_heroes(Button b,int i,ArrayList<Hero> a) {
@@ -157,5 +160,12 @@ public class CharacterBar{
 			return "Alive";
 		return "Dead";
 	}
-
+	private void set_font(Label l) {
+		l.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"),14));
+		l.setStyle("-fx-background-color: black;-fx-text-fill: white;");
+	}
+	private void set_button_font(Button l) {
+		l.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"),14));
+		l.setStyle("-fx-background-color: black;-fx-text-fill: white;");
+	}
 }
