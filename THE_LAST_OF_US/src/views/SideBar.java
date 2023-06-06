@@ -33,6 +33,7 @@ public class SideBar {
 	public static Label CharName;
 	public static Label CharClass;
 	public static Label HpLabel;
+	public static HealthBar HpBarSelected;
 	public static Label DMGLabel;
 	public static Label actionsLabel;
 	public static Label availableVaccines;
@@ -43,6 +44,7 @@ public class SideBar {
 	public static Label TargetClass = new Label("");
 	public static Label TargetHp = new Label("");
 	public static Label TargetDMG = new Label("");
+	public static HealthBar HpBarTarget;
 	public static Label TargetActions = new Label("");
 	public static Label TargetVaccines = new Label("");
 	public static Label TargetSupply = new Label("");
@@ -122,14 +124,16 @@ public class SideBar {
 		 }
 		 CharImage = new ImageView(Unknown);
 		 CharImage.setPreserveRatio(true);
-		 CharImage.setFitWidth(ImageSize);
+		 CharImage.setFitWidth(ImageSize*1.4);
 		 
 		 CharName = new Label(selectedCharacter.getName());
 		 
 		 CharClass = new Label("Class: " + Type(selectedCharacter));
 		 
 		 HpLabel = new Label("HP: " + selectedCharacter.getCurrentHp() + "/" + selectedCharacter.getMaxHp());
-		 
+		
+		 HpBarSelected = new HealthBar(selectedCharacter.getCurrentHp()/selectedCharacter.getMaxHp());
+		
 		 DMGLabel = new Label("Damage: " + selectedCharacter.getAttackDmg());
 		 
 		 actionsLabel = new Label("Action Points: " + selectedCharacter.getActionsAvailable() + "/" + selectedCharacter.getMaxActions());
@@ -140,7 +144,7 @@ public class SideBar {
 		 
 		 //setting labels for selected character
 		 
-		 spacer underImage = new spacer(cellSize);
+		 spacer underImage = new spacer(cellSize*0.6);
 		 
 		 HBox HP_DMG = new HBox(HpLabel, DMGLabel);
 		 HP_DMG.setAlignment(Pos.CENTER);
@@ -149,11 +153,13 @@ public class SideBar {
 		 inventories.setAlignment(Pos.CENTER);
 		 inventories.setSpacing(10);
 		 
-		 VBox selected = new VBox(CharImage,underImage.spacer, CharName, CharClass, HP_DMG,actionsLabel, inventories);
+		 HBox BarSelected = new HBox(HpBarSelected);
+		 BarSelected.setAlignment(Pos.CENTER);
+		 
+		 VBox selected = new VBox(CharImage,underImage.spacer, CharName, CharClass, HP_DMG, BarSelected,actionsLabel, inventories);
 		 selected.setAlignment(Pos.TOP_CENTER);
 		//VBOX for selected character info
 		 Image UnknownTar = new Image(getClass().getResourceAsStream("icons/Q.png"));
-		 
 	 	if(selectedTarget !=null) {
 			 switch(selectedCharacter.getName()) {
 			 	case "Joel Miller": 	UnknownTar = new Image(getClass().getResourceAsStream("icons/Joel.png")); break;
@@ -169,10 +175,18 @@ public class SideBar {
 
 			 }
 		}
+		 HpBarTarget = new HealthBar(0);
+
+	 	if(selectedTarget !=null) {
+			HpBarTarget.setValue((double)selectedTarget.getCurrentHp()/(double)selectedTarget.getMaxHp());
+	 	}
 		 TargetImage = new ImageView(UnknownTar);
 		 TargetImage.setPreserveRatio(true);
-		 TargetImage.setFitWidth(ImageSize);
+		 TargetImage.setFitWidth(ImageSize*1.4);
 		 
+		 HBox BarTarget = new HBox(HpBarTarget);
+		 BarTarget.setAlignment(Pos.CENTER);
+
 		 HBox HP_DMG2 = new HBox(TargetHp, TargetDMG);
 		 HP_DMG2.setAlignment(Pos.CENTER);
 		 HP_DMG2.setSpacing(10);
@@ -182,10 +196,10 @@ public class SideBar {
 		 
 		//setting labels for target character
 		 
-		 spacer beforeImage = new spacer(cellSize*1.5);
-		 spacer afterImage = new spacer(cellSize);
+		 spacer beforeImage = new spacer(cellSize*0.8*1.5);
+		 spacer afterImage = new spacer(cellSize*0.6);
 		 
-		 VBox target = new VBox(beforeImage.spacer , TargetImage, afterImage.spacer,TargetName, TargetClass, HP_DMG2, inventories2);
+		 VBox target = new VBox(beforeImage.spacer , TargetImage, afterImage.spacer,TargetName, TargetClass, HP_DMG2,BarTarget, inventories2);
 		 target.setAlignment(Pos.TOP_CENTER);
 		//VBOX for target character info
 		 
@@ -260,7 +274,7 @@ public class SideBar {
 		 HBox actions2 = new HBox(endTurn, switchHero);
 		 actions2.setAlignment(Pos.CENTER);
 		 
-		 spacer spacerBottom = new spacer(cellSize);
+		 spacer spacerBottom = new spacer(cellSize*0.6);
 		 
 		 VBox all = new VBox(top.spacer, selected, target,spacerBottom.spacer ,actions, actions2);
 		 all.setAlignment(Pos.TOP_CENTER);
@@ -296,7 +310,9 @@ public class SideBar {
 			CharClass.setText("");
 	 	
 			HpLabel.setText("");
-	 
+			
+			HpBarSelected.setValue(0);
+
 			DMGLabel.setText("");
 	 
 			actionsLabel.setText("");
@@ -341,6 +357,8 @@ public class SideBar {
             CharClass.setText("Class: " + Type(selectedCharacter));
 
             HpLabel.setText("HP: " + selectedCharacter.getCurrentHp() + "/" + selectedCharacter.getMaxHp());
+            
+            HpBarSelected.setValue((double)selectedCharacter.getCurrentHp()/(double)selectedCharacter.getMaxHp());
 
             DMGLabel.setText("Damage: " + selectedCharacter.getAttackDmg());
 
@@ -363,7 +381,7 @@ public class SideBar {
 			TargetClass.setText("");
 	 	
 			TargetHp.setText("");
-			
+			HpBarTarget.setValue(0);
 			((ZombieGUI) SelectedTargetGUI).removeZombie();
 			
 			selectedTarget = null;
@@ -376,6 +394,7 @@ public class SideBar {
 				TargetName.setText(selectedTarget.getName());
 				TargetClass.setText("");
 				TargetHp.setText("HP: " + selectedTarget.getCurrentHp() + "/" + selectedTarget.getMaxHp());
+				HpBarTarget.setValue((double)selectedTarget.getCurrentHp()/(double)selectedTarget.getMaxHp());
 				TargetDMG.setText("DMG: " + selectedTarget.getAttackDmg());
 				TargetActions.setText("");
 				TargetVaccines.setText("");
@@ -402,6 +421,7 @@ public class SideBar {
 				TargetName.setText(selectedTarget.getName());
 				TargetClass.setText("Class: " + Type((Hero)selectedTarget));
 				TargetHp.setText("HP: " + selectedTarget.getCurrentHp() + "/" + selectedTarget.getMaxHp());
+				HpBarTarget.setValue((double)selectedTarget.getCurrentHp()/(double)selectedTarget.getMaxHp());
 				TargetDMG.setText("DMG: " + selectedTarget.getAttackDmg());
 				TargetActions.setText("Action Points: " + ((Hero)selectedTarget).getActionsAvailable() + "/" + ((Hero)selectedTarget).getMaxActions());
 				TargetVaccines.setText("Vaccines: " + ((Hero)selectedTarget).getVaccineInventory().size());

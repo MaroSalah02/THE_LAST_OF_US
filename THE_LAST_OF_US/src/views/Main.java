@@ -75,6 +75,64 @@ public class Main extends Application {
     		int newY = prevY;
     		Direction d;
     		switch(e.getCode()){
+    			case H:
+    				d = null;
+    				if(sideBar.selectedTarget !=null && sideBar.SelectedTargetGUI instanceof HeroGUI){
+						Main.current = (HeroGUI) sideBar.SelectedTargetGUI;
+						Main.target = null;
+						sideBar.selectedCharacter = (Main.current).hero;
+						sideBar.SelectedCharacterGUI = (Main.current);
+						sideBar.updateValues();
+						Main.checkVisibility();
+					}else{
+						Exceptionswitchpopup x = new Exceptionswitchpopup();
+					}
+					break;
+    			case C:
+    				d = null;
+    				try{
+    					sideBar.selectedCharacter.cure();
+    			 		Main.cureZombie();
+    			 		sideBar.updateValues();
+    			 	}
+    			 	catch(GameActionException v) {
+    			 		Exceptionspopup x = new Exceptionspopup(v.getMessage());
+    			 	}
+    				break;
+    			case N:
+    				d = null;
+    				try{
+    					sideBar.selectedCharacter.attack(); 
+    			 		double difX = ((HeroGUI)sideBar.SelectedCharacterGUI).getCurrXBlocks() - ((ZombieGUI)sideBar.SelectedTargetGUI).getCurrXBlocks();
+    			 		double difY = ((HeroGUI)sideBar.SelectedCharacterGUI).getCurrYBlocks() - ((ZombieGUI)sideBar.SelectedTargetGUI).getCurrYBlocks();
+    			 		sideBar.SelectedCharacterGUI.spriteGUI.attackSprite((int)difX,(int)difY);
+    			 	}
+    			 	catch(GameActionException v) {
+    			 		Exceptionspopup x = new Exceptionspopup(v.getMessage());
+    			 	}
+    				sideBar.updateValues();
+    				break;
+				case M:
+					d = null;
+					try{
+						sideBar.selectedCharacter.useSpecial();
+				 		Main.checkVisibility();
+				 		sideBar.updateValues();
+				 	}
+				 	catch(GameActionException v) {
+				 		Exceptionspopup x = new Exceptionspopup(v.getMessage());
+				 	}
+					break;
+				case E:
+					d = null;
+					try{
+						Game.endTurn();
+						Main.endTurnGUI();
+					}
+					catch(Exception v){
+						v.printStackTrace();
+					}
+	    			break;
     			case W:
     				newX = prevX;
     	    		newY = prevY -1;
