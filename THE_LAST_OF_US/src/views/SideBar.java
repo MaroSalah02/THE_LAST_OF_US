@@ -206,7 +206,7 @@ public class SideBar {
 		 spacer top = new spacer(cellSize);
 		 
 		 Button attack = new Button("Attack");
-		 attack.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 attack.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
 		 attack.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 attack.setOnAction(event -> {
 			 	try{
@@ -222,7 +222,7 @@ public class SideBar {
 
 		 });
 		 Button Cure = new Button("Cure");
-		 Cure.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 Cure.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
 		 Cure.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 Cure.setOnAction(event -> {
 			 try{
@@ -235,7 +235,7 @@ public class SideBar {
 		 	} 
 			 });
 		 Button useSpecial = new Button("Use \n Supply");
-		 useSpecial.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 useSpecial.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
 		 useSpecial.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 useSpecial.setOnAction(event -> {
 			try{
@@ -253,7 +253,7 @@ public class SideBar {
 		 actions.setAlignment(Pos.CENTER);
 		 
 		 Button endTurn = new Button("End Turn");
-		 endTurn.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 18));
+		 endTurn.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
 		 endTurn.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 endTurn.setOnAction(event -> {
 			try{
@@ -265,7 +265,7 @@ public class SideBar {
 			}
 		});
 		 Button switchHero = new Button("Swich Hero");
-		 switchHero.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 14));
+		 switchHero.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 12));
 		 switchHero.setStyle("-fx-background-color: blue;-fx-text-fill: white;");
 		 switchHero.setOnAction(event->{
 					if(selectedTarget !=null && SelectedTargetGUI instanceof HeroGUI){
