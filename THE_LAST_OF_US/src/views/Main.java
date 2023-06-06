@@ -179,14 +179,12 @@ public class Main extends Application {
         map.setPrefSize(widthByBlocks*blockSize, heightByBlocks*blockSize);
         map.getChildren().addAll(blocks,toppings);
         
-        BackgroundImage bgI = new BackgroundImage(
-        		
-                new javafx.scene.image.Image(getClass().getResourceAsStream("mapWallPaper.jpg")),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true));
+        BackgroundSize backgroundSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+        BackgroundImage bgI = new BackgroundImage(new javafx.scene.image.Image(getClass().getResourceAsStream("mapWallPaper.jpg")), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
         
+        	
         Background bg = new Background(bgI);
-        
+     
         map.setBackground(bg);
     	for(int x =0;x<widthByBlocks; x++) {
             for(int y =0; y<heightByBlocks; y++) {
