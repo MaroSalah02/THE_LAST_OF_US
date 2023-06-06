@@ -102,6 +102,16 @@ public class SideBar {
 	}
 
 	public SideBar(int cellSize) throws IOException{
+		set_font(TargetName);
+		set_font(TargetClass);
+		set_font(TargetHp);
+		set_font(TargetDMG);
+		set_font(TargetActions);
+		set_font(TargetVaccines);
+		set_font(TargetSupply);
+		
+		
+		
 		
 		 ImageSize = ((cellSize*15*225)/845)*0.65;
 		 

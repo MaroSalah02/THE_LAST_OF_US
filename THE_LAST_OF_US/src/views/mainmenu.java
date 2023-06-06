@@ -460,6 +460,9 @@ public class mainmenu extends Application {
 	public static void main(String[]args) {
 		launch(args);
 	}
+	private void  stop_music() {
+		
+	}
 	
 
 }
