@@ -30,10 +30,15 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
 import java.awt.Point;
 import java.io.*;
 import java.util.*;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import model.characters.*;
 import model.characters.Character;
@@ -102,14 +107,34 @@ public class Main extends Application {
     			case N:
     				d = null;
     				try{
-    					sideBar.selectedCharacter.attack(); 
+    					sideBar.selectedCharacter.attack();
+    						File musicpath=new File("Attack_sound.wav");
+    						if(musicpath.exists()) {
+    							AudioInputStream audioinput=AudioSystem.getAudioInputStream(musicpath);
+    							Clip clip=AudioSystem.getClip();
+    							clip.open(audioinput);
+    							clip.loop(0);
+    							clip.start();
+    						}
+    						else {
+    							System.out.println("cant find file");
+    						}
+ 
     			 		double difX = ((HeroGUI)sideBar.SelectedCharacterGUI).getCurrXBlocks() - ((ZombieGUI)sideBar.SelectedTargetGUI).getCurrXBlocks();
     			 		double difY = ((HeroGUI)sideBar.SelectedCharacterGUI).getCurrYBlocks() - ((ZombieGUI)sideBar.SelectedTargetGUI).getCurrYBlocks();
     			 		sideBar.SelectedCharacterGUI.spriteGUI.attackSprite((int)difX,(int)difY);
     			 	}
     			 	catch(GameActionException v) {
     			 		Exceptionspopup x = new Exceptionspopup(v.getMessage());
-    			 	}
+    			 	} catch (LineUnavailableException e1) {
+						e1.printStackTrace();
+					} catch (UnsupportedAudioFileException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
     				sideBar.updateValues();
     				break;
 				case M:
