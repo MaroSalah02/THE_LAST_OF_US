@@ -53,7 +53,7 @@ public class SideBar {
 	
 	public static double ImageSize;
 	
-
+/*
 	private void setLabelstoWhile(int cellSize) {
 		CharName.setTextFill(Color.WHITE);
 		CharClass.setTextFill(Color.WHITE);
@@ -86,7 +86,7 @@ public class SideBar {
 		TargetSupply.setFont(new Font("Arial",cellSize*0.3));
 		
 	}
-	
+	*/
 	public static String Type(Hero h) {
 		 if(h instanceof Fighter)
 			 return "Fighter";
@@ -127,20 +127,27 @@ public class SideBar {
 		 CharImage.setFitWidth(ImageSize*1.4);
 		 
 		 CharName = new Label(selectedCharacter.getName());
+		 set_font(CharName);
 		 
 		 CharClass = new Label("Class: " + Type(selectedCharacter));
+		 set_font(CharClass);
 		 
 		 HpLabel = new Label("HP: " + selectedCharacter.getCurrentHp() + "/" + selectedCharacter.getMaxHp());
-		
+		 set_font(HpLabel);
+		 
 		 HpBarSelected = new HealthBar(selectedCharacter.getCurrentHp()/selectedCharacter.getMaxHp());
-		
+		 
 		 DMGLabel = new Label("Damage: " + selectedCharacter.getAttackDmg());
+		 set_font(DMGLabel);
 		 
 		 actionsLabel = new Label("Action Points: " + selectedCharacter.getActionsAvailable() + "/" + selectedCharacter.getMaxActions());
+		 set_font(actionsLabel);
 		 
 		 availableVaccines = new Label("Vaccines: " + selectedCharacter.getVaccineInventory().size());
+		 set_font(availableVaccines);
 		 
 		 availableSupply = new Label("Supplies  " + selectedCharacter.getSupplyInventory().size());
+		 set_font(availableSupply);
 		 
 		 //setting labels for selected character
 		 
@@ -292,7 +299,7 @@ public class SideBar {
 		 SideBar.getChildren().addAll(BackgroundImage, all);
 	
 
-		 setLabelstoWhile(cellSize);
+		 //setLabelstoWhile(cellSize);
 		 
 		 attack.setMinHeight(40);
 		 Cure.setMinHeight(40);
@@ -462,6 +469,10 @@ class spacer{
 		spacer.setFitHeight(x);
 		}
 	}
+public void set_font(Label l) {
+	l.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"),14));
+	l.setStyle("-fx-background-color: white;-fx-text-fill: black;");
+}
 
 }
 

@@ -252,7 +252,7 @@ public class mainmenu extends Application {
 		"2-The game is 15 * 15 grid that you can control a hero in the grid"+"\n"+"\n"+"3-The player only wins if he has successfully collected and used all vaccines and has 5 or more heroes alive."+"\n"+"\n"+
 				"4-The game ends when the player\r\n"
 				+ "has collected and used all vaccines or when all heroes have been overwhelmed and defeated by\r\n"
-				+ "the zombies");
+				+ "the zombies"+"\n"+"\n"+"");
 		
 		understand.setFont(Font.loadFont(getClass().getResourceAsStream("ARCADEPI.TTF"), 20));
 
