@@ -1,11 +1,56 @@
-## THE_LAST_OF_US
+# The Last of Us 2D
 
-This is a 2D implementation of the popular game "The Last of Us", created by Mohamad Rageh Omar Riad and Marwan Salah. We used Java and JavaFX to build the game.
+## Description
+This is a 2D implementation of the popular game "The Last of Us", created by Mohamad Rageh, Omar Riad, and Marwan Salah. Java and JavaFX have been used to build the game.
+Our implementation of "The Last of Us" is a 2D version of the original game. We created this game as a project for CSEN401 Course.
 
-About Our implementation of "The Last of Us" is a 2D version of the original game,We created this game as a project for CSEN401, and we're proud to say that we were one of the top 7 teams in our university.
+## Table of Contents
+- [Installation](#installation)
+- [Gameplay](#gameplay)
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Awards](#awards)
 
-How to Play To play the game, simply download the files and run the Java program. Make sure you have Java and JavaFX installed on your computer before running the program.
+## Installation
+Simply download the files and run the Java program. Make sure you have Java and JavaFX installed on your computer before running the program.
+A more detailed installation Guide will be updated soon.
 
-Credits Mohamad Rageh,Omar Riad and Marwan Salah. I would like to give a special thanks to thenewboston for the helpful JavaFX tutorials and resources.
 
-Conclusion We had a lot of fun creating this 2D version of "The Last of Us", and we hope you enjoy playing it as much as we enjoyed building it. Thank you for checking out our project!
+## Gameplay
+Use the arrow keys to navigate through the map. 
+C- cure
+H- Change Hero
+N- attack
+M-use special item
+E - end Turn
+
+A-S-D-W - controls
+
+## Screenshots
+![Main Menu](images/main-menu.png)
+*Main Menu*
+Will be added soon
+
+![Gameplay](images/gameplay.png)
+*Gameplay Scene*
+Will be added soon
+
+
+![Treasures and items](images/treasure-found.png)
+*Treasure Found*
+Will be added soon
+
+## Features
+- 2D graphics
+- Engaging Gameplay
+- Various challenges
+- Hidden treasures and collectibles
+- Various enemy types and obstacles
+
+
+
+### Conclusion
+We had a lot of fun creating this 2D version of "The Last of Us", and we hope you enjoy playing it as much as we enjoyed building it. Thank you for checking out our project!
+
+## Awards
+We're proud to say that Our game is one of the top 7 teams in our university chosen by professors of the Course. 
