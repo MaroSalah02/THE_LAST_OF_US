@@ -17,21 +17,14 @@ A more detailed installation Guide will be updated soon.
 
 
 ## Gameplay
-Use the arrow keys to navigate through the map. 
-C- cure
-H- Change Hero
-N- attack
-M-use special item
-E - end Turn
-
-A-S-D-W - controls
+![Gameplay](gameplay.png)
 
 ## Screenshots
 ![Main Menu](images/main-menu.png)
 *Main Menu*
 Will be added soon
 
-![Gameplay](images/gameplay.png)
+![Gameplay]()
 *Gameplay Scene*
 Will be added soon
 
