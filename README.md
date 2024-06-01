@@ -16,7 +16,7 @@ Our implementation of "The Last of Us" is a 2D version of the original game. We 
 
 ## Installation
 Simply download the files and run the Java program. Make sure you have Java and JavaFX installed on your computer before running the program.
-A more detailed installation Guide and Jar version of the game will be added soon will be updated soon.
+A more detailed installation Guide and Jar version of the game will be updated soon.
 
 
 ## Gameplay
